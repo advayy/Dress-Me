@@ -9,7 +9,7 @@ The application acts as a Wardrobe tracker, that can keep a record of all the cl
 
 ### Who will use it?
 
-I primarily thought of this app in terms of the average university student. Given that we have a lot of things to keep track of, with assignments and social events, It would be useful and **efficient** to have a digital wardrobe that could help plan what to wear. Researchers have found that when you wear outfits that make you feel good, you perform better on analytical tasks. And so really this project could be used as an aid to productivity/efficiency for anyone who needs it.
+I primarily thought of this app in terms of the average university student. Given that we have a lot of things to keep track of, with assignments and social events, It would be useful and **efficient** to have a digital wardrobe that could help plan what to wear. Researchers have found that when you wear outfits that make you feel good, you perform better on analytical tasks. And so, this project could be used as an aid to productivity/efficiency for anyone who needs it.
 
 ### Why is this project of interest to you?
 

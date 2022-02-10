@@ -1,32 +1,33 @@
 package model;
 
+
 // Clothing object class
 public class Clothing {
     private String pieceColour;
-    private String apparelGenre;
-    private String itemKind;
-    private String itemName;
+    private String pieceGenre;
+    private String pieceKind;
+    private String pieceName;
 
-    public Clothing(String colour, String genre, String itemKind, String itemName) {
-        this.apparelGenre = genre;
-        this.pieceColour = colour;
-        this.itemKind = itemKind;
-        this.itemName = itemName;
+    public Clothing(String pieceColour, String pieceGenre, String pieceKind, String pieceName) {
+        this.pieceGenre = pieceGenre;
+        this.pieceColour = pieceColour;
+        this.pieceKind = pieceKind;
+        this.pieceName = pieceName;
     }
 
     public String getPieceColour() {
-        return pieceColour;
+        return this.pieceColour;
     }
 
-    public String getApparelGenre() {
-        return apparelGenre;
+    public String getPieceGenre() {
+        return this.pieceGenre;
     }
 
-    public String getItemKind() {
-        return itemKind;
+    public String getPieceKind() {
+        return this.pieceKind;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getPieceName() {
+        return this.pieceName;
     }
 }

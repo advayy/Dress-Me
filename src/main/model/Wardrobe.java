@@ -19,7 +19,7 @@ public class Wardrobe {
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 
         for (Clothing c : this.userWardrobe) {
-            if (c.getPieceColour() == colour) {
+            if (c.getPieceColour().equals(colour)) {
                 filteredList.add(c);
             }
         }
@@ -31,11 +31,29 @@ public class Wardrobe {
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 
         for (Clothing c : this.userWardrobe) {
-            if (c.getApparelGenre() == genre) {
+            if (c.getPieceGenre().equals(genre)) {
                 filteredList.add(c);
             }
         }
         return filteredList;
+    }
+
+    public boolean removeItem(int index) {
+        int initialSize = this.userWardrobe.size();
+        this.userWardrobe.remove(index);
+        if (initialSize == this.userWardrobe.size()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean addItem(Clothing c) {
+        int initialSize = this.userWardrobe.size();
+        this.userWardrobe.add(c);
+        if (initialSize == this.userWardrobe.size()) {
+            return false;
+        }
+        return true;
     }
 
 }
