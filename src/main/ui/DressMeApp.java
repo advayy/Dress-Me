@@ -196,7 +196,7 @@ public class DressMeApp {
      * */
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
-        System.out.println("Enter Filter Colour Here: ");
+        System.out.print("Enter Filter Colour Here: ");
         String input = inputScan.next();
         input.toLowerCase();
         listItems(userWardrobe.getClothesOfColour(input));
@@ -207,7 +207,7 @@ public class DressMeApp {
      * */
     public void runGenreFilter() {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
-        System.out.println("Enter Filter Genre Here: ");
+        System.out.print("Enter Filter Genre Here: ");
         String input = inputScan.next();
         input.toLowerCase();
         listItems(userWardrobe.getClothesOfApparelGenre(input));
