@@ -119,27 +119,30 @@ public class DressMeApp {
         name = inputScan.next();
         System.out.print("Item Genre: ");
         genre = inputScan.next();
+        genre = genre.toLowerCase(Locale.ROOT);
         System.out.print("Item Kind: ");
         kind = inputScan.next();
+        kind = kind.toUpperCase(Locale.ROOT);
         System.out.print("Item color: ");
         color = inputScan.next();
+        color = color.toLowerCase(Locale.ROOT);
 
         Clothing newItem;
         switch (code) {
             case 1:
-                newItem = new HeadWear(color, genre, name, kind);
+                newItem = new HeadWear(color, genre, kind, name);
                 break;
             case 2:
-                newItem = new UpperWear(color, genre, name, kind);
+                newItem = new UpperWear(color, genre, kind, name);
                 break;
             case 3:
-                newItem = new LowerWear(color, genre, name, kind);
+                newItem = new LowerWear(color, genre, kind, name);
                 break;
             case 4:
-                newItem = new FootWear(color, genre, name, kind);
+                newItem = new FootWear(color, genre, kind, name);
                 break;
             default:
-                newItem = new Clothing(color, genre, name, kind);
+                newItem = new Clothing(color, genre, kind, name);
         }
         userWardrobe.addItem(newItem);
         System.out.println("Operation Successful");
@@ -198,7 +201,7 @@ public class DressMeApp {
         System.out.println("Enter the Colour you're searching for");
         System.out.print("Enter Filter Colour Here: ");
         String input = inputScan.next();
-        input.toLowerCase();
+        input = input.toLowerCase();
         listItems(userWardrobe.getClothesOfColour(input));
     }
 
@@ -209,7 +212,7 @@ public class DressMeApp {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
         System.out.print("Enter Filter Genre Here: ");
         String input = inputScan.next();
-        input.toLowerCase();
+        input = input.toLowerCase();
         listItems(userWardrobe.getClothesOfApparelGenre(input));
     }
 }
