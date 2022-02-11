@@ -158,6 +158,7 @@ public class DressMeApp {
             System.out.print(", Item Kind: " + kind);
             System.out.print(", Item Genre: " + genre);
             System.out.print(", Item Color: " + color);
+            System.out.println();
         }
         System.out.println();
     }
@@ -165,14 +166,16 @@ public class DressMeApp {
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
         System.out.println("Enter Filter Colour Here: ");
-        String input = inputScan.nextLine().toLowerCase(Locale.ROOT);
+        String input = inputScan.next();
+        input.toLowerCase();
         listItems(userWardrobe.getClothesOfColour(input));
     }
 
     public void runGenreFilter() {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
         System.out.println("Enter Filter Genre Here: ");
-        String input = inputScan.nextLine().toLowerCase(Locale.ROOT);
+        String input = inputScan.next();
+        input.toLowerCase();
         listItems(userWardrobe.getClothesOfApparelGenre(input));
     }
 }
