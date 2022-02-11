@@ -85,4 +85,18 @@ class WardrobeTest {
 
         assertTrue(userTest.getClothesOfApparelGenre("imaginary").isEmpty());
     }
+
+    @Test
+    public void getUserWardrobeTest() {
+        userTest.addItem(hat);
+        userTest.addItem(shirt);
+        userTest.addItem(pant);
+        userTest.addItem(shoe);
+        ArrayList<Clothing> testList = new ArrayList<Clothing>();
+        testList.add(hat);
+        testList.add(shirt);
+        testList.add(pant);
+        testList.add(shoe);
+        assertEquals(userTest.getUserWardrobe(), testList);
+    }
 }

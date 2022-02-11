@@ -11,7 +11,7 @@ public class Wardrobe {
     }
 
     public ArrayList<Clothing> getUserWardrobe() {
-        return userWardrobe;
+        return this.userWardrobe;
     }
 
     public ArrayList<Clothing> getClothesOfColour(String colour) {
