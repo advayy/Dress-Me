@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 // console application that communicates with the user.
+// dresses up the user
 public class DressMeApp {
     Wardrobe userWardrobe = new Wardrobe();
     Scanner inputScan = new Scanner(System.in);
@@ -134,6 +135,9 @@ public class DressMeApp {
         System.out.println();
     }
 
+    /* Requires: A string from the user as the output/ instruction method
+     * Effects: gets the user input and returns it.
+     * */
     public String getInputText(String outMsg) {
         System.out.println(outMsg);
         System.out.print("Enter input here: ");
