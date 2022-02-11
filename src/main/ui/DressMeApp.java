@@ -102,6 +102,7 @@ public class DressMeApp {
         kind = inputScan.next();
         System.out.print("Item color: ");
         color = inputScan.next();
+
         Clothing newItem;
         switch (code) {
             case 1:
@@ -164,14 +165,14 @@ public class DressMeApp {
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
         System.out.println("Enter Filter Colour Here: ");
-        String input = inputScan.next().toLowerCase(Locale.ROOT);
+        String input = inputScan.nextLine().toLowerCase(Locale.ROOT);
         listItems(userWardrobe.getClothesOfColour(input));
     }
 
     public void runGenreFilter() {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
         System.out.println("Enter Filter Genre Here: ");
-        String input = inputScan.next().toLowerCase(Locale.ROOT);
+        String input = inputScan.nextLine().toLowerCase(Locale.ROOT);
         listItems(userWardrobe.getClothesOfApparelGenre(input));
     }
 }
