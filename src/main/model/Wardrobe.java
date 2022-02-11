@@ -41,18 +41,12 @@ public class Wardrobe {
     public boolean removeItem(int index) {
         int initialSize = this.userWardrobe.size();
         this.userWardrobe.remove(index);
-        if (initialSize == this.userWardrobe.size()) {
-            return false;
-        }
         return true;
     }
 
     public boolean addItem(Clothing c) {
         int initialSize = this.userWardrobe.size();
         this.userWardrobe.add(c);
-        if (initialSize == this.userWardrobe.size()) {
-            return false;
-        }
         return true;
     }
 

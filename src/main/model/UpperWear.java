@@ -8,7 +8,8 @@ public class UpperWear extends Clothing {
         super(colour, genre, itemKind, itemName);
     }
 
+    /*
     public String[] getAcceptableItems() {
         return ACCEPTABLE_ITEMS;
-    }
+    }*/
 }
