@@ -11,10 +11,16 @@ public class DressMeApp {
     Wardrobe userWardrobe = new Wardrobe();
     Scanner inputScan = new Scanner(System.in);
 
+    /*
+     * Effects: Runs the Application loop
+     * */
     public DressMeApp() {
         runDressMe();
     }
 
+    /* Requires: An integer input from the user
+     * Effects: Gets user input and either quits or loops depending on what is entered
+     * */
     public void runDressMe() {
         boolean keepGoing = true;
 
@@ -35,6 +41,9 @@ public class DressMeApp {
 
     }
 
+    /*
+     * Effects: Prints a list of options from the user
+     * */
     public void displayMenu() {
         System.out.println("What would you like to do");
         System.out.println("1 - Add an Item");
@@ -46,6 +55,9 @@ public class DressMeApp {
         System.out.print("Enter your option: ");
     }
 
+    /* Requires: an integer input from the user
+     * Effects: Launches the user selected input
+     * */
     public void processCommand(int input) {
         if (input == 1) {
             runAdditionSequence();
@@ -63,6 +75,10 @@ public class DressMeApp {
         }
     }
 
+    /*
+     * Effects: Takes the user input for what kind of object to instantiate and passes the information to the
+     * second part of the addition sequence
+     * */
     public void runAdditionSequence() {
         System.out.println("What kind of item would you like to add:");
         System.out.println("1 - Head Wear");
@@ -86,6 +102,11 @@ public class DressMeApp {
         }
     }
 
+    /* Requires: A encoding to generate the clothing object by type
+     * Modifies: userWardrobe
+     * Effects: Takes user input to create a new item or clothing apparent type and selected actual type
+     * and then adds that to the user wardrobe
+     * */
     @SuppressWarnings("methodlength")
     public void addToWardrobe(int code) {
         String color;
@@ -125,6 +146,10 @@ public class DressMeApp {
         System.out.println();
     }
 
+    /* Requires: the wardrobe must not be empty
+     * Modifies: this
+     * Effects: Lists all items with their index codes and takes an input from the user and removes the selected item
+     * */
     public void removeFromWardrobe() {
         System.out.println("Which of the following items would you like to remove?");
         listItems(userWardrobe.getUserWardrobe());
@@ -143,6 +168,9 @@ public class DressMeApp {
         }
     }
 
+    /* Requires: the list not be empty
+     * Effects: Lists all items with their index codes to the user
+     * */
     public void listItems(ArrayList<Clothing> clothesList) {
         String color;
         String genre;
@@ -163,6 +191,9 @@ public class DressMeApp {
         System.out.println();
     }
 
+    /* Requires: input color from the user
+     * Effects: Lists all items that match the required filter specification
+     * */
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
         System.out.println("Enter Filter Colour Here: ");
@@ -171,6 +202,9 @@ public class DressMeApp {
         listItems(userWardrobe.getClothesOfColour(input));
     }
 
+    /* Requires: input color from the user
+     * Effects: Lists all items that match the required filter specification
+     * */
     public void runGenreFilter() {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
         System.out.println("Enter Filter Genre Here: ");
