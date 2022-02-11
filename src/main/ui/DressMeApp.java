@@ -29,7 +29,7 @@ public class DressMeApp {
 
         while (keepGoing) {
             displayMenu();
-            String stringInput = inputScan.next();
+            String stringInput = inputScan.nextLine();
             int inp = Integer.parseInt(stringInput); // turns string input into
             if (inp == 6) {
                 keepGoing = false;
@@ -87,7 +87,7 @@ public class DressMeApp {
         System.out.println("4 - Footwear");
         System.out.println("Or enter X to cancel");
         System.out.print("Enter selected option: ");
-        String stringInput = inputScan.next();
+        String stringInput = inputScan.nextLine();
         if (stringInput.equals("X")) {
             System.out.println("Operation Cancelled");
             System.out.println();
@@ -107,46 +107,37 @@ public class DressMeApp {
      * Effects: Takes user input to create a new item or clothing apparent type and selected actual type
      * and then adds that to the user wardrobe
      * */
-    @SuppressWarnings("methodlength")
     public void addToWardrobe(int code) {
-        String color;
-        String genre;
-        String kind;
-        String name;
-
         System.out.println("Enter the following details:");
-        System.out.print("Item Name: ");
-        name = inputScan.next();
-        System.out.print("Item Genre: ");
-        genre = inputScan.next();
+        String name = getInputText("Please enter Item Name");
+        String genre = getInputText("Please enter Item Genre");
         genre = genre.toLowerCase(Locale.ROOT);
-        System.out.print("Item Kind: ");
-        kind = inputScan.next();
+        String kind = getInputText("Please enter Item Kind");
         kind = kind.toUpperCase(Locale.ROOT);
-        System.out.print("Item color: ");
-        color = inputScan.next();
+        String color = getInputText("Please enter Item Color");
         color = color.toLowerCase(Locale.ROOT);
 
         Clothing newItem;
-        switch (code) {
-            case 1:
-                newItem = new HeadWear(color, genre, kind, name);
-                break;
-            case 2:
-                newItem = new UpperWear(color, genre, kind, name);
-                break;
-            case 3:
-                newItem = new LowerWear(color, genre, kind, name);
-                break;
-            case 4:
-                newItem = new FootWear(color, genre, kind, name);
-                break;
-            default:
-                newItem = new Clothing(color, genre, kind, name);
+        if (code == 1) {
+            newItem = new HeadWear(color, genre, kind, name);
+        } else if (code == 2) {
+            newItem = new UpperWear(color, genre, kind, name);
+        } else if (code == 3) {
+            newItem = new LowerWear(color, genre, kind, name);
+        } else if (code == 4) {
+            newItem = new FootWear(color, genre, kind, name);
+        } else {
+            newItem = new Clothing(color, genre, kind, name);
         }
         userWardrobe.addItem(newItem);
         System.out.println("Operation Successful");
         System.out.println();
+    }
+
+    public String getInputText(String outMsg) {
+        System.out.println(outMsg);
+        System.out.print("Enter input here: ");
+        return inputScan.nextLine();
     }
 
     /* Requires: the wardrobe must not be empty
@@ -158,7 +149,7 @@ public class DressMeApp {
         listItems(userWardrobe.getUserWardrobe());
         System.out.println("Please enter the number beside the listing");
         System.out.print("Enter your selection or X to cancel: ");
-        String stringInput = inputScan.next();
+        String stringInput = inputScan.nextLine();
         if (stringInput.equals("X")) {
             System.out.println("Operation Cancelled");
             System.out.println();
@@ -200,7 +191,7 @@ public class DressMeApp {
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
         System.out.print("Enter Filter Colour Here: ");
-        String input = inputScan.next();
+        String input = inputScan.nextLine();
         input = input.toLowerCase();
         listItems(userWardrobe.getClothesOfColour(input));
     }
@@ -211,7 +202,7 @@ public class DressMeApp {
     public void runGenreFilter() {
         System.out.println("Enter the Genre/Apparel Type you're searching for");
         System.out.print("Enter Filter Genre Here: ");
-        String input = inputScan.next();
+        String input = inputScan.nextLine();
         input = input.toLowerCase();
         listItems(userWardrobe.getClothesOfApparelGenre(input));
     }
