@@ -103,10 +103,13 @@ class WardrobeTest {
     @Test
     public void removeItemByIndexTest() {
         userTest.addItem(hat);
+        userTest.addItem(shirt);
+        userTest.addItem(pant);
         userTest.addItem(shoe);
-        assertTrue(userTest.removeItemByIndex(4));
-        assertTrue(userTest.removeItemByIndex(1));
-        assertFalse(userTest.removeItemByIndex(0));
+
+        assertTrue(userTest.removeItemByIndex(hat.getIndexNo()));
+        assertTrue(userTest.removeItemByIndex(shoe.getIndexNo()));
+        assertFalse(userTest.removeItemByIndex(100));
 
         userTest.addItem(hat);
         userTest.addItem(hat);

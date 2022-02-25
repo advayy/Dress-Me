@@ -55,8 +55,10 @@ public class Wardrobe {
      * Effects: removes the item at that index from wardrobe
      * */
     public boolean removeItem(int index) {
+        int initialSize = userWardrobe.size();
         this.userWardrobe.remove(index);
-        return true;
+        int afterRemovalSize = userWardrobe.size();
+        return (initialSize != afterRemovalSize);
     }
 
     /* Requires: the index number of the item
@@ -83,8 +85,10 @@ public class Wardrobe {
      * Effects: adds the given item to the userWardrobe
      * */
     public boolean addItem(Clothing c) {
+        int initialSize = userWardrobe.size();
         this.userWardrobe.add(c);
-        return true;
+        int afterAddSize = userWardrobe.size();
+        return (initialSize != afterAddSize);
     }
 
 }
