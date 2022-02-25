@@ -3,7 +3,7 @@ package model;
 // Create instances of footwear for Clothing
 public class FootWear extends Clothing {
 
-    private static final String[] ACCEPTABLE_ITEMS = {"Shoes", "Sandals"};
+    private static final String[] ACCEPTABLE_ITEMS = {"SHOES", "SLIPPERS"};
 
     /* Requires: a color, genre, kind and name
      * Modifies: this

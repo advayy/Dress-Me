@@ -31,8 +31,9 @@ public class DressMeApp {
         while (keepGoing) {
             displayMenu();
             String stringInput = inputScan.nextLine();
+            stringInput = stringInput.toUpperCase(Locale.ROOT);
             int inp = Integer.parseInt(stringInput); // turns string input into
-            if (inp == 6) {
+            if (stringInput.equals("X")) {
                 keepGoing = false;
                 System.out.println("Goodbye <3");
             } else {
@@ -52,7 +53,7 @@ public class DressMeApp {
         System.out.println("3 - List all items in the Wardrobe");
         System.out.println("4 - List all items of a certain color");
         System.out.println("5 - List all items of a certain Genre/Apparel Type");
-        System.out.println("6 - Exit");
+        System.out.println("X - Exit");
         System.out.print("Enter your option: ");
     }
 
@@ -158,32 +159,18 @@ public class DressMeApp {
             System.out.println();
         } else {
             int inp = Integer.parseInt(stringInput);
-            removeItemByIndex(inp);
+            boolean flag = userWardrobe.removeItemByIndex(inp);
+            if (flag) {
+                System.out.println("Operation Successful");
+                System.out.println();
+            } else {
+                System.out.println("Operation Unsuccessful - index not found");
+                System.out.println();
+            }
         }
     }
 
-    /* Requires: the index number of the item
-    * Modifies: this
-    * Effects: returns the wardrobe list index of the item
-    * */
-    public void removeItemByIndex(int index) {
-        ArrayList<Clothing> wardrobe = userWardrobe.getUserWardrobe();
-        boolean found = false;
-        int listIndex = 0;
-        for (Clothing item: wardrobe) {
-            if (item.getIndexNo() == index) {
-                listIndex = wardrobe.indexOf(item);
-                found = true;
-            }
-        }
-        if (found) {
-            wardrobe.remove(listIndex);
-            System.out.println("Operation Successful");
-            System.out.println();
-        } else {
-            System.out.println("Operation Unsuccessful - index not found");
-        }
-    }
+
 
     /* Requires: the list not be empty
      * Effects: Lists all items with their index codes to the user

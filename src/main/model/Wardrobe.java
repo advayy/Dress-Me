@@ -59,6 +59,25 @@ public class Wardrobe {
         return true;
     }
 
+    /* Requires: the index number of the item
+     * Modifies: this
+     * Effects: returns the wardrobe list index of the item
+     * */
+    public boolean removeItemByIndex(int index) {
+        boolean found = false;
+        int listIndex = 0;
+        for (Clothing item: this.userWardrobe) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.userWardrobe.indexOf(item);
+                found = true;
+            }
+        }
+        if (found) {
+            removeItem(listIndex);
+        }
+        return found;
+    }
+
     /* Requires: a given item of Clothing type
      * Modifies: this
      * Effects: adds the given item to the userWardrobe

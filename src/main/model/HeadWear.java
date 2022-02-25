@@ -3,7 +3,7 @@ package model;
 // Create instances of Head garments for Clothing
 public class HeadWear extends Clothing {
 
-    private static final String[] ACCEPTABLE_ITEMS = {"Glasses", "Hat", "Headband"};
+    private static final String[] ACCEPTABLE_ITEMS = {"GLASSES", "HAT", "HEADBAND"};
 
     /* Requires: a color, genre, kind and name
      * Modifies: this

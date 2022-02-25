@@ -3,7 +3,7 @@ package model;
 // Create instances of Upper wear for Clothing
 public class UpperWear extends Clothing {
 
-    private static final String[] ACCEPTABLE_ITEMS = {"Teeshirt", "Shirt", "TankTop"};
+    private static final String[] ACCEPTABLE_ITEMS = {"TEESHIRT", "SHIRT", "JACKET", "SWEATER"};
 
     /* Requires: a color, genre, kind and name
      * Modifies: this

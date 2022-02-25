@@ -3,7 +3,7 @@ package model;
 // Create instances of lower wear for Clothing
 public class LowerWear extends Clothing {
 
-    private static final String[] ACCEPTABLE_ITEMS = {"Pants", "Shorts", "Jeans"};
+    private static final String[] ACCEPTABLE_ITEMS = {"PANTS", "SHORTS", "JEANS"};
 
     /* Requires: a color, genre, kind and name
      * Modifies: this
