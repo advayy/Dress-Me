@@ -145,13 +145,12 @@ public class DressMeApp {
     }
 
     /* Requires: the wardrobe must not be empty
-     * Modifies: this
      * Effects: Lists all items with their index codes and takes an input from the user and removes the selected item
      * */
     public void removeFromWardrobe() {
         System.out.println("Which of the following items would you like to remove?");
         listItems(userWardrobe.getUserWardrobe());
-        System.out.println("Please enter the number beside the listing");
+        System.out.println("Please enter the item Index No.");
         System.out.print("Enter your selection or X to cancel: ");
         String stringInput = inputScan.nextLine();
         if (stringInput.equals("X")) {
@@ -159,12 +158,32 @@ public class DressMeApp {
             System.out.println();
         } else {
             int inp = Integer.parseInt(stringInput);
-            inp -= 1;
-            userWardrobe.removeItem(inp);
-            System.out.println("Operation Successful");
-            System.out.println();
+            removeItemByIndex(inp);
         }
     }
+
+    /* Requires: the index number of the item
+    * Modifies: this
+    * Effects: returns the wardrobe list index of the item
+    * */
+    public void removeItemByIndex(int index) {
+        ArrayList<Clothing> wardrobe = userWardrobe.getUserWardrobe();
+        boolean found = false;
+        for (Clothing item: wardrobe) {
+            int listIndex = wardrobe.indexOf(item);
+            if (item.getIndexNo() == index) {
+                userWardrobe.removeItem(listIndex);
+                found = true;
+            }
+        }
+        if (found) {
+            System.out.println("Operation Successful");
+            System.out.println();
+        } else {
+            System.out.println("Operation Unsuccessful - index not found");
+        }
+    }
+
 
     /* Requires: the list not be empty
      * Effects: Lists all items with their index codes to the user
@@ -174,12 +193,14 @@ public class DressMeApp {
         String genre;
         String kind;
         String name;
+        int index;
         for (Clothing item: clothesList) {
             color = item.getPieceColour();
             genre = item.getPieceGenre();
             kind = item.getPieceKind();
             name = item.getPieceName();
-            System.out.print("Item Index: " + (clothesList.indexOf(item) + 1));
+            index = item.getIndexNo();
+            System.out.print("Item Index: " + index);
             System.out.print(", Item Name: " + name);
             System.out.print(", Item Kind: " + kind);
             System.out.print(", Item Genre: " + genre);

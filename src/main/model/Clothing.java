@@ -7,6 +7,8 @@ public class Clothing {
     private String pieceGenre;
     private String pieceKind;
     private String pieceName;
+    private int indexNo;
+    private static int nextID = 1;
 
     /* Requires: a color, genre, kind and name
      * Modifies: this
@@ -17,6 +19,14 @@ public class Clothing {
         this.pieceColour = pieceColour;
         this.pieceKind = pieceKind;
         this.pieceName = pieceName;
+        this.indexNo = nextID++;
+    }
+
+    /*
+     * Effects: Returns the index number of the piece
+     * */
+    public int getIndexNo() {
+        return this.indexNo;
     }
 
     /*
