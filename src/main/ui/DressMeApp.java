@@ -31,12 +31,11 @@ public class DressMeApp {
         while (keepGoing) {
             displayMenu();
             String stringInput = inputScan.nextLine();
-            stringInput = stringInput.toUpperCase(Locale.ROOT);
-            int inp = Integer.parseInt(stringInput); // turns string input into
-            if (stringInput.equals("X")) {
+            if (stringInput.equalsIgnoreCase("X")) {
                 keepGoing = false;
                 System.out.println("Goodbye <3");
             } else {
+                int inp = Integer.parseInt(stringInput); // turns string input into
                 processCommand(inp);
             }
         }
@@ -90,7 +89,7 @@ public class DressMeApp {
         System.out.println("Or enter X to cancel");
         System.out.print("Enter selected option: ");
         String stringInput = inputScan.nextLine();
-        if (stringInput.equals("X")) {
+        if (stringInput.equalsIgnoreCase("X")) {
             System.out.println("Operation Cancelled");
             System.out.println();
         } else {
@@ -114,22 +113,22 @@ public class DressMeApp {
         String name = getInputText("Please enter Item Name");
         String genre = getInputText("Please enter Item Genre");
         genre = genre.toLowerCase(Locale.ROOT);
-        String kind = getInputText("Please enter Item Kind");
-        kind = kind.toUpperCase(Locale.ROOT);
+        //String subType = getInputText("Please enter Item Subtype");
+        String subType = getSubType(code);
         String color = getInputText("Please enter Item Color");
         color = color.toLowerCase(Locale.ROOT);
 
         Clothing newItem;
         if (code == 1) {
-            newItem = new HeadWear(color, genre, kind, name);
+            newItem = new HeadWear(color, genre, subType, name);
         } else if (code == 2) {
-            newItem = new UpperWear(color, genre, kind, name);
+            newItem = new UpperWear(color, genre, subType, name);
         } else if (code == 3) {
-            newItem = new LowerWear(color, genre, kind, name);
+            newItem = new LowerWear(color, genre, subType, name);
         } else if (code == 4) {
-            newItem = new FootWear(color, genre, kind, name);
+            newItem = new FootWear(color, genre, subType, name);
         } else {
-            newItem = new Clothing(color, genre, kind, name);
+            newItem = new Clothing(color, genre, subType, name);
         }
         userWardrobe.addItem(newItem);
         System.out.println("Operation Successful");
@@ -143,6 +142,32 @@ public class DressMeApp {
         System.out.println(outMsg);
         System.out.print("Enter input here: ");
         return inputScan.nextLine();
+    }
+
+    /* Requires: A valid input code from the previous function on what items are acceptable
+    * Effects: Asks the user for what subtype they want to make and returns it to other functions
+    * */
+    public String getSubType(int code) {
+        String[] acceptableItems;
+        if (code == 1) {
+            acceptableItems = HeadWear.getAcceptableItems();
+        } else if (code == 2) {
+            acceptableItems = UpperWear.getAcceptableItems();
+        } else if (code == 3) {
+            acceptableItems = LowerWear.getAcceptableItems();
+        } else if (code == 4) {
+            acceptableItems = FootWear.getAcceptableItems();
+        } else {
+            acceptableItems = new String[0];
+        }
+        System.out.println("Input one of the following");
+        for (int i = 0; i < acceptableItems.length; i++) {
+            int indexing = i + 1;
+            System.out.println(indexing + "- " + acceptableItems[i]);
+        }
+        String index = getInputText("Enter the number beside the subtype");
+        int indexing = Integer.parseInt(index) - 1;
+        return acceptableItems[indexing];
     }
 
     /* Requires: the wardrobe must not be empty
@@ -178,18 +203,18 @@ public class DressMeApp {
     public void listItems(ArrayList<Clothing> clothesList) {
         String color;
         String genre;
-        String kind;
+        String subType;
         String name;
         int index;
         for (Clothing item: clothesList) {
             color = item.getPieceColour();
             genre = item.getPieceGenre();
-            kind = item.getPieceKind();
+            subType = item.getPieceSubtype();
             name = item.getPieceName();
             index = item.getIndexNo();
             System.out.print("Item Index: " + index);
             System.out.print(", Item Name: " + name);
-            System.out.print(", Item Kind: " + kind);
+            System.out.print(", Item SubType: " + subType);
             System.out.print(", Item Genre: " + genre);
             System.out.print(", Item Color: " + color);
             System.out.println();

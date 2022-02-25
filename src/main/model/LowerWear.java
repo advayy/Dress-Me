@@ -13,8 +13,8 @@ public class LowerWear extends Clothing {
         super(colour, genre, itemKind, itemName);
     }
 
-    /*
-    public String[] getAcceptableItems() {
+
+    public static String[] getAcceptableItems() {
         return ACCEPTABLE_ITEMS;
-    }*/
+    }
 }

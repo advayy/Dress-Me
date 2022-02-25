@@ -16,22 +16,22 @@ class ClothingTest {
        // Tests for Hat
        assertEquals("Red", hat.getPieceColour());
        assertEquals("Formal", hat.getPieceGenre());
-       assertEquals("Hat", hat.getPieceKind());
+       assertEquals("Hat", hat.getPieceSubtype());
        assertEquals("Top Hat", hat.getPieceName());
 
        assertEquals("Blue", shirt.getPieceColour());
        assertEquals("Sports", shirt.getPieceGenre());
-       assertEquals("Shirt", shirt.getPieceKind());
+       assertEquals("Shirt", shirt.getPieceSubtype());
        assertEquals("Nike Tee", shirt.getPieceName());
 
        assertEquals("Green", pant.getPieceColour());
        assertEquals("Casual", pant.getPieceGenre());
-       assertEquals("Shorts", pant.getPieceKind());
+       assertEquals("Shorts", pant.getPieceSubtype());
        assertEquals("Levi's", pant.getPieceName());
 
        assertEquals("Black", shoe.getPieceColour());
        assertEquals("Formal", shoe.getPieceGenre());
-       assertEquals("Shoes", shoe.getPieceKind());
+       assertEquals("Shoes", shoe.getPieceSubtype());
        assertEquals("Amiri", shoe.getPieceName());
     }
 }

@@ -5,7 +5,7 @@ package model;
 public class Clothing {
     private String pieceColour;
     private String pieceGenre;
-    private String pieceKind;
+    private String pieceSubtype;
     private String pieceName;
     private int indexNo;
     private static int nextID = 1;
@@ -14,10 +14,10 @@ public class Clothing {
      * Modifies: this
      * Effects: instantiates an instance of Clothing
      * */
-    public Clothing(String pieceColour, String pieceGenre, String pieceKind, String pieceName) {
+    public Clothing(String pieceColour, String pieceGenre, String pieceSubtype, String pieceName) {
         this.pieceGenre = pieceGenre;
         this.pieceColour = pieceColour;
-        this.pieceKind = pieceKind;
+        this.pieceSubtype = pieceSubtype;
         this.pieceName = pieceName;
         this.indexNo = nextID++;
     }
@@ -46,8 +46,8 @@ public class Clothing {
     /*
      * Effects: Returns the kind/type of the piece
      * */
-    public String getPieceKind() {
-        return this.pieceKind;
+    public String getPieceSubtype() {
+        return this.pieceSubtype;
     }
 
     /*
