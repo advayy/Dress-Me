@@ -169,21 +169,21 @@ public class DressMeApp {
     public void removeItemByIndex(int index) {
         ArrayList<Clothing> wardrobe = userWardrobe.getUserWardrobe();
         boolean found = false;
+        int listIndex = 0;
         for (Clothing item: wardrobe) {
-            int listIndex = wardrobe.indexOf(item);
             if (item.getIndexNo() == index) {
-                userWardrobe.removeItem(listIndex);
+                listIndex = wardrobe.indexOf(item);
                 found = true;
             }
         }
         if (found) {
+            wardrobe.remove(listIndex);
             System.out.println("Operation Successful");
             System.out.println();
         } else {
             System.out.println("Operation Unsuccessful - index not found");
         }
     }
-
 
     /* Requires: the list not be empty
      * Effects: Lists all items with their index codes to the user
