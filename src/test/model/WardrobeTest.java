@@ -106,6 +106,7 @@ class WardrobeTest {
         userTest.addItem(shoe);
         assertTrue(userTest.removeItemByIndex(4));
         assertTrue(userTest.removeItemByIndex(1));
+        assertFalse(userTest.removeItemByIndex(0));
     }
 
 }
