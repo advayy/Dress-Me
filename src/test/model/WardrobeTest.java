@@ -107,6 +107,10 @@ class WardrobeTest {
         assertTrue(userTest.removeItemByIndex(4));
         assertTrue(userTest.removeItemByIndex(1));
         assertFalse(userTest.removeItemByIndex(0));
+
+        userTest.addItem(hat);
+        userTest.addItem(hat);
+        assertEquals(userTest.removeItemByIndex(hat.getIndexNo()), userTest.removeItem(0));
     }
 
 }
