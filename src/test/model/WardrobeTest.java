@@ -99,4 +99,13 @@ class WardrobeTest {
         testList.add(shoe);
         assertEquals(userTest.getUserWardrobe(), testList);
     }
+
+    @Test
+    public void removeItemByIndexTest() {
+        userTest.addItem(hat);
+        userTest.addItem(shoe);
+        assertTrue(userTest.removeItemByIndex(4));
+        assertTrue(userTest.removeItemByIndex(1));
+    }
+
 }
