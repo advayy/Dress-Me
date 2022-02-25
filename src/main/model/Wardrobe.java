@@ -75,9 +75,10 @@ public class Wardrobe {
             }
         }
         if (found) {
-            removeItem(listIndex);
+            return removeItem(listIndex);
+        } else {
+            return found;
         }
-        return found;
     }
 
     /* Requires: a given item of Clothing type
