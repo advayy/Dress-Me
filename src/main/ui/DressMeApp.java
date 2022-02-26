@@ -47,9 +47,11 @@ public class DressMeApp {
             if (stringInput.equalsIgnoreCase("X")) {
                 keepGoing = false;
                 System.out.println("Goodbye <3");
+                endLine();
             } else {
                 int inp = Integer.parseInt(stringInput); // turns string input into
                 processCommand(inp);
+                flatLine();
             }
         }
 
@@ -144,10 +146,8 @@ public class DressMeApp {
             newItem = new UpperWear(color, genre, subType, name);
         } else if (code == 3) {
             newItem = new LowerWear(color, genre, subType, name);
-        } else if (code == 4) {
-            newItem = new FootWear(color, genre, subType, name);
         } else {
-            newItem = new Clothing(color, genre, subType, name);
+            newItem = new FootWear(color, genre, subType, name);
         }
         userWardrobe.addItem(newItem);
         System.out.println("Operation Successful");
@@ -225,6 +225,7 @@ public class DressMeApp {
         String subType;
         String name;
         int index;
+        flatLine();
         for (Clothing item: clothesList) {
             color = item.getPieceColour();
             genre = item.getPieceGenre();
@@ -270,8 +271,10 @@ public class DressMeApp {
             jsonWriter.write(userWardrobe);
             jsonWriter.close();
             System.out.println("Saved Wardrobe to " + JSON_STORE);
+            System.out.println();
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println();
         }
     }
 
@@ -281,9 +284,18 @@ public class DressMeApp {
         try {
             userWardrobe = jsonReader.read();
             System.out.println("Loaded Wardrobe from " + JSON_STORE);
+            System.out.println();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println();
         }
     }
-    
+
+    private void endLine() {
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    }
+
+    private void flatLine() {
+        System.out.println("__________________________________________________________________");
+    }
 }

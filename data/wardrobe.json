@@ -1,7 +1,7 @@
 {"clothes": [{
     "colour": "blue",
-    "subtype": "fashion",
-    "genre": "HAT",
-    "name": "Hat",
+    "subtype": "HAT",
+    "genre": "casual",
+    "name": "Baseball Cap",
     "index": 1
 }]}
