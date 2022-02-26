@@ -1,21 +1,34 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
+
 // console application that communicates with the user.
 // dresses up the user
 public class DressMeApp {
-    Wardrobe userWardrobe = new Wardrobe();
-    Scanner inputScan = new Scanner(System.in);
+    private static final String JSON_STORE = "./data/wardrobe.json";
+    Wardrobe userWardrobe;
+    Scanner inputScan;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     /*
      * Effects: Runs the Application loop
      * */
-    public DressMeApp() {
+    public DressMeApp() throws FileNotFoundException {
+        userWardrobe = new Wardrobe();
+        inputScan = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runDressMe();
     }
 
@@ -52,6 +65,8 @@ public class DressMeApp {
         System.out.println("3 - List all items in the Wardrobe");
         System.out.println("4 - List all items of a certain color");
         System.out.println("5 - List all items of a certain Genre/Apparel Type");
+        System.out.println("6 - Save wardrobe to a file");
+        System.out.println("7 - Load wardrobe from a file");
         System.out.println("X - Exit");
         System.out.print("Enter your option: ");
     }
@@ -70,6 +85,10 @@ public class DressMeApp {
             runColourFilter();
         } else if (input == 5) {
             runGenreFilter();
+        } else if (input == 6) {
+            saveWardrobe();
+        } else if (input == 7) {
+            loadWardrobe();
         } else {
             System.out.println("Please only input one of the given options!!");
             System.out.println();
@@ -243,4 +262,28 @@ public class DressMeApp {
         input = input.toLowerCase();
         listItems(userWardrobe.getClothesOfApparelGenre(input));
     }
+
+    // EFFECTS: saves the wardrobe to file
+    private void saveWardrobe() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(userWardrobe);
+            jsonWriter.close();
+            System.out.println("Saved Wardrobe to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads wardrobe from file
+    private void loadWardrobe() {
+        try {
+            userWardrobe = jsonReader.read();
+            System.out.println("Loaded Wardrobe from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+    
 }

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Create instances of lower wear for Clothing
 public class LowerWear extends Clothing {
 
@@ -17,4 +20,5 @@ public class LowerWear extends Clothing {
     public static String[] getAcceptableItems() {
         return ACCEPTABLE_ITEMS;
     }
+
 }

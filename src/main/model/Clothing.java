@@ -1,8 +1,11 @@
 package model;
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Clothing object class
-public class Clothing {
+public class Clothing implements Writable {
     private String pieceColour;
     private String pieceGenre;
     private String pieceSubtype;
@@ -55,5 +58,16 @@ public class Clothing {
      * */
     public String getPieceName() {
         return this.pieceName;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("index", this.indexNo);
+        json.put("colour", this.pieceColour);
+        json.put("genre", this.pieceGenre);
+        json.put("subtype", this.pieceGenre);
+        json.put("name", this.pieceName);
+        return json;
     }
 }

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Create instances of footwear for Clothing
 public class FootWear extends Clothing {
 
