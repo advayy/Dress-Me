@@ -66,7 +66,7 @@ public class Clothing implements Writable {
         json.put("index", this.indexNo);
         json.put("colour", this.pieceColour);
         json.put("genre", this.pieceGenre);
-        json.put("subtype", this.pieceGenre);
+        json.put("subtype", this.pieceSubtype);
         json.put("name", this.pieceName);
         return json;
     }

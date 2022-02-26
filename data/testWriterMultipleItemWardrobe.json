@@ -1,0 +1,16 @@
+{"clothes": [
+    {
+        "colour": "green",
+        "subtype": "SHOES",
+        "genre": "sport",
+        "name": "Nike's",
+        "index": 1
+    },
+    {
+        "colour": "blue",
+        "subtype": "JEANS",
+        "genre": "casual",
+        "name": "Levi's",
+        "index": 2
+    }
+]}

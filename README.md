@@ -22,6 +22,8 @@ In the introductory scene of the movie Clueless, the protagonist Cher uses a com
 - As a user, I want to be able to see a list of all the clothing in my wardrobe
 - As a user, I want to be able to filter all of my clothing by its primary colour
 - As a user, I want to be able to filter all of my clothing based on the kind of attire it is.
+- As a user, I want to be able to save all the clothing items to my wardrobe
+- As a user, I want to be able to load all the clothing items from a previous save file
 
 
 *Other Potential Functionalities to be added*
