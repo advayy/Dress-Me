@@ -40,9 +40,11 @@ public class JsonReaderTest extends JsonTest{
         try {
             Wardrobe wardrobe = reader.read();
             ArrayList<Clothing> clothesList = wardrobe.getUserWardrobe();
-            assertEquals(2, clothesList.size());
+            assertEquals(4, clothesList.size());
             checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", "green");
             checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", "blue");
+            checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", "pink");
+            checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", "black");
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

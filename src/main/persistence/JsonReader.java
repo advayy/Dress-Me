@@ -71,10 +71,8 @@ public class JsonReader {
             newItem = new UpperWear(colour, genre, subType, name);
         } else if (code == 3) {
             newItem = new LowerWear(colour, genre, subType, name);
-        } else if (code == 4) {
-            newItem = new FootWear(colour, genre, subType, name);
         } else {
-            newItem = new Clothing(colour, genre, subType, name);
+            newItem = new FootWear(colour, genre, subType, name);
         }
         wardrobe.addItem(newItem);
     }
@@ -91,10 +89,8 @@ public class JsonReader {
             code = 2;
         } else if (subtypeMatch(lower, subtype)) {
             code = 3;
-        } else if (subtypeMatch(foot, subtype)) {
-            code = 4;
         } else {
-            code = 0;
+            code = 4;
         }
         return code;
     }

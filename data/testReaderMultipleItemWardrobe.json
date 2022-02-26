@@ -12,5 +12,19 @@
         "genre": "casual",
         "name": "Levi's",
         "index": 2
+    },
+    {
+        "colour": "pink",
+        "subtype": "TEESHIRT",
+        "genre": "casual",
+        "name": "lululemon",
+        "index": 3
+    },
+    {
+        "colour": "black",
+        "subtype": "HAT",
+        "genre": "fancy",
+        "name": "amiri",
+        "index": 4
     }
 ]}
