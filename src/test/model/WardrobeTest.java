@@ -65,6 +65,7 @@ class WardrobeTest {
 
     @Test
     void getClothesOfApparelColourTest() {
+
         userTest.addItem(hat);
         userTest.addItem(shirt);
         userTest.addItem(pant);
@@ -144,10 +145,11 @@ class WardrobeTest {
         userTest.addItem(pant); // 3
         userTest.addItem(shoe); // 4
 
-        assertEquals(hat, userTest.getClothesByIndex(1));
-        assertEquals(shirt, userTest.getClothesByIndex(2));
-        assertEquals(pant, userTest.getClothesByIndex(3));
-        assertEquals(shoe, userTest.getClothesByIndex(4));
+        assertEquals(hat, userTest.getClothesByIndex(hat.getIndexNo()));
+        assertEquals(shirt, userTest.getClothesByIndex(shirt.getIndexNo()));
+        assertEquals(pant, userTest.getClothesByIndex(pant.getIndexNo()));
+        assertEquals(shoe, userTest.getClothesByIndex(shoe.getIndexNo()));
+
         assertNull(userTest.getClothesByIndex(100));
     }
 
