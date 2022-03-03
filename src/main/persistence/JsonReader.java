@@ -98,6 +98,7 @@ public class JsonReader {
                 parseClothing(foot));
         return lookToReturn;
     }
+
     //Requires: A Sub Type string from the calling code
     //Effects: Returns an integer code depending on the kind of wear the subtype is part of
     private int determineKind(String subtype) {
