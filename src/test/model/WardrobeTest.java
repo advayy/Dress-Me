@@ -115,4 +115,60 @@ class WardrobeTest {
         assertEquals(userTest.removeItemByIndex(hat.getIndexNo()), userTest.removeItem(0));
     }
 
+    @Test
+    void getClothesByTypeTest() {
+        userTest.addItem(hat);
+        userTest.addItem(shirt);
+        userTest.addItem(pant);
+        userTest.addItem(shoe);
+
+        ArrayList<Clothing> headList = new ArrayList<Clothing>();
+        headList.add(hat);
+        ArrayList<Clothing> upperList = new ArrayList<Clothing>();
+        upperList.add(shirt);
+        ArrayList<Clothing> lowerList = new ArrayList<Clothing>();
+        lowerList.add(pant);
+        ArrayList<Clothing> footList = new ArrayList<Clothing>();
+        footList.add(shoe);
+
+        assertEquals(userTest.getClothesByType(1), headList);
+        assertEquals(userTest.getClothesByType(2), upperList);
+        assertEquals(userTest.getClothesByType(3), lowerList);
+        assertEquals(userTest.getClothesByType(4), footList);
+    }
+
+    @Test
+    void getClothesByIndexTest() {
+        userTest.addItem(hat); // 1
+        userTest.addItem(shirt); // 2
+        userTest.addItem(pant); // 3
+        userTest.addItem(shoe); // 4
+
+        assertEquals(hat, userTest.getClothesByIndex(1));
+        assertEquals(shirt, userTest.getClothesByIndex(2));
+        assertEquals(pant, userTest.getClothesByIndex(3));
+        assertEquals(shoe, userTest.getClothesByIndex(4));
+        assertNull(userTest.getClothesByIndex(100));
+    }
+
+    @Test
+    void removeLookItemTest() {
+        userTest.addLook(new Looks(hat, shirt, pant, shoe));
+        assertTrue(userTest.removeLookItem(0));
+    }
+
+    @Test
+    void removeLookItemByIndexTest() {
+        // clothes code
+        Looks look1 = new Looks(hat, shirt, pant, shoe);
+        Looks look2 = new Looks(hat, shirt, pant, shoe);
+
+        userTest.addLook(look1);
+        userTest.addLook(look2);
+
+        assertTrue(userTest.removeLookItemByIndex(look1.getIndexNo()));
+        assertTrue(userTest.removeLookItemByIndex(look2.getIndexNo()));
+        assertFalse(userTest.removeItemByIndex(100));
+    }
+
 }
