@@ -22,13 +22,16 @@ In the introductory scene of the movie Clueless, the protagonist Cher uses a com
 - As a user, I want to be able to see a list of all the clothing in my wardrobe
 - As a user, I want to be able to filter all of my clothing by its primary colour
 - As a user, I want to be able to filter all of my clothing based on the kind of attire it is.
+- As a user, I want to be able to filter all of my clothing based on the kind of clothing (Head wear, Footwear, etc.).
 - As a user, I want to be able to save all the clothing items to my wardrobe
-- As a user, I want to be able to load all the clothing items from a previous save file
+- As a user, I want to be able to load all the clothing items from a previous save file 
+- As a user, I want to be able to make and save “Looks” or Sets of clothing 
+- As a user, I want to be able to remove “Looks” from my wardrobe 
+- As a user, I want to be able to list all “Looks” from my wardrobe
 
 
 *Other Potential Functionalities to be added*
 - An inbuilt colour picker
 - Tracking recently worn or in-laundry items
-- Track favourite “Looks” or Sets of clothing
 - Showing all the available clothing
 - Select One or two pieces of clothing and pick a thing to fit it (Uses the scheduling problem/heuristic algorithm)
