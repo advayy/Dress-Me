@@ -80,7 +80,8 @@ public class DressMeApp {
     /* Requires: an integer input from the user
      * Effects: Launches the user selected input
      * */
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+
+    @SuppressWarnings("methodlength")
     public void processCommand(int input) {
         if (input == 1) {
             runAdditionSequence();
