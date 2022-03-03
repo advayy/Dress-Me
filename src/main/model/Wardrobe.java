@@ -141,9 +141,9 @@ public class Wardrobe implements Writable {
             }
         }
         if (found) {
-            return removeItem(listIndex);
+            return removeLookItem(listIndex);
         } else {
-            return found;
+            return false;
         }
     }
 

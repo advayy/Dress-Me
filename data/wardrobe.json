@@ -1,10 +1,33 @@
 {
     "looks": [],
-    "clothes": [{
-        "colour": "pink",
-        "subtype": "HAT",
-        "genre": "fun",
-        "name": "hat1",
-        "index": 1
-    }]
+    "clothes": [
+        {
+            "colour": "green",
+            "subtype": "SHOES",
+            "genre": "sport",
+            "name": "Nike's",
+            "index": 1
+        },
+        {
+            "colour": "blue",
+            "subtype": "JEANS",
+            "genre": "casual",
+            "name": "Levi's",
+            "index": 2
+        },
+        {
+            "colour": "pink",
+            "subtype": "TEESHIRT",
+            "genre": "casual",
+            "name": "lululemon",
+            "index": 3
+        },
+        {
+            "colour": "black",
+            "subtype": "HAT",
+            "genre": "fancy",
+            "name": "amiri",
+            "index": 4
+        }
+    ]
 }

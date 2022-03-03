@@ -257,6 +257,7 @@ public class DressMeApp {
         System.out.print(", Item SubType: " + subType);
         System.out.print(", Item Genre: " + genre);
         System.out.print(", Item Color: " + color);
+        System.out.println();
     }
 
     /* Requires: input color from the user
@@ -332,13 +333,17 @@ public class DressMeApp {
     }
 
     private void listAllLooks() {
+        flatLine();
         System.out.println("Here Are Your Looks: ");
         for (Looks l : userWardrobe.getInternalLooks()) {
+            flatLine();
             System.out.println("Look index " + l.getIndexNo());
             printClothingDetails(l.getHeadWear());
             printClothingDetails(l.getUpperWear());
             printClothingDetails(l.getLowerWear());
             printClothingDetails(l.getFootWear());
+            flatLine();
+            System.out.println();
         }
     }
 
@@ -366,6 +371,10 @@ public class DressMeApp {
         System.out.print("Enter its index here: ");
         n = Integer.parseInt(inputScan.nextLine());
         Clothing foot = (FootWear) userWardrobe.getClothesByIndex(n);
+
+        userWardrobe.addLook(new Looks(head, upper, lower, foot));
+        System.out.println("Look Added");
+        flatLine();
     }
 
     public void runRemoveLookSequence() {
@@ -374,5 +383,7 @@ public class DressMeApp {
         System.out.print("Enter index here: ");
         int input = Integer.parseInt(inputScan.nextLine());
         userWardrobe.removeLookItemByIndex(input);
+        System.out.println("Look Removed");
+        flatLine();
     }
 }
