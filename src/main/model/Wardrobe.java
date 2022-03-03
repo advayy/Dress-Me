@@ -5,6 +5,10 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+/*
+ * Reference Code from: JsonSerialization Demo
+ * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+ * */
 
 // represents the user's wardrobe that holds Clothing items
 public class Wardrobe implements Writable {
@@ -92,6 +96,9 @@ public class Wardrobe implements Writable {
         return true;
     }
 
+    /*
+     *  Effects : returns wardrobe as JSON data
+     * */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -99,7 +106,7 @@ public class Wardrobe implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns Clothing in this wardrobe as a JSON array
     private JSONArray clothesToJson() {
         JSONArray jsonArray = new JSONArray();
 

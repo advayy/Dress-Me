@@ -1,8 +1,12 @@
 package model;
 
-
 import org.json.JSONObject;
 import persistence.Writable;
+
+/*
+ * Reference Code from: JsonSerialization Demo
+ * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+ * */
 
 // Clothing object class
 public class Clothing implements Writable {
@@ -60,6 +64,9 @@ public class Clothing implements Writable {
         return this.pieceName;
     }
 
+    /*
+    * Effects: writes a Clothing item into JSON and returns it.
+    * */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

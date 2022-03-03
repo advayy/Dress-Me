@@ -5,12 +5,14 @@ import model.Clothing;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Reference Code from: JsonSerialization Demo
+ * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+ * */
 public class JsonWriterTest extends JsonTest {
 
     @Test

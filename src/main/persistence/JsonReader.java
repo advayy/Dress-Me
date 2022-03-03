@@ -8,6 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/*
+ * Reference Code from: JsonSerialization Demo
+ * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+ * */
 import org.json.*;
 
 // Represents a reader that reads wardrobe from JSON data stored in file
@@ -77,11 +81,13 @@ public class JsonReader {
         wardrobe.addItem(newItem);
     }
 
+    //Requires: A Sub Type string from the calling code
+    //Effects: Returns an integer code depending on the kind of wear the subtype is part of
     private int determineKind(String subtype) {
         String[] head = HeadWear.getAcceptableItems();
         String[] upper = UpperWear.getAcceptableItems();
         String[] lower = LowerWear.getAcceptableItems();
-        String[] foot = FootWear.getAcceptableItems();
+        //String[] foot = FootWear.getAcceptableItems();
         int code;
         if (subtypeMatch(head, subtype)) {
             code = 1;
@@ -95,11 +101,14 @@ public class JsonReader {
         return code;
     }
 
+    //Requires: A string array of types and a subtype
+    //Effects:  Sees if the type is contained in the given list, else returns false
     private boolean subtypeMatch(String[] list, String subtype) {
         boolean flag = false;
         for (String s : list) {
             if (subtype.equals(s)) {
                 flag = true;
+                break;
             }
         }
         return flag;

@@ -291,10 +291,12 @@ public class DressMeApp {
         }
     }
 
+    // EFFECTS: prints a line of X characters
     private void endLine() {
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
     }
 
+    // EFFECTS: prints a line of _ characters
     private void flatLine() {
         System.out.println("__________________________________________________________________");
     }

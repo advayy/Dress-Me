@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 // Create instances of Head garments for Clothing
 public class HeadWear extends Clothing {
 
@@ -16,7 +13,9 @@ public class HeadWear extends Clothing {
         super(colour, genre, itemKind, itemName);
     }
 
-
+    /*
+     *  Effects : Returns the acceptable items of the given clothing type
+     * */
     public static String[] getAcceptableItems() {
         return ACCEPTABLE_ITEMS;
     }
