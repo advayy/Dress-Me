@@ -142,10 +142,10 @@ public class Wardrobe implements Writable {
         }
         if (found) {
             return removeLookItem(listIndex);
-        } else {
-            return found;
         }
+        return found;
     }
+
 
     public Clothing getClothesByIndex(int index) {
         boolean found = false;
