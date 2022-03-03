@@ -31,8 +31,8 @@ public class JsonReaderTest extends JsonTest{
         JsonReader reader = new JsonReader("./data/testReaderEmptyWardrobe.json");
         try {
             Wardrobe wardrobe = reader.read();
-            assertEquals(new ArrayList<Clothing>(), wardrobe.getUserWardrobe());
-            assertEquals(0, wardrobe.getUserWardrobe().size());
+            assertEquals(new ArrayList<Clothing>(), wardrobe.getInternalWardrobe());
+            assertEquals(0, wardrobe.getInternalWardrobe().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -43,7 +43,7 @@ public class JsonReaderTest extends JsonTest{
         JsonReader reader = new JsonReader("./data/testReaderMultipleItemWardrobe.json");
         try {
             Wardrobe wardrobe = reader.read();
-            ArrayList<Clothing> clothesList = wardrobe.getUserWardrobe();
+            ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             assertEquals(4, clothesList.size());
             checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", "green");
             checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", "blue");

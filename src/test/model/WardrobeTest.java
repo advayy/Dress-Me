@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -97,7 +96,7 @@ class WardrobeTest {
         testList.add(shirt);
         testList.add(pant);
         testList.add(shoe);
-        assertEquals(userTest.getUserWardrobe(), testList);
+        assertEquals(userTest.getInternalWardrobe(), testList);
     }
 
     @Test

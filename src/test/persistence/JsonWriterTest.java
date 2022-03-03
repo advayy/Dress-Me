@@ -38,7 +38,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyWardrobe.json");
             wardrobe = reader.read();
-            assertEquals(0, wardrobe.getUserWardrobe().size());
+            assertEquals(0, wardrobe.getInternalWardrobe().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -63,7 +63,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterMultipleItemWardrobe.json");
             wardrobe = reader.read();
-            ArrayList<Clothing> clothesList = wardrobe.getUserWardrobe();
+            ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             assertEquals(4, clothesList.size());
             checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", "green");
             checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", "blue");

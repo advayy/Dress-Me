@@ -67,8 +67,12 @@ public class DressMeApp {
         System.out.println("3 - List all items in the Wardrobe");
         System.out.println("4 - List all items of a certain color");
         System.out.println("5 - List all items of a certain Genre/Apparel Type");
-        System.out.println("6 - Save wardrobe to a file");
-        System.out.println("7 - Load wardrobe from a file");
+        System.out.println("6 - List all items of by Kind");
+        System.out.println("7 - Save wardrobe to a file");
+        System.out.println("8 - Load wardrobe from a file");
+        System.out.println("9 - List all \"looks\"");
+        System.out.println("10 - Add a \"look\"");
+        System.out.println("11 - Remove a \"look\"");
         System.out.println("X - Exit");
         System.out.print("Enter your option: ");
     }
@@ -76,21 +80,30 @@ public class DressMeApp {
     /* Requires: an integer input from the user
      * Effects: Launches the user selected input
      * */
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void processCommand(int input) {
         if (input == 1) {
             runAdditionSequence();
         } else if (input == 2) {
             removeFromWardrobe();
         } else if (input == 3) {
-            listItems(userWardrobe.getUserWardrobe());
+            listItems(userWardrobe.getInternalWardrobe());
         } else if (input == 4) {
             runColourFilter();
         } else if (input == 5) {
             runGenreFilter();
         } else if (input == 6) {
-            saveWardrobe();
+            runTypeFilter();
         } else if (input == 7) {
+            saveWardrobe();
+        } else if (input == 8) {
             loadWardrobe();
+        } else if (input == 9) {
+            listAllLooks();
+        } else if (input == 10) {
+            runAddLookSequence();
+        } else if (input == 11) {
+            runRemoveLookSequence();
         } else {
             System.out.println("Please only input one of the given options!!");
             System.out.println();
@@ -194,7 +207,7 @@ public class DressMeApp {
      * */
     public void removeFromWardrobe() {
         System.out.println("Which of the following items would you like to remove?");
-        listItems(userWardrobe.getUserWardrobe());
+        listItems(userWardrobe.getInternalWardrobe());
         System.out.println("Please enter the item Index No.");
         System.out.print("Enter your selection or X to cancel: ");
         String stringInput = inputScan.nextLine();
@@ -220,26 +233,30 @@ public class DressMeApp {
      * Effects: Lists all items with their index codes to the user
      * */
     public void listItems(ArrayList<Clothing> clothesList) {
+        flatLine();
+        for (Clothing item: clothesList) {
+            printClothingDetails(item);
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public void printClothingDetails(Clothing item) {
         String color;
         String genre;
         String subType;
         String name;
         int index;
-        flatLine();
-        for (Clothing item: clothesList) {
-            color = item.getPieceColour();
-            genre = item.getPieceGenre();
-            subType = item.getPieceSubtype();
-            name = item.getPieceName();
-            index = item.getIndexNo();
-            System.out.print("Item Index: " + index);
-            System.out.print(", Item Name: " + name);
-            System.out.print(", Item SubType: " + subType);
-            System.out.print(", Item Genre: " + genre);
-            System.out.print(", Item Color: " + color);
-            System.out.println();
-        }
-        System.out.println();
+        color = item.getPieceColour();
+        genre = item.getPieceGenre();
+        subType = item.getPieceSubtype();
+        name = item.getPieceName();
+        index = item.getIndexNo();
+        System.out.print("Item Index: " + index);
+        System.out.print(", Item Name: " + name);
+        System.out.print(", Item SubType: " + subType);
+        System.out.print(", Item Genre: " + genre);
+        System.out.print(", Item Color: " + color);
     }
 
     /* Requires: input color from the user
@@ -299,5 +316,63 @@ public class DressMeApp {
     // EFFECTS: prints a line of _ characters
     private void flatLine() {
         System.out.println("__________________________________________________________________");
+    }
+
+    // Effects: Runs the filter sequence for Types of wear
+    private void runTypeFilter() {
+        System.out.println("Enter the Kind of Wear you're searching for");
+        System.out.println("1 - Head Wear");
+        System.out.println("2 - Upper Wear");
+        System.out.println("3 - Lower Wear");
+        System.out.println("4 - Footwear");
+        System.out.print("Enter Filter Type Here: ");
+        String input = inputScan.nextLine();
+        int inp = Integer.parseInt(input);
+        listItems(userWardrobe.getClothesByType(inp));
+    }
+
+    private void listAllLooks() {
+        System.out.println("Here Are Your Looks: ");
+        for (Looks l : userWardrobe.getInternalLooks()) {
+            System.out.println("Look index " + l.getIndexNo());
+            printClothingDetails(l.getHeadWear());
+            printClothingDetails(l.getUpperWear());
+            printClothingDetails(l.getLowerWear());
+            printClothingDetails(l.getFootWear());
+        }
+    }
+
+    public void runAddLookSequence() {
+        System.out.println("Pick an item of Head Wear");
+        listItems(userWardrobe.getClothesByType(1));
+        System.out.print("Enter its index here: ");
+        int n = Integer.parseInt(inputScan.nextLine());
+        Clothing head = (HeadWear) userWardrobe.getClothesByIndex(n);
+
+        System.out.println("Pick an item of Upper Wear");
+        listItems(userWardrobe.getClothesByType(2));
+        System.out.print("Enter its index here: ");
+        n = Integer.parseInt(inputScan.nextLine());
+        Clothing upper = (UpperWear) userWardrobe.getClothesByIndex(n);
+
+        System.out.println("Pick an item of Lower Wear");
+        listItems(userWardrobe.getClothesByType(3));
+        System.out.print("Enter its index here: ");
+        n = Integer.parseInt(inputScan.nextLine());
+        Clothing lower = (LowerWear) userWardrobe.getClothesByIndex(n);
+
+        System.out.println("Pick an item of Footwear");
+        listItems(userWardrobe.getClothesByType(4));
+        System.out.print("Enter its index here: ");
+        n = Integer.parseInt(inputScan.nextLine());
+        Clothing foot = (FootWear) userWardrobe.getClothesByIndex(n);
+    }
+
+    public void runRemoveLookSequence() {
+        listAllLooks();
+        System.out.println("Which look index would you like to remove");
+        System.out.print("Enter index here: ");
+        int input = Integer.parseInt(inputScan.nextLine());
+        userWardrobe.removeLookItemByIndex(input);
     }
 }

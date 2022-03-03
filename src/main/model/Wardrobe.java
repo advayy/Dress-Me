@@ -12,29 +12,31 @@ import java.util.ArrayList;
 
 // represents the user's wardrobe that holds Clothing items
 public class Wardrobe implements Writable {
-    private ArrayList<Clothing> userWardrobe;
+    private ArrayList<Clothing> internalWardrobe;
+    private ArrayList<Looks> internalLooks;
 
     public Wardrobe() {
-        userWardrobe = new ArrayList<Clothing>();
+        internalWardrobe = new ArrayList<Clothing>();
+        internalLooks = new ArrayList<Looks>();
     }
 
 
     /*
-     * Effects: Returns the userWardrobe Arraylist
+     * Effects: Returns the internalWardrobe Arraylist
      * */
-    public ArrayList<Clothing> getUserWardrobe() {
-        return this.userWardrobe;
+    public ArrayList<Clothing> getInternalWardrobe() {
+        return this.internalWardrobe;
     }
 
     /*
      * Requires: a lowercase string colour
-     * Effects: filters the userWardrobe for clothes that match the input color
+     * Effects: filters the internalWardrobe for clothes that match the input color
      * */
     public ArrayList<Clothing> getClothesOfColour(String colour) {
 
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 
-        for (Clothing c : this.userWardrobe) {
+        for (Clothing c : this.internalWardrobe) {
             if (c.getPieceColour().equals(colour)) {
                 filteredList.add(c);
             }
@@ -44,15 +46,44 @@ public class Wardrobe implements Writable {
 
     /*
      * Requires: a lowercase string genre
-     * Effects: filters the userWardrobe for clothes that match the input genre
+     * Effects: filters the internalWardrobe for clothes that match the input genre
      * */
     public ArrayList<Clothing> getClothesOfApparelGenre(String genre) {
 
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 
-        for (Clothing c : this.userWardrobe) {
+        for (Clothing c : this.internalWardrobe) {
             if (c.getPieceGenre().equals(genre)) {
                 filteredList.add(c);
+            }
+        }
+        return filteredList;
+    }
+
+    /*
+    * Requires : an integer between 1-4 from the user (encoding representing type of wear filtered for)
+    * Effects  : creates a list of that type of wear
+    * */
+    public ArrayList<Clothing> getClothesByType(int code) {
+        ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
+
+        for (Clothing c : this.internalWardrobe) {
+            if (code == 1) {
+                if (c instanceof HeadWear) {
+                    filteredList.add(c);
+                }
+            } else if (code == 2) {
+                if (c instanceof UpperWear) {
+                    filteredList.add(c);
+                }
+            } else if (code == 3) {
+                if (c instanceof LowerWear) {
+                    filteredList.add(c);
+                }
+            } else {
+                if (c instanceof FootWear) {
+                    filteredList.add(c);
+                }
             }
         }
         return filteredList;
@@ -63,7 +94,7 @@ public class Wardrobe implements Writable {
      * Effects: removes the item at that index from wardrobe
      * */
     public boolean removeItem(int index) {
-        this.userWardrobe.remove(index);
+        this.internalWardrobe.remove(index);
         return true;
     }
 
@@ -74,9 +105,9 @@ public class Wardrobe implements Writable {
     public boolean removeItemByIndex(int index) {
         boolean found = false;
         int listIndex = 0;
-        for (Clothing item: this.userWardrobe) {
+        for (Clothing item: this.internalWardrobe) {
             if (item.getIndexNo() == index) {
-                listIndex = this.userWardrobe.indexOf(item);
+                listIndex = this.internalWardrobe.indexOf(item);
                 found = true;
             }
         }
@@ -87,12 +118,66 @@ public class Wardrobe implements Writable {
         }
     }
 
+    /* Requires: index of an item
+     * Modifies: this
+     * Effects: removes the Look item at that index from wardrobe
+     * */
+    public boolean removeLookItem(int index) {
+        this.internalLooks.remove(index);
+        return true;
+    }
+
+    /* Requires: the index number of the Look
+     * Modifies: this
+     * Effects: returns the wardrobe Look list index of the item
+     * */
+    public boolean removeLookItemByIndex(int index) {
+        boolean found = false;
+        int listIndex = 0;
+        for (Looks item: this.internalLooks) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.internalLooks.indexOf(item);
+                found = true;
+            }
+        }
+        if (found) {
+            return removeItem(listIndex);
+        } else {
+            return found;
+        }
+    }
+
+    public Clothing getClothesByIndex(int index) {
+        boolean found = false;
+        int listIndex = 0;
+        for (Clothing item: this.internalWardrobe) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.internalWardrobe.indexOf(item);
+                found = true;
+            }
+        }
+        if (found) {
+            return this.internalWardrobe.get(listIndex);
+        } else {
+            return null;
+        }
+    }
+
     /* Requires: a given item of Clothing type
      * Modifies: this
-     * Effects: adds the given item to the userWardrobe
+     * Effects: adds the given item to the internalWardrobe
      * */
     public boolean addItem(Clothing c) {
-        this.userWardrobe.add(c);
+        this.internalWardrobe.add(c);
+        return true;
+    }
+
+    /* Requires : a look object
+    *  Modifies : this
+    *  Effects  : adds look to internalLooks
+    * */
+    public boolean addLook(Looks l) {
+        this.internalLooks.add(l);
         return true;
     }
 
@@ -103,6 +188,7 @@ public class Wardrobe implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("clothes", clothesToJson());
+        json.put("looks", looksToJson());
         return json;
     }
 
@@ -110,10 +196,24 @@ public class Wardrobe implements Writable {
     private JSONArray clothesToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Clothing c : userWardrobe) {
+        for (Clothing c : internalWardrobe) {
             jsonArray.put(c.toJson());
         }
 
         return jsonArray;
+    }
+
+    private JSONArray looksToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Looks l : internalLooks) {
+            jsonArray.put(l.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    public ArrayList<Looks> getInternalLooks() {
+        return this.internalLooks;
     }
 }

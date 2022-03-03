@@ -50,19 +50,24 @@ public class JsonReader {
     }
 
     // MODIFIES: wardrobe
-    // EFFECTS: parses clothes from JSON object and adds them to wardrobe
+    // EFFECTS: parses clothes and looks from JSON object and adds them to wardrobe
     private void addClothes(Wardrobe wardrobe, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("clothes");
-        for (Object json : jsonArray) {
+        JSONArray jsonArrayClothes = jsonObject.getJSONArray("clothes");
+        for (Object json : jsonArrayClothes) {
             JSONObject nextClothing = (JSONObject) json;
-            addClothing(wardrobe, nextClothing);
+            wardrobe.addItem(parseClothing(nextClothing));
+        }
+        JSONArray jsonArrayLooks = jsonObject.getJSONArray("looks");
+        for (Object json : jsonArrayLooks) {
+            JSONObject nextLook = (JSONObject) json;
+            wardrobe.addLook(parseLook(nextLook));
         }
     }
 
     // MODIFIES: wardrobe
     // EFFECTS: parses clothing from JSON object and adds it to wardrobe
-    private void addClothing(Wardrobe wardrobe, JSONObject jsonObject) {
-        int index = jsonObject.getInt("index");
+    private Clothing parseClothing(JSONObject jsonObject) {
+        //int index = jsonObject.getInt("index");
         String colour = jsonObject.getString("colour");
         String genre = jsonObject.getString("genre");
         String subType = jsonObject.getString("subtype");
@@ -78,9 +83,21 @@ public class JsonReader {
         } else {
             newItem = new FootWear(colour, genre, subType, name);
         }
-        wardrobe.addItem(newItem);
+        return newItem;
     }
 
+    private Looks parseLook(JSONObject jsonObject) {
+        JSONObject head = jsonObject.getJSONObject("head");
+        JSONObject upper = jsonObject.getJSONObject("upper");
+        JSONObject lower = jsonObject.getJSONObject("lower");
+        JSONObject foot = jsonObject.getJSONObject("foot");
+
+        Looks lookToReturn = new Looks(parseClothing(head),
+                parseClothing(upper),
+                parseClothing(lower),
+                parseClothing(foot));
+        return lookToReturn;
+    }
     //Requires: A Sub Type string from the calling code
     //Effects: Returns an integer code depending on the kind of wear the subtype is part of
     private int determineKind(String subtype) {

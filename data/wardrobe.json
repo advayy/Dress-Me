@@ -1,7 +1,10 @@
-{"clothes": [{
-    "colour": "blue",
-    "subtype": "HAT",
-    "genre": "casual",
-    "name": "Baseball Cap",
-    "index": 1
-}]}
+{
+    "looks": [],
+    "clothes": [{
+        "colour": "pink",
+        "subtype": "HAT",
+        "genre": "fun",
+        "name": "hat1",
+        "index": 1
+    }]
+}
