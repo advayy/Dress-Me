@@ -177,6 +177,7 @@ class WardrobeTest {
         assertFalse(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
         otherWardrobe.addLook(look1);
         assertTrue(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
+        assertFalse(otherWardrobe.removeItemByIndex(100));
     }
 
 }
