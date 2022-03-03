@@ -1,5 +1,34 @@
 {
-    "looks": [],
+    "looks": [{
+        "head": {
+            "colour": "black",
+            "subtype": "HAT",
+            "genre": "fancy",
+            "name": "amiri",
+            "index": 4
+        },
+        "upper": {
+            "colour": "pink",
+            "subtype": "TEESHIRT",
+            "genre": "casual",
+            "name": "lululemon",
+            "index": 3
+        },
+        "lower": {
+            "colour": "blue",
+            "subtype": "JEANS",
+            "genre": "casual",
+            "name": "Levi's",
+            "index": 2
+        },
+        "foot": {
+            "colour": "green",
+            "subtype": "SHOES",
+            "genre": "sport",
+            "name": "Nike's",
+            "index": 1
+        }
+    }],
     "clothes": [
         {
             "colour": "green",

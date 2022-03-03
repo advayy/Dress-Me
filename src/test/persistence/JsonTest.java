@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Clothing;
+import model.Looks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,5 +15,19 @@ public class JsonTest {
         assertEquals(genre, c.getPieceGenre());
         assertEquals(subType, c.getPieceSubtype());
         assertEquals(colour, c.getPieceColour());
+    }
+
+    protected void checkTwoClothes(Clothing c, Clothing d) {
+        assertEquals(d.getPieceName(), c.getPieceName());
+        assertEquals(d.getPieceGenre(), c.getPieceGenre());
+        assertEquals(d.getPieceSubtype(), c.getPieceSubtype());
+        assertEquals(d.getPieceColour(), c.getPieceColour());
+    }
+
+    protected void checkLook(Looks l, Clothing head, Clothing upper, Clothing lower, Clothing foot) {
+        checkTwoClothes(head, l.getHeadWear());
+        checkTwoClothes(upper, l.getUpperWear());
+        checkTwoClothes(lower, l.getLowerWear());
+        checkTwoClothes(foot, l.getFootWear());
     }
 }
