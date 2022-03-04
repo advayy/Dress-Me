@@ -213,18 +213,16 @@ public class DressMeApp {
         String stringInput = inputScan.nextLine();
         if (stringInput.equals("X")) {
             System.out.println("Operation Cancelled");
-            System.out.println();
         } else {
             int inp = Integer.parseInt(stringInput);
             boolean flag = userWardrobe.removeItemByIndex(inp);
             if (flag) {
                 System.out.println("Operation Successful");
-                System.out.println();
             } else {
                 System.out.println("Operation Unsuccessful - index not found");
-                System.out.println();
             }
         }
+        System.out.println();
     }
 
 
@@ -358,25 +356,25 @@ public class DressMeApp {
         listItems(userWardrobe.getClothesByType(1));
         System.out.print("Enter its index here: ");
         int n = Integer.parseInt(inputScan.nextLine());
-        Clothing head = (HeadWear) userWardrobe.getClothesByIndex(n);
+        Clothing head = userWardrobe.getClothesByIndex(n);
 
         System.out.println("Pick an item of Upper Wear");
         listItems(userWardrobe.getClothesByType(2));
         System.out.print("Enter its index here: ");
         n = Integer.parseInt(inputScan.nextLine());
-        Clothing upper = (UpperWear) userWardrobe.getClothesByIndex(n);
+        Clothing upper = userWardrobe.getClothesByIndex(n);
 
         System.out.println("Pick an item of Lower Wear");
         listItems(userWardrobe.getClothesByType(3));
         System.out.print("Enter its index here: ");
         n = Integer.parseInt(inputScan.nextLine());
-        Clothing lower = (LowerWear) userWardrobe.getClothesByIndex(n);
+        Clothing lower = userWardrobe.getClothesByIndex(n);
 
         System.out.println("Pick an item of Footwear");
         listItems(userWardrobe.getClothesByType(4));
         System.out.print("Enter its index here: ");
         n = Integer.parseInt(inputScan.nextLine());
-        Clothing foot = (FootWear) userWardrobe.getClothesByIndex(n);
+        Clothing foot = userWardrobe.getClothesByIndex(n);
 
         userWardrobe.addLook(new Looks(head, upper, lower, foot));
         System.out.println("Look Added");

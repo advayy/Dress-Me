@@ -7,7 +7,7 @@ public class HeadWear extends Clothing {
 
     /* Requires: a color, genre, kind and name
      * Modifies: this
-     * Effects: instantiates an instance of Headwear through its superclass
+     * Effects: instantiates an instance of Head wear through its superclass
      * */
     public HeadWear(String colour, String genre, String itemKind, String itemName) {
         super(colour, genre, itemKind, itemName);

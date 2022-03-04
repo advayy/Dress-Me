@@ -177,9 +177,8 @@ public class Wardrobe implements Writable {
     *  Modifies : this
     *  Effects  : adds look to internalLooks
     * */
-    public boolean addLook(Looks l) {
+    public void addLook(Looks l) {
         this.internalLooks.add(l);
-        return true;
     }
 
     /*
