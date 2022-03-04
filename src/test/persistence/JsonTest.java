@@ -15,7 +15,7 @@ public class JsonTest {
         assertEquals(name, c.getPieceName());
         assertEquals(genre, c.getPieceGenre());
         assertEquals(subType, c.getPieceSubtype());
-        assertEquals(colour, c.getPieceColour());
+        assertTrue(c.getPieceColour().equals(colour));
     }
 
     protected void checkTwoClothes(Clothing c, Clothing d) {

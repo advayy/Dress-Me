@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ColourTest {
     private static final Colour RED = new Colour(255, 0, 0);
+    private static final Colour RED2 = new Colour(255, 0, 0);
     private static final Colour BLUE = new Colour(0, 0, 255);
     private static final Colour GREEN = new Colour(0, 255, 0);
     private static final Colour WHITE = new Colour(255, 255, 255);
@@ -15,6 +16,9 @@ public class ColourTest {
     public void ColourTest() {
         assertEquals(255, RED.getRed());
         assertEquals(0, RED.getBlue());
+
+        assertTrue(RED.equals(RED2));
+        assertFalse(RED.equals(GREEN));
 
         assertEquals(0, RED.getHue());
         assertEquals(1, RED.getSaturation());

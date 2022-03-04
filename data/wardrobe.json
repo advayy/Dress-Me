@@ -1,62 +1,14 @@
 {
-    "looks": [{
-        "head": {
-            "colour": "black",
-            "subtype": "HAT",
-            "genre": "fancy",
-            "name": "amiri",
-            "index": 4
+    "looks": [],
+    "clothes": [{
+        "colour": {
+            "red": 255,
+            "green": 0,
+            "blue": 0
         },
-        "upper": {
-            "colour": "pink",
-            "subtype": "TEESHIRT",
-            "genre": "casual",
-            "name": "lululemon",
-            "index": 3
-        },
-        "lower": {
-            "colour": "blue",
-            "subtype": "JEANS",
-            "genre": "casual",
-            "name": "Levi's",
-            "index": 2
-        },
-        "foot": {
-            "colour": "green",
-            "subtype": "SHOES",
-            "genre": "sport",
-            "name": "Nike's",
-            "index": 1
-        }
-    }],
-    "clothes": [
-        {
-            "colour": "green",
-            "subtype": "SHOES",
-            "genre": "sport",
-            "name": "Nike's",
-            "index": 1
-        },
-        {
-            "colour": "blue",
-            "subtype": "JEANS",
-            "genre": "casual",
-            "name": "Levi's",
-            "index": 2
-        },
-        {
-            "colour": "pink",
-            "subtype": "TEESHIRT",
-            "genre": "casual",
-            "name": "lululemon",
-            "index": 3
-        },
-        {
-            "colour": "black",
-            "subtype": "HAT",
-            "genre": "fancy",
-            "name": "amiri",
-            "index": 4
-        }
-    ]
+        "subtype": "HAT",
+        "genre": "fashion",
+        "name": "Amiri Hat",
+        "index": 1
+    }]
 }

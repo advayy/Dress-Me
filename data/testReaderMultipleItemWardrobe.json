@@ -1,28 +1,44 @@
 {
     "looks": [{
         "head": {
-            "colour": "black",
+            "colour": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
             "subtype": "HAT",
             "genre": "fancy",
             "name": "amiri",
             "index": 4
         },
         "upper": {
-            "colour": "pink",
+            "colour": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
             "subtype": "TEESHIRT",
             "genre": "casual",
             "name": "lululemon",
             "index": 3
         },
         "lower": {
-            "colour": "blue",
+            "colour": {
+                "red": 0,
+                "green": 0,
+                "blue": 255
+            },
             "subtype": "JEANS",
             "genre": "casual",
             "name": "Levi's",
             "index": 2
         },
         "foot": {
-            "colour": "green",
+            "colour": {
+                "red": 0,
+                "green": 255,
+                "blue": 0
+            },
             "subtype": "SHOES",
             "genre": "sport",
             "name": "Nike's",
@@ -31,32 +47,48 @@
     }],
     "clothes": [
         {
-            "colour": "green",
+            "colour": {
+                "red": 0,
+                "green": 255,
+                "blue": 0
+            },
             "subtype": "SHOES",
             "genre": "sport",
             "name": "Nike's",
-            "index": 1
+            "index": 5
         },
         {
-            "colour": "blue",
+            "colour": {
+                "red": 0,
+                "green": 0,
+                "blue": 255
+            },
             "subtype": "JEANS",
             "genre": "casual",
             "name": "Levi's",
-            "index": 2
+            "index": 6
         },
         {
-            "colour": "pink",
+            "colour": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
             "subtype": "TEESHIRT",
             "genre": "casual",
             "name": "lululemon",
-            "index": 3
+            "index": 7
         },
         {
-            "colour": "black",
+            "colour": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
             "subtype": "HAT",
             "genre": "fancy",
             "name": "amiri",
-            "index": 4
+            "index": 8
         }
     ]
 }

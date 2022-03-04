@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  * */
 public class JsonReaderTest extends JsonTest{
+    private static final Colour RED = new Colour(255, 0, 0);
+    private static final Colour BLUE = new Colour(0, 0, 255);
+    private static final Colour GREEN = new Colour(0, 255, 0);
+    private static final Colour BLACK = new Colour(0, 0, 0);
 
     @Test
     void testReaderNonExistentFile() {
@@ -45,16 +49,16 @@ public class JsonReaderTest extends JsonTest{
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             ArrayList<Looks> looksList = wardrobe.getInternalLooks();
             assertEquals(4, clothesList.size());
-            checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", "green");
-            checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", "blue");
-            checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", "pink");
-            checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", "black");
+            checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", GREEN);
+            checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", BLUE);
+            checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", RED);
+            checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", BLACK);
 
 
-            Clothing foot = new FootWear("green", "sport", "SHOES", "Nike's");
-            Clothing lower = new LowerWear("blue", "casual", "JEANS", "Levi's");
-            Clothing upper = new UpperWear("pink", "casual", "TEESHIRT", "lululemon");
-            Clothing head = new HeadWear("black", "fancy", "HAT", "amiri");
+            Clothing foot = new FootWear(GREEN, "sport", "SHOES", "Nike's");
+            Clothing lower = new LowerWear(BLUE, "casual", "JEANS", "Levi's");
+            Clothing upper = new UpperWear(RED, "casual", "TEESHIRT", "lululemon");
+            Clothing head = new HeadWear(BLACK, "fancy", "HAT", "amiri");
             assertEquals(1, looksList.size());
             checkLook(looksList.get(0), head, upper, lower, foot);
 

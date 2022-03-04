@@ -255,7 +255,7 @@ public class DressMeApp {
         System.out.print(", Item Name: " + name);
         System.out.print(", Item SubType: " + subType);
         System.out.print(", Item Genre: " + genre);
-        System.out.print(", Item Color: [ Red: " + color.getRed() + ", Green: " + color.getGreen());
+        System.out.print(", Item Color: [Red: " + color.getRed() + ", Green: " + color.getGreen());
         System.out.print(", Blue: " + color.getBlue() + "]");
         System.out.println();
     }
@@ -264,8 +264,7 @@ public class DressMeApp {
      * Effects: Lists all items that match the required filter specification
      * */
     public void runColourFilter() {
-        System.out.println("Enter the Colour you're searching for");
-        System.out.print("Enter Filter Colour through fields below");
+        System.out.println("Enter Filter Colour you're searching for through fields below");
         Colour c = getColourComponentsFromUser();
         listItems(userWardrobe.getClothesOfColour(c));
     }
@@ -399,13 +398,13 @@ public class DressMeApp {
         int r;
         int g;
         int b;
-        System.out.print("Enter Red value:");
+        System.out.print("Enter Red value: ");
         String input = inputScan.nextLine();
         r = Integer.parseInt(input);
-        System.out.print("Enter Green value:");
+        System.out.print("Enter Green value: ");
         input = inputScan.nextLine();
         g = Integer.parseInt(input);
-        System.out.print("Enter Blue value:");
+        System.out.print("Enter Blue value: ");
         input = inputScan.nextLine();
         b = Integer.parseInt(input);
         return new Colour(r, g, b);
