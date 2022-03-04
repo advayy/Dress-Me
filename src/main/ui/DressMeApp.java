@@ -236,7 +236,6 @@ public class DressMeApp {
             printClothingDetails(item);
             System.out.println();
         }
-        System.out.println();
     }
 
     //Requires: An item of clothing as an input
@@ -348,36 +347,38 @@ public class DressMeApp {
         }
     }
 
+
     //Requires: Valid user input
     //Modifies: this
     //Effects : Creates a new look from items of clothing by type from user and saves it to the wardrobe
+    @SuppressWarnings("methodlength")
     public void runAddLookSequence() {
-        System.out.println("Pick an item of Head Wear");
-        listItems(userWardrobe.getClothesByType(1));
-        System.out.print("Enter its index here: ");
-        int n = Integer.parseInt(inputScan.nextLine());
-        Clothing head = userWardrobe.getClothesByIndex(n);
-
-        System.out.println("Pick an item of Upper Wear");
-        listItems(userWardrobe.getClothesByType(2));
-        System.out.print("Enter its index here: ");
-        n = Integer.parseInt(inputScan.nextLine());
-        Clothing upper = userWardrobe.getClothesByIndex(n);
-
-        System.out.println("Pick an item of Lower Wear");
-        listItems(userWardrobe.getClothesByType(3));
-        System.out.print("Enter its index here: ");
-        n = Integer.parseInt(inputScan.nextLine());
-        Clothing lower = userWardrobe.getClothesByIndex(n);
-
-        System.out.println("Pick an item of Footwear");
-        listItems(userWardrobe.getClothesByType(4));
-        System.out.print("Enter its index here: ");
-        n = Integer.parseInt(inputScan.nextLine());
-        Clothing foot = userWardrobe.getClothesByIndex(n);
-
-        userWardrobe.addLook(new Looks(head, upper, lower, foot));
-        System.out.println("Look Added");
+        boolean breakOut =  false;
+        String[] wearNames = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
+        int counter = 0;
+        ArrayList<Clothing> toBeReturned = new ArrayList<Clothing>();
+        while (!breakOut && counter < 4) {
+            System.out.println("Pick an item of " + wearNames[counter]);
+            listItems(userWardrobe.getClothesByType(counter));
+            System.out.println("Enter x to Stop operation");
+            System.out.print("Enter its index number here: ");
+            String stringInput = inputScan.nextLine();
+            if (stringInput.equalsIgnoreCase("x")) {
+                breakOut = true;
+                break;
+            } else {
+                int n = Integer.parseInt(stringInput);
+                toBeReturned.add(userWardrobe.getClothesByIndex(n));
+                counter++;
+            }
+        }
+        if (breakOut) {
+            System.out.println("Look Not Added - Returning to Main menu");
+        } else {
+            userWardrobe.addLook(new Looks(toBeReturned.get(0), toBeReturned.get(1), toBeReturned.get(2),
+                    toBeReturned.get(3)));
+            System.out.println("Look Added");
+        }
         flatLine();
     }
 
