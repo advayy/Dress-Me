@@ -32,7 +32,7 @@ public class Wardrobe implements Writable {
      * Requires: a lowercase string colour
      * Effects: filters the internalWardrobe for clothes that match the input color
      * */
-    public ArrayList<Clothing> getClothesOfColour(String colour) {
+    public ArrayList<Clothing> getClothesOfColour(Colour colour) {
 
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 

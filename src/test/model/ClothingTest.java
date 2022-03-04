@@ -5,13 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClothingTest {
+   private static final Colour RED = new Colour(255, 0, 0);
+   private static final Colour BLUE = new Colour(0, 0, 255);
+   private static final Colour GREEN = new Colour(0, 255, 0);
+   private static final Colour BLACK = new Colour(0, 0, 0);
 
     @Test
     public void ClothingTest(){
-       Clothing hat = new HeadWear("Red", "Formal", "Hat", "Top Hat");
-       Clothing shirt = new UpperWear("Blue", "Sports", "Shirt","Nike Tee");
-       Clothing pant = new LowerWear("Green", "Casual", "Shorts", "Levi's");
-       Clothing shoe = new FootWear("Black", "Formal","Shoes","Amiri");
+       Clothing hat = new HeadWear(RED, "Formal", "Hat", "Top Hat");
+       Clothing shirt = new UpperWear(BLUE, "Sports", "Shirt","Nike Tee");
+       Clothing pant = new LowerWear(GREEN, "Casual", "Shorts", "Levi's");
+       Clothing shoe = new FootWear(BLACK, "Formal","Shoes","Amiri");
 
        String[] acceptableItemsForHeadWear = {"GLASSES", "HAT", "HEADBAND"};
        String[] acceptableItemsForUpperWear = {"TEESHIRT", "SHIRT", "JACKET", "SWEATER"};
@@ -36,25 +40,25 @@ class ClothingTest {
 
        // Tests for Hat
        assertEquals(1, hat.getIndexNo());
-       assertEquals("Red", hat.getPieceColour());
+       assertEquals(RED, hat.getPieceColour());
        assertEquals("Formal", hat.getPieceGenre());
        assertEquals("Hat", hat.getPieceSubtype());
        assertEquals("Top Hat", hat.getPieceName());
 
        assertEquals(2, shirt.getIndexNo());
-       assertEquals("Blue", shirt.getPieceColour());
+       assertEquals(BLUE, shirt.getPieceColour());
        assertEquals("Sports", shirt.getPieceGenre());
        assertEquals("Shirt", shirt.getPieceSubtype());
        assertEquals("Nike Tee", shirt.getPieceName());
 
        assertEquals(3, pant.getIndexNo());
-       assertEquals("Green", pant.getPieceColour());
+       assertEquals(GREEN, pant.getPieceColour());
        assertEquals("Casual", pant.getPieceGenre());
        assertEquals("Shorts", pant.getPieceSubtype());
        assertEquals("Levi's", pant.getPieceName());
 
        assertEquals(4, shoe.getIndexNo());
-       assertEquals("Black", shoe.getPieceColour());
+       assertEquals(BLACK, shoe.getPieceColour());
        assertEquals("Formal", shoe.getPieceGenre());
        assertEquals("Shoes", shoe.getPieceSubtype());
        assertEquals("Amiri", shoe.getPieceName());

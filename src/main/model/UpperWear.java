@@ -9,7 +9,7 @@ public class UpperWear extends Clothing {
      * Modifies: this
      * Effects: instantiates an instance of UpperWear through its superclass
      * */
-    public UpperWear(String colour, String genre, String itemKind, String itemName) {
+    public UpperWear(Colour colour, String genre, String itemKind, String itemName) {
         super(colour, genre, itemKind, itemName);
     }
 

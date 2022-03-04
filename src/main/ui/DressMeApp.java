@@ -149,8 +149,8 @@ public class DressMeApp {
         genre = genre.toLowerCase(Locale.ROOT);
         //String subType = getInputText("Please enter Item Subtype");
         String subType = getSubType(code);
-        String color = getInputText("Please enter Item Color");
-        color = color.toLowerCase(Locale.ROOT);
+        System.out.println("Please enter Item Color");
+        Colour color = getColourComponentsFromUser();
 
         Clothing newItem;
         if (code == 1) {
@@ -241,7 +241,7 @@ public class DressMeApp {
     //Requires: An item of clothing as an input
     //Effects: Returns all the data of thw clothing item in the CLI
     public void printClothingDetails(Clothing item) {
-        String color;
+        Colour color;
         String genre;
         String subType;
         String name;
@@ -255,7 +255,8 @@ public class DressMeApp {
         System.out.print(", Item Name: " + name);
         System.out.print(", Item SubType: " + subType);
         System.out.print(", Item Genre: " + genre);
-        System.out.print(", Item Color: " + color);
+        System.out.print(", Item Color: [ Red: " + color.getRed() + ", Green: " + color.getGreen());
+        System.out.print(", Blue: " + color.getBlue() + "]");
         System.out.println();
     }
 
@@ -264,10 +265,9 @@ public class DressMeApp {
      * */
     public void runColourFilter() {
         System.out.println("Enter the Colour you're searching for");
-        System.out.print("Enter Filter Colour Here: ");
-        String input = inputScan.nextLine();
-        input = input.toLowerCase();
-        listItems(userWardrobe.getClothesOfColour(input));
+        System.out.print("Enter Filter Colour through fields below");
+        Colour c = getColourComponentsFromUser();
+        listItems(userWardrobe.getClothesOfColour(c));
     }
 
     /* Requires: input color from the user
@@ -393,5 +393,21 @@ public class DressMeApp {
         userWardrobe.removeLookItemByIndex(input);
         System.out.println("Look Removed");
         flatLine();
+    }
+
+    public Colour getColourComponentsFromUser() {
+        int r;
+        int g;
+        int b;
+        System.out.print("Enter Red value:");
+        String input = inputScan.nextLine();
+        r = Integer.parseInt(input);
+        System.out.print("Enter Green value:");
+        input = inputScan.nextLine();
+        g = Integer.parseInt(input);
+        System.out.print("Enter Blue value:");
+        input = inputScan.nextLine();
+        b = Integer.parseInt(input);
+        return new Colour(r, g, b);
     }
 }

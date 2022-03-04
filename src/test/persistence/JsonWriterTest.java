@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * */
 public class JsonWriterTest extends JsonTest {
 
+    private static final Colour RED = new Colour(255, 0, 0);
+    private static final Colour BLUE = new Colour(0, 0, 255);
+    private static final Colour GREEN = new Colour(0, 255, 0);
+    private static final Colour BLACK = new Colour(0, 0, 0);
+
     @Test
     void testWriterInvalidFile() {
         try {
@@ -47,18 +52,18 @@ public class JsonWriterTest extends JsonTest {
     void testWriterMultipleItemWardrobe() {
         try {
             Wardrobe wardrobe = new Wardrobe();
-            Clothing foot = new FootWear("green", "sport", "SHOES", "Nike's");
-            Clothing lower = new LowerWear("blue", "casual", "JEANS", "Levi's");
-            Clothing upper = new UpperWear("pink", "casual", "TEESHIRT", "lululemon");
-            Clothing head = new HeadWear("black", "fancy", "HAT", "amiri");
+            Clothing foot = new FootWear(GREEN, "sport", "SHOES", "Nike's");
+            Clothing lower = new LowerWear(BLUE, "casual", "JEANS", "Levi's");
+            Clothing upper = new UpperWear(RED, "casual", "TEESHIRT", "lululemon");
+            Clothing head = new HeadWear(BLACK, "fancy", "HAT", "amiri");
 
-            wardrobe.addItem(new Clothing("green", "sport",
+            wardrobe.addItem(new Clothing(GREEN, "sport",
                     "SHOES", "Nike's"));
-            wardrobe.addItem(new Clothing("blue", "casual",
+            wardrobe.addItem(new Clothing(BLUE, "casual",
                     "JEANS", "Levi's"));
-            wardrobe.addItem(new Clothing("pink", "casual",
+            wardrobe.addItem(new Clothing(RED, "casual",
                     "TEESHIRT", "lululemon"));
-            wardrobe.addItem(new Clothing("black", "fancy",
+            wardrobe.addItem(new Clothing(BLACK, "fancy",
                     "HAT", "amiri"));
             wardrobe.addLook(new Looks(head, upper, lower, foot));
 
@@ -72,10 +77,10 @@ public class JsonWriterTest extends JsonTest {
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             ArrayList<Looks> looksList = wardrobe.getInternalLooks();
             assertEquals(4, clothesList.size());
-            checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", "green");
-            checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", "blue");
-            checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", "pink");
-            checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", "black");
+            checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", GREEN);
+            checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", BLUE);
+            checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", RED);
+            checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", BLACK);
 
             assertEquals(1, looksList.size());
             checkLook(looksList.get(0), head, upper, lower, foot);

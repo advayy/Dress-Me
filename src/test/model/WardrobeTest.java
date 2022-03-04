@@ -14,14 +14,17 @@ class WardrobeTest {
     Clothing pant;
     Clothing shoe;
     Wardrobe userTest;
-
+    private static final Colour RED = new Colour(255, 0, 0);
+    private static final Colour BLUE = new Colour(0, 0, 255);
+    private static final Colour GREEN = new Colour(0, 255, 0);
+    private static final Colour BLACK = new Colour(0, 0, 0);
 
     @BeforeEach
     public void before() {
-        hat = new HeadWear("Red", "Formal", "Hat", "Top Hat");
-        shirt = new UpperWear("Blue", "Sports", "Shirt","Nike Tee");
-        pant = new LowerWear("Green", "Casual", "Shorts", "Levi's");
-        shoe = new FootWear("Black", "Formal","Shoes","Amiri");
+        Clothing hat = new HeadWear(RED, "Formal", "Hat", "Top Hat");
+        Clothing shirt = new UpperWear(BLUE, "Sports", "Shirt","Nike Tee");
+        Clothing pant = new LowerWear(GREEN, "Casual", "Shorts", "Levi's");
+        Clothing shoe = new FootWear(BLACK, "Formal","Shoes","Amiri");
         userTest = new Wardrobe();
     }
 
@@ -73,15 +76,15 @@ class WardrobeTest {
 
         ArrayList<Clothing> test = new ArrayList<Clothing>();
         test.add(hat);
-        assertEquals(userTest.getClothesOfColour("Red"), test);
+        assertEquals(userTest.getClothesOfColour(RED), test);
 
         ArrayList<Clothing> test2 = new ArrayList<Clothing>();
         test2.add(pant);
-        assertEquals(userTest.getClothesOfColour("Green"), test2);
+        assertEquals(userTest.getClothesOfColour(GREEN), test2);
 
         ArrayList<Clothing> test3 = new ArrayList<Clothing>();
         test3.add(shoe);
-        assertEquals(userTest.getClothesOfColour("Black"), test3);
+        assertEquals(userTest.getClothesOfColour(BLACK), test3);
 
         assertTrue(userTest.getClothesOfApparelGenre("imaginary").isEmpty());
     }
@@ -106,7 +109,7 @@ class WardrobeTest {
         userTest.addItem(shirt);
         userTest.addItem(pant);
         userTest.addItem(shoe);
-        Clothing c = new Clothing("word","word","word","word");
+        Clothing c = new Clothing(BLACK,"word","word","word");
 
         assertTrue(userTest.removeItemByIndex(hat.getIndexNo()));
         assertTrue(userTest.removeItemByIndex(shoe.getIndexNo()));

@@ -9,7 +9,7 @@ public class FootWear extends Clothing {
      * Modifies: this
      * Effects: instantiates an instance of Footwear through its superclass
      * */
-    public FootWear(String colour, String genre, String itemKind, String itemName) {
+    public FootWear(Colour colour, String genre, String itemKind, String itemName) {
         super(colour, genre, itemKind, itemName);
     }
 

@@ -68,20 +68,24 @@ public class JsonReader {
     // EFFECTS: parses clothing from JSON object and adds it to wardrobe
     private Clothing parseClothing(JSONObject jsonObject) {
         //int index = jsonObject.getInt("index");
-        String colour = jsonObject.getString("colour");
+        JSONObject colour = jsonObject.getJSONObject("colour");
+        int red = colour.getInt("red");
+        int green = colour.getInt("green");
+        int blue = colour.getInt("blue");
+        Colour c = new Colour(red, green, blue);
         String genre = jsonObject.getString("genre");
         String subType = jsonObject.getString("subtype");
         String name = jsonObject.getString("name");
         int code = determineKind(subType);
         Clothing newItem;
         if (code == 1) {
-            newItem = new HeadWear(colour, genre, subType, name);
+            newItem = new HeadWear(c, genre, subType, name);
         } else if (code == 2) {
-            newItem = new UpperWear(colour, genre, subType, name);
+            newItem = new UpperWear(c, genre, subType, name);
         } else if (code == 3) {
-            newItem = new LowerWear(colour, genre, subType, name);
+            newItem = new LowerWear(c, genre, subType, name);
         } else {
-            newItem = new FootWear(colour, genre, subType, name);
+            newItem = new FootWear(c, genre, subType, name);
         }
         return newItem;
     }

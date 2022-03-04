@@ -47,6 +47,11 @@ public class Colour {
         return  this.hueRounded;
     }
 
+    public boolean equals(Colour c) {
+        Boolean match = ((this.red == c.getRed()) && (this.blue == c.getBlue()) && (this.green == c.getGreen()));
+        return match;
+    }
+
     public float getSaturationPercent() {
         return  this.saturationPercent;
     }

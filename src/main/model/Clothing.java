@@ -1,7 +1,9 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+import model.Colour;
 
 /*
  * Reference Code from: JsonSerialization Demo
@@ -10,7 +12,7 @@ import persistence.Writable;
 
 // Clothing object class
 public class Clothing implements Writable {
-    private String pieceColour;
+    private Colour pieceColour;
     private String pieceGenre;
     private String pieceSubtype;
     private String pieceName;
@@ -21,7 +23,7 @@ public class Clothing implements Writable {
      * Modifies: this
      * Effects: instantiates an instance of Clothing
      * */
-    public Clothing(String pieceColour, String pieceGenre, String pieceSubtype, String pieceName) {
+    public Clothing(Colour pieceColour, String pieceGenre, String pieceSubtype, String pieceName) {
         this.pieceGenre = pieceGenre;
         this.pieceColour = pieceColour;
         this.pieceSubtype = pieceSubtype;
@@ -39,7 +41,7 @@ public class Clothing implements Writable {
     /*
      * Effects: Returns the colour of the piece
      * */
-    public String getPieceColour() {
+    public Colour getPieceColour() {
         return this.pieceColour;
     }
 
@@ -71,10 +73,18 @@ public class Clothing implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("index", this.indexNo);
-        json.put("colour", this.pieceColour);
+        json.put("colour", colourToJson());
         json.put("genre", this.pieceGenre);
         json.put("subtype", this.pieceSubtype);
         json.put("name", this.pieceName);
+        return json;
+    }
+
+    public JSONObject colourToJson() {
+        JSONObject json = new JSONObject();
+        json.put("red", this.pieceColour.getRed());
+        json.put("green", this.pieceColour.getGreen());
+        json.put("blue", this.pieceColour.getBlue());
         return json;
     }
 }

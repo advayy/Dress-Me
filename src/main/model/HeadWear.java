@@ -9,7 +9,7 @@ public class HeadWear extends Clothing {
      * Modifies: this
      * Effects: instantiates an instance of Head wear through its superclass
      * */
-    public HeadWear(String colour, String genre, String itemKind, String itemName) {
+    public HeadWear(Colour colour, String genre, String itemKind, String itemName) {
         super(colour, genre, itemKind, itemName);
     }
 
