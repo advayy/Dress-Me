@@ -43,6 +43,46 @@ class WardrobeTest {
     }
 
     @Test
+    public void getUserWardrobeTest() {
+        userTest.addItem(hat);
+        userTest.addItem(shirt);
+        userTest.addItem(pant);
+        userTest.addItem(shoe);
+        ArrayList<Clothing> testList = new ArrayList<Clothing>();
+        testList.add(hat);
+        testList.add(shirt);
+        testList.add(pant);
+        testList.add(shoe);
+        assertEquals(userTest.getInternalWardrobe(), testList);
+    }
+
+    @Test
+    void removeLookItemTest() {
+        userTest.addLook(new Looks(hat, shirt, pant, shoe));
+        assertTrue(userTest.removeLookItem(0));
+    }
+
+    @Test
+    void removeLookItemByIndexTest() {
+        // clothes code
+        Looks look1 = new Looks(hat, shirt, pant, shoe);
+        Looks look2 = new Looks(hat, shirt, pant, shoe);
+
+        userTest.addLook(look1);
+        userTest.addLook(look2);
+
+        assertTrue(userTest.removeLookItemByIndex(look2.getIndexNo()));
+        assertTrue(userTest.removeLookItemByIndex(look1.getIndexNo()));
+        assertFalse(userTest.removeItemByIndex(100));
+
+        Wardrobe otherWardrobe = new Wardrobe();
+        assertFalse(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
+        otherWardrobe.addLook(look1);
+        assertTrue(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
+        assertFalse(otherWardrobe.removeItemByIndex(100));
+    }
+
+    @Test
     void getClothesOfGenreTest() {
         userTest.addItem(hat);
         userTest.addItem(shirt);
@@ -87,20 +127,6 @@ class WardrobeTest {
         assertEquals(userTest.getClothesOfColour(BLACK), test3);
 
         assertTrue(userTest.getClothesOfApparelGenre("imaginary").isEmpty());
-    }
-
-    @Test
-    public void getUserWardrobeTest() {
-        userTest.addItem(hat);
-        userTest.addItem(shirt);
-        userTest.addItem(pant);
-        userTest.addItem(shoe);
-        ArrayList<Clothing> testList = new ArrayList<Clothing>();
-        testList.add(hat);
-        testList.add(shirt);
-        testList.add(pant);
-        testList.add(shoe);
-        assertEquals(userTest.getInternalWardrobe(), testList);
     }
 
     @Test
@@ -157,30 +183,5 @@ class WardrobeTest {
         assertNull(userTest.getClothesByIndex(100));
     }
 
-    @Test
-    void removeLookItemTest() {
-        userTest.addLook(new Looks(hat, shirt, pant, shoe));
-        assertTrue(userTest.removeLookItem(0));
-    }
-
-    @Test
-    void removeLookItemByIndexTest() {
-        // clothes code
-        Looks look1 = new Looks(hat, shirt, pant, shoe);
-        Looks look2 = new Looks(hat, shirt, pant, shoe);
-
-        userTest.addLook(look1);
-        userTest.addLook(look2);
-
-        assertTrue(userTest.removeLookItemByIndex(look2.getIndexNo()));
-        assertTrue(userTest.removeLookItemByIndex(look1.getIndexNo()));
-        assertFalse(userTest.removeItemByIndex(100));
-
-        Wardrobe otherWardrobe = new Wardrobe();
-        assertFalse(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
-        otherWardrobe.addLook(look1);
-        assertTrue(otherWardrobe.removeLookItemByIndex(look1.getIndexNo()));
-        assertFalse(otherWardrobe.removeItemByIndex(100));
-    }
 
 }

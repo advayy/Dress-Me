@@ -17,8 +17,8 @@ public class ColourTest {
         assertEquals(255, RED.getRed());
         assertEquals(0, RED.getBlue());
 
-        assertTrue(RED.equals(RED2));
-        assertFalse(RED.equals(GREEN));
+        assertTrue(RED.colourEquals(RED2));
+        assertFalse(RED.colourEquals(GREEN));
 
         assertEquals(0, RED.getHue());
         assertEquals(1, RED.getSaturation());
@@ -52,6 +52,14 @@ public class ColourTest {
         assertEquals(0, silver.getSaturation());
         assertEquals(0.7490196228027344, silver.getValue());
         assertEquals(75, silver.getValuePercent());
+
+        Colour RED1 = new Colour(254, 0, 0);
+        Colour BLUE1 = new Colour(0, 224, 0);
+        Colour GREEN1 = new Colour(0, 0, 224);
+
+        assertFalse(RED.colourEquals(RED1));
+        assertFalse(BLUE.colourEquals(BLUE1));
+        assertFalse(GREEN.colourEquals(GREEN1));
     }
 
 

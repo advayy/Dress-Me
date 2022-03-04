@@ -59,7 +59,7 @@ public class Colour {
 
     // Requires: A colour
     // Effects: returns true if the colours red, green and blue values are equal
-    public boolean equals(Colour c) {
+    public boolean colourEquals(Colour c) {
         Boolean match = ((this.red == c.getRed()) && (this.green == c.getGreen())) && (this.blue == c.getBlue());
         return match;
     }

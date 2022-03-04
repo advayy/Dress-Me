@@ -33,11 +33,10 @@ public class Wardrobe implements Writable {
      * Effects: filters the internalWardrobe for clothes that match the input color
      * */
     public ArrayList<Clothing> getClothesOfColour(Colour colour) {
-
         ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
 
         for (Clothing c : this.internalWardrobe) {
-            if (c.getPieceColour().equals(colour)) {
+            if (c.getPieceColour().colourEquals(colour)) {
                 filteredList.add(c);
             }
         }
