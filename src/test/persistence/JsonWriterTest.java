@@ -65,7 +65,7 @@ public class JsonWriterTest extends JsonTest {
                     "TEESHIRT", "lululemon"));
             wardrobe.addItem(new Clothing(BLACK, "fancy",
                     "HAT", "amiri"));
-            wardrobe.addLook(new Looks(head, upper, lower, foot));
+            wardrobe.addOutfit(new Outfit(head, upper, lower, foot));
 
             JsonWriter writer = new JsonWriter("./data/testWriterMultipleItemWardrobe.json");
             writer.open();
@@ -75,15 +75,15 @@ public class JsonWriterTest extends JsonTest {
             JsonReader reader = new JsonReader("./data/testWriterMultipleItemWardrobe.json");
             wardrobe = reader.read();
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
-            ArrayList<Looks> looksList = wardrobe.getInternalLooks();
+            ArrayList<Outfit> outfitList = wardrobe.getInternalOutfits();
             assertEquals(4, clothesList.size());
             checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", GREEN);
             checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", BLUE);
             checkClothing(clothesList.get(2),"lululemon", "casual", "TEESHIRT", RED);
             checkClothing(clothesList.get(3),"amiri", "fancy", "HAT", BLACK);
 
-            assertEquals(1, looksList.size());
-            checkLook(looksList.get(0), head, upper, lower, foot);
+            assertEquals(1, outfitList.size());
+            checkOutfit(outfitList.get(0), head, upper, lower, foot);
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

@@ -47,7 +47,7 @@ public class JsonReaderTest extends JsonTest{
         try {
             Wardrobe wardrobe = reader.read();
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
-            ArrayList<Looks> looksList = wardrobe.getInternalLooks();
+            ArrayList<Outfit> outfitList = wardrobe.getInternalOutfits();
             assertEquals(4, clothesList.size());
             checkClothing(clothesList.get(0),"Nike's", "sport", "SHOES", GREEN);
             checkClothing(clothesList.get(1),"Levi's", "casual", "JEANS", BLUE);
@@ -59,8 +59,8 @@ public class JsonReaderTest extends JsonTest{
             Clothing lower = new LowerWear(BLUE, "casual", "JEANS", "Levi's");
             Clothing upper = new UpperWear(RED, "casual", "TEESHIRT", "lululemon");
             Clothing head = new HeadWear(BLACK, "fancy", "HAT", "amiri");
-            assertEquals(1, looksList.size());
-            checkLook(looksList.get(0), head, upper, lower, foot);
+            assertEquals(1, outfitList.size());
+            checkOutfit(outfitList.get(0), head, upper, lower, foot);
 
         } catch (IOException e) {
             fail("Couldn't read from file");

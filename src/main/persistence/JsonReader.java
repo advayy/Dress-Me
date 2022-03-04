@@ -57,10 +57,10 @@ public class JsonReader {
             JSONObject nextClothing = (JSONObject) json;
             wardrobe.addItem(parseClothing(nextClothing));
         }
-        JSONArray jsonArrayLooks = jsonObject.getJSONArray("looks");
-        for (Object json : jsonArrayLooks) {
+        JSONArray jsonArrayOutfits = jsonObject.getJSONArray("outfits");
+        for (Object json : jsonArrayOutfits) {
             JSONObject nextLook = (JSONObject) json;
-            wardrobe.addLook(parseLook(nextLook));
+            wardrobe.addOutfit(parseOutfit(nextLook));
         }
     }
 
@@ -92,17 +92,17 @@ public class JsonReader {
 
     // MODIFIES: wardrobe
     // EFFECTS: parses Look from JSON object and adds it to wardrobe
-    private Looks parseLook(JSONObject jsonObject) {
+    private Outfit parseOutfit(JSONObject jsonObject) {
         JSONObject head = jsonObject.getJSONObject("head");
         JSONObject upper = jsonObject.getJSONObject("upper");
         JSONObject lower = jsonObject.getJSONObject("lower");
         JSONObject foot = jsonObject.getJSONObject("foot");
 
-        Looks lookToReturn = new Looks(parseClothing(head),
+        Outfit outfitToReturn = new Outfit(parseClothing(head),
                 parseClothing(upper),
                 parseClothing(lower),
                 parseClothing(foot));
-        return lookToReturn;
+        return outfitToReturn;
     }
 
     //Requires: A Sub Type string from the calling code

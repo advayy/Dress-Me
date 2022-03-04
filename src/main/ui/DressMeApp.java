@@ -42,7 +42,7 @@ public class DressMeApp {
         System.out.println();
 
         while (keepGoing) {
-            displayMenu();
+            displayMainMenu();
             String stringInput = inputScan.nextLine();
             if (stringInput.equalsIgnoreCase("X")) {
                 keepGoing = false;
@@ -57,22 +57,17 @@ public class DressMeApp {
 
     }
 
-    /*
-     * Effects: Prints a list of options from the user
-     * */
-    public void displayMenu() {
+
+    //Effects: Prints a list of options for the user
+    public void displayMainMenu() {
         System.out.println("What would you like to do");
         System.out.println("1 - Add an Item");
         System.out.println("2 - Remove an Item");
         System.out.println("3 - List all items in the Wardrobe");
-        System.out.println("4 - List all items of a certain color");
-        System.out.println("5 - List all items of a certain Genre/Apparel Type");
-        System.out.println("6 - List all items of by Kind");
-        System.out.println("7 - Save wardrobe to a file");
-        System.out.println("8 - Load wardrobe from a file");
-        System.out.println("9 - List all \"looks\"");
-        System.out.println("10 - Add a \"look\"");
-        System.out.println("11 - Remove a \"look\"");
+        System.out.println("4 - Filter Wardrobe");
+        System.out.println("5 - Go to Outfits menu");
+        System.out.println("6 - Save wardrobe to a file");
+        System.out.println("7 - Load wardrobe from a file");
         System.out.println("X - Exit");
         System.out.print("Enter your option: ");
     }
@@ -80,7 +75,6 @@ public class DressMeApp {
     /* Requires: an integer input from the user
      * Effects: Launches the user selected input
      * */
-    @SuppressWarnings("methodlength")
     public void processCommand(int input) {
         if (input == 1) {
             runAdditionSequence();
@@ -89,24 +83,89 @@ public class DressMeApp {
         } else if (input == 3) {
             listItems(userWardrobe.getInternalWardrobe());
         } else if (input == 4) {
-            runColourFilter();
+            runFilterSequence();
         } else if (input == 5) {
-            runGenreFilter();
+            runOutfitSequence();
         } else if (input == 6) {
-            runTypeFilter();
-        } else if (input == 7) {
             saveWardrobe();
-        } else if (input == 8) {
+        } else if (input == 7) {
             loadWardrobe();
-        } else if (input == 9) {
-            listAllLooks();
-        } else if (input == 10) {
-            runAddLookSequence();
-        } else if (input == 11) {
-            runRemoveLookSequence();
         } else {
             System.out.println("Please only input one of the given options!!");
             System.out.println();
+        }
+    }
+
+
+    //Effects: Prints a list of options for the user for filtering
+    public void displayFilterMenu() {
+        // Filter menu
+        System.out.println("How would you like to filter?");
+        System.out.println("1 - List all items of a certain color");
+        System.out.println("2 - List all items of a certain Genre/Apparel Type");
+        System.out.println("3 - List all items of by Kind");
+        System.out.println("x - Go back to main menu");
+    }
+
+    //Effects: Prints a list of options for the user for affecting outfits
+    public void displayOutfitMenu() {
+        // Outfit Menu
+        System.out.println("What would you like to do?");
+        System.out.println("1 - List all Outfits");
+        System.out.println("2 - Add an Outfit");
+        System.out.println("3 - Remove an Outfit");
+        System.out.println("x - Go back to main menu");
+    }
+
+    //Effects: Runs the outfit sequence while providing options and selecting
+    public void runOutfitSequence() {
+        boolean keepGoing = true;
+        while (keepGoing) {
+            displayOutfitMenu();
+            String stringInput = inputScan.nextLine();
+            if (stringInput.equalsIgnoreCase("X")) {
+                keepGoing = false;
+                System.out.println("Returning to Main Menu");
+            } else {
+                int inp = Integer.parseInt(stringInput); // turns string input into
+                if (inp == 1) {
+                    listAllOutfits();
+                } else if (inp == 2) {
+                    runAddOutfitSequence();
+                } else if (inp == 3) {
+                    runRemoveOutfitSequence();
+                } else {
+                    System.out.println("Please only input one of the given options!!");
+                    System.out.println();
+                }
+            }
+            flatLine();
+        }
+    }
+
+    //Effects: Runs the filter sequence while providing options and selecting
+    public void runFilterSequence() {
+        boolean keepGoing = true;
+        while (keepGoing) {
+            displayFilterMenu();
+            String stringInput = inputScan.nextLine();
+            if (stringInput.equalsIgnoreCase("X")) {
+                keepGoing = false;
+                System.out.println("Returning to Main Menu");
+            } else {
+                int inp = Integer.parseInt(stringInput); // turns string input into
+                if (inp == 1) {
+                    runColourFilter();
+                } else if (inp == 2) {
+                    runGenreFilter();
+                } else if (inp == 3) {
+                    runTypeFilter();
+                } else {
+                    System.out.println("Please only input one of the given options!!");
+                    System.out.println();
+                }
+            }
+            flatLine();
         }
     }
 
@@ -330,13 +389,13 @@ public class DressMeApp {
         listItems(userWardrobe.getClothesByType(inp));
     }
 
-    //Effects: Lists all "Looks" to the CLI
-    private void listAllLooks() {
+    //Effects: Lists all "Outfit" to the CLI
+    private void listAllOutfits() {
         flatLine();
-        System.out.println("Here Are Your Looks: ");
-        for (Looks l : userWardrobe.getInternalLooks()) {
+        System.out.println("Here Are Your Outfits: ");
+        for (Outfit l : userWardrobe.getInternalOutfits()) {
             flatLine();
-            System.out.println("Look index " + l.getIndexNo());
+            System.out.println("Outfit index " + l.getIndexNo());
             printClothingDetails(l.getHeadWear());
             printClothingDetails(l.getUpperWear());
             printClothingDetails(l.getLowerWear());
@@ -349,9 +408,9 @@ public class DressMeApp {
 
     //Requires: Valid user input
     //Modifies: this
-    //Effects : Creates a new look from items of clothing by type from user and saves it to the wardrobe
+    //Effects : Creates a new Outfit from items of clothing by type from user and saves it to the wardrobe
     @SuppressWarnings("methodlength")
-    public void runAddLookSequence() {
+    public void runAddOutfitSequence() {
         boolean breakOut =  false;
         String[] wearNames = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
         int counter = 0;
@@ -372,41 +431,55 @@ public class DressMeApp {
             }
         }
         if (breakOut) {
-            System.out.println("Look Not Added - Returning to Main menu");
+            System.out.println("Outfit Not Added - Returning to Main menu");
         } else {
-            userWardrobe.addLook(new Looks(toBeReturned.get(0), toBeReturned.get(1), toBeReturned.get(2),
+            userWardrobe.addOutfit(new Outfit(toBeReturned.get(0), toBeReturned.get(1), toBeReturned.get(2),
                     toBeReturned.get(3)));
-            System.out.println("Look Added");
+            System.out.println("Outfit Added");
         }
         flatLine();
     }
 
     // Requires: Inout from user
     // Modifies: this
-    // Effects : removes a look from the wardrobe
-    public void runRemoveLookSequence() {
-        listAllLooks();
-        System.out.println("Which look index would you like to remove");
+    // Effects : removes an Outfit from the wardrobe
+    public void runRemoveOutfitSequence() {
+        listAllOutfits();
+        System.out.println("Which Outfit index would you like to remove");
         System.out.print("Enter index here: ");
         int input = Integer.parseInt(inputScan.nextLine());
-        userWardrobe.removeLookItemByIndex(input);
-        System.out.println("Look Removed");
+        userWardrobe.removeOutfitByIndexNo(input);
+        System.out.println("Outfit Removed");
         flatLine();
     }
 
+    // Modifies : this
+    // Effects : Gets a colour from the user through rgb and initializes and returns it
     public Colour getColourComponentsFromUser() {
         int r;
         int g;
         int b;
-        System.out.print("Enter Red value: ");
-        String input = inputScan.nextLine();
-        r = Integer.parseInt(input);
-        System.out.print("Enter Green value: ");
-        input = inputScan.nextLine();
-        g = Integer.parseInt(input);
-        System.out.print("Enter Blue value: ");
-        input = inputScan.nextLine();
-        b = Integer.parseInt(input);
+        System.out.println("Please enter a number from 0-255");
+        r = getSingleComponentFromUser("RED");
+        g = getSingleComponentFromUser("GREEN");
+        b = getSingleComponentFromUser("BLUE");
         return new Colour(r, g, b);
+    }
+
+    // Effects : Gets a RED/GREEN/BLUE value between 0-225 between the user
+    public int getSingleComponentFromUser(String colourName) {
+        boolean valid = false;
+        int c = 0;
+        while (!valid) {
+            System.out.print("Enter " + colourName + " value: ");
+            String input = inputScan.nextLine();
+            c = Integer.parseInt(input);
+            if (c >= 0 && c <= 255) {
+                valid = true;
+            } else {
+                System.out.println("Please enter a value between 0 and 255!");
+            }
+        }
+        return c;
     }
 }

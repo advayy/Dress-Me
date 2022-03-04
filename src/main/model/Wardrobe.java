@@ -13,11 +13,11 @@ import java.util.ArrayList;
 // represents the user's wardrobe that holds Clothing items
 public class Wardrobe implements Writable {
     private ArrayList<Clothing> internalWardrobe;
-    private ArrayList<Looks> internalLooks;
+    private ArrayList<Outfit> internalOutfits;
 
     public Wardrobe() {
         internalWardrobe = new ArrayList<Clothing>();
-        internalLooks = new ArrayList<Looks>();
+        internalOutfits = new ArrayList<Outfit>();
     }
 
 
@@ -119,28 +119,28 @@ public class Wardrobe implements Writable {
 
     /* Requires: index of an item
      * Modifies: this
-     * Effects: removes the Look item at that index from wardrobe
+     * Effects: removes the Outfit item at that index from wardrobe
      * */
-    public boolean removeLookItem(int index) {
-        this.internalLooks.remove(index);
+    public boolean removeOutfit(int index) {
+        this.internalOutfits.remove(index);
         return true;
     }
 
-    /* Requires: the index number of the Look
+    /* Requires: the index number of the Outfit
      * Modifies: this
-     * Effects: returns the wardrobe Look list index of the item
+     * Effects: returns the wardrobe Outfits list index of the item
      * */
-    public boolean removeLookItemByIndex(int index) {
+    public boolean removeOutfitByIndexNo(int index) {
         boolean found = false;
         int listIndex = 0;
-        for (Looks item: this.internalLooks) {
+        for (Outfit item: this.internalOutfits) {
             if (item.getIndexNo() == index) {
-                listIndex = this.internalLooks.indexOf(item);
+                listIndex = this.internalOutfits.indexOf(item);
                 found = true;
             }
         }
         if (found) {
-            removeLookItem(listIndex);
+            removeOutfit(listIndex);
         }
         return found;
     }
@@ -172,12 +172,12 @@ public class Wardrobe implements Writable {
         return true;
     }
 
-    /* Requires : a look object
+    /* Requires : an Outfit object
     *  Modifies : this
-    *  Effects  : adds look to internalLooks
+    *  Effects  : adds Outfit to internalOutfits
     * */
-    public void addLook(Looks l) {
-        this.internalLooks.add(l);
+    public void addOutfit(Outfit l) {
+        this.internalOutfits.add(l);
     }
 
     /*
@@ -187,7 +187,7 @@ public class Wardrobe implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("clothes", clothesToJson());
-        json.put("looks", looksToJson());
+        json.put("outfits", outfitsToJson());
         return json;
     }
 
@@ -202,19 +202,19 @@ public class Wardrobe implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns arraylist of Looks in this wardrobe as a JSON array
-    private JSONArray looksToJson() {
+    // EFFECTS: returns arraylist of Outfits in this wardrobe as a JSON array
+    private JSONArray outfitsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Looks l : internalLooks) {
+        for (Outfit l : internalOutfits) {
             jsonArray.put(l.toJson());
         }
 
         return jsonArray;
     }
 
-    //Effects: Returns the internalLooks object
-    public ArrayList<Looks> getInternalLooks() {
-        return this.internalLooks;
+    //Effects: Returns the internalOutfits object
+    public ArrayList<Outfit> getInternalOutfits() {
+        return this.internalOutfits;
     }
 }

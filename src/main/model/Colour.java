@@ -1,5 +1,10 @@
 package model;
 
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+
+// Colour transformation formulae accessed from https://www.rapidtables.com/convert/color/rgb-to-hsv.html
 public class Colour {
     //RGB must be between 0-255
     private int red;
@@ -11,6 +16,21 @@ public class Colour {
     private int hueRounded;
     private int saturationPercent;
     private int valuePercent;
+
+    // Builtin Static Colours
+    public static final Colour WHITE = new Colour(255,255,255);
+    public static final Colour BLACK = new Colour(0,0,0);
+    public static final Colour RED = new Colour(255,0,0);
+    public static final Colour GREEN = new Colour(0,255,0);
+    public static final Colour BLUE = new Colour(0,0,255);
+    public static final Colour PURPLE = new Colour(102,0,153);
+    public static final Colour YELLOW = new Colour(255,255,0);
+    public static final Colour ORANGE = new Colour(255,102,0);
+    public static final Colour BROWN = new Colour(102,51,0);
+    public static final Colour GREY = new Colour(153,153,153);
+    public static final Colour CYAN = new Colour(0, 255, 255);
+    public static final Colour MAROON = new Colour(128, 0, 0);
+    public static final Colour SILVER = new Colour(191,191,191);
 
     // Requires: An integer between 0-255
     // Modifies: this
@@ -60,8 +80,7 @@ public class Colour {
     // Requires: A colour
     // Effects: returns true if the colours red, green and blue values are equal
     public boolean colourEquals(Colour c) {
-        Boolean match = ((this.red == c.getRed()) && (this.green == c.getGreen())) && (this.blue == c.getBlue());
-        return match;
+        return ((this.red == c.getRed()) && (this.green == c.getGreen())) && (this.blue == c.getBlue());
     }
 
     // Effects: returns the saturation percentage
