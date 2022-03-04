@@ -1,9 +1,7 @@
 package model;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
-import model.Colour;
 
 /*
  * Reference Code from: JsonSerialization Demo
@@ -80,6 +78,9 @@ public class Clothing implements Writable {
         return json;
     }
 
+    /*
+     * Effects: writes a colour item into JSON and returns it.
+     * */
     public JSONObject colourToJson() {
         JSONObject json = new JSONObject();
         json.put("red", this.pieceColour.getRed());
