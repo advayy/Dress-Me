@@ -21,10 +21,10 @@ class WardrobeTest {
 
     @BeforeEach
     public void before() {
-        Clothing hat = new HeadWear(RED, "Formal", "Hat", "Top Hat");
-        Clothing shirt = new UpperWear(BLUE, "Sports", "Shirt","Nike Tee");
-        Clothing pant = new LowerWear(GREEN, "Casual", "Shorts", "Levi's");
-        Clothing shoe = new FootWear(BLACK, "Formal","Shoes","Amiri");
+        hat = new HeadWear(RED, "Formal", "Hat", "Top Hat");
+        shirt = new UpperWear(BLUE, "Sports", "Shirt","Nike Tee");
+        pant = new LowerWear(GREEN, "Casual", "Shorts", "Levi's");
+        shoe = new FootWear(BLACK, "Formal","Shoes","Amiri");
         userTest = new Wardrobe();
     }
 
@@ -116,7 +116,7 @@ class WardrobeTest {
 
         ArrayList<Clothing> test = new ArrayList<Clothing>();
         test.add(hat);
-        assertEquals(userTest.getClothesOfColour(RED), test);
+        assertEquals(test, userTest.getClothesOfColour(RED));
 
         ArrayList<Clothing> test2 = new ArrayList<Clothing>();
         test2.add(pant);
