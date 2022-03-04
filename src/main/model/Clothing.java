@@ -10,11 +10,11 @@ import persistence.Writable;
 
 // Clothing object class
 public class Clothing implements Writable {
-    private Colour pieceColour;
-    private String pieceGenre;
-    private String pieceSubtype;
-    private String pieceName;
-    private int indexNo;
+    private Colour pieceColour; // Colour as RGB
+    private String pieceGenre; // Genre or Formality for a type of clothing ie, Casual, Formal, High Fashion
+    private String pieceSubtype; // Between set types from subclasses
+    private String pieceName; // Arbitrary name
+    private int indexNo; // unique number generated
     private static int nextID = 1;
 
     /* Requires: a color, genre, kind and name

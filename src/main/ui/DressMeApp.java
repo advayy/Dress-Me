@@ -102,7 +102,7 @@ public class DressMeApp {
         // Filter menu
         System.out.println("How would you like to filter?");
         System.out.println("1 - List all items of a certain color");
-        System.out.println("2 - List all items of a certain Genre/Apparel Type");
+        System.out.println("2 - List all items of a certain Genre/Formality Type");
         System.out.println("3 - List all items of by Kind");
         System.out.println("x - Go back to main menu");
     }
@@ -204,7 +204,7 @@ public class DressMeApp {
     public void addToWardrobe(int code) {
         System.out.println("Enter the following details:");
         String name = getInputText("Please enter Item Name");
-        String genre = getInputText("Please enter Item Genre");
+        String genre = getInputText("Please enter Item Genre/Formality");
         genre = genre.toLowerCase(Locale.ROOT);
         //String subType = getInputText("Please enter Item Subtype");
         String subType = getSubType(code);
@@ -313,7 +313,7 @@ public class DressMeApp {
         System.out.print("Item Index: " + index);
         System.out.print(", Item Name: " + name);
         System.out.print(", Item SubType: " + subType);
-        System.out.print(", Item Genre: " + genre);
+        System.out.print(", Item Genre/Formality: " + genre);
         System.out.print(", Item Color: [Red: " + color.getRed() + ", Green: " + color.getGreen());
         System.out.print(", Blue: " + color.getBlue() + "]");
         System.out.println();
@@ -332,7 +332,7 @@ public class DressMeApp {
      * Effects: Lists all items that match the required filter specification
      * */
     public void runGenreFilter() {
-        System.out.println("Enter the Genre/Apparel Type you're searching for");
+        System.out.println("Enter the Genre/Formality you're searching for");
         System.out.print("Enter Filter Genre Here: ");
         String input = inputScan.nextLine();
         input = input.toLowerCase();
