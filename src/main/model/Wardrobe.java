@@ -146,7 +146,8 @@ public class Wardrobe implements Writable {
         return found;
     }
 
-
+    //requires: an integer index of the clothing
+    //effects: returns the clothing item with the corresponding index or null
     public Clothing getClothesByIndex(int index) {
         boolean found = false;
         int listIndex = 0;
@@ -192,7 +193,7 @@ public class Wardrobe implements Writable {
         return json;
     }
 
-    // EFFECTS: returns Clothing in this wardrobe as a JSON array
+    // EFFECTS: returns arraylist of Clothing in this wardrobe as a JSON array
     private JSONArray clothesToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -203,6 +204,7 @@ public class Wardrobe implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: returns arraylist of Looks in this wardrobe as a JSON array
     private JSONArray looksToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -213,6 +215,7 @@ public class Wardrobe implements Writable {
         return jsonArray;
     }
 
+    //Effects: Returns the internalLooks object
     public ArrayList<Looks> getInternalLooks() {
         return this.internalLooks;
     }

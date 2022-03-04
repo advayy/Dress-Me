@@ -86,6 +86,8 @@ public class JsonReader {
         return newItem;
     }
 
+    // MODIFIES: wardrobe
+    // EFFECTS: parses Look from JSON object and adds it to wardrobe
     private Looks parseLook(JSONObject jsonObject) {
         JSONObject head = jsonObject.getJSONObject("head");
         JSONObject upper = jsonObject.getJSONObject("upper");

@@ -80,7 +80,6 @@ public class DressMeApp {
     /* Requires: an integer input from the user
      * Effects: Launches the user selected input
      * */
-
     @SuppressWarnings("methodlength")
     public void processCommand(int input) {
         if (input == 1) {
@@ -242,6 +241,8 @@ public class DressMeApp {
         System.out.println();
     }
 
+    //Requires: An item of clothing as an input
+    //Effects: Returns all the data of thw clothing item in the CLI
     public void printClothingDetails(Clothing item) {
         String color;
         String genre;
@@ -333,6 +334,7 @@ public class DressMeApp {
         listItems(userWardrobe.getClothesByType(inp));
     }
 
+    //Effects: Lists all "Looks" to the CLI
     private void listAllLooks() {
         flatLine();
         System.out.println("Here Are Your Looks: ");
@@ -348,6 +350,9 @@ public class DressMeApp {
         }
     }
 
+    //Requires: Valid user input
+    //Modifies: this
+    //Effects : Creates a new look from items of clothing by type from user and saves it to the wardrobe
     public void runAddLookSequence() {
         System.out.println("Pick an item of Head Wear");
         listItems(userWardrobe.getClothesByType(1));
@@ -378,6 +383,9 @@ public class DressMeApp {
         flatLine();
     }
 
+    // Requires: Inout from user
+    // Modifies: this
+    // Effects : removes a look from the wardrobe
     public void runRemoveLookSequence() {
         listAllLooks();
         System.out.println("Which look index would you like to remove");

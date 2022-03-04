@@ -44,17 +44,6 @@ public class Looks implements Writable {
     }
 
     /*
-    // Requires: all 4 inputs
-    // Modifies: this
-    // Effects: constructor for look without head wear
-    public Looks(Clothing upperWear, Clothing lowerWear, Clothing footWear) {
-        this.head = null;
-        this.upper = (UpperWear) upperWear;
-        this.lower = (LowerWear) lowerWear;
-        this.foot = (FootWear) footWear;
-    }*/
-
-    /*
      * Effects: writes a Clothing item into JSON and returns it.
      * */
     @Override
