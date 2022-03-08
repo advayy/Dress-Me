@@ -20,9 +20,9 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderNonExistentFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        JsonReader reader = new JsonReader();
         try {
-            Wardrobe wardrobe = reader.read();
+            Wardrobe wardrobe = reader.read("./data/noSuchFile.json");
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -31,9 +31,9 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderEmptyWardrobe() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWardrobe.json");
+        JsonReader reader = new JsonReader();
         try {
-            Wardrobe wardrobe = reader.read();
+            Wardrobe wardrobe = reader.read("./data/testReaderEmptyWardrobe.json");
             assertEquals(new ArrayList<Clothing>(), wardrobe.getInternalWardrobe());
             assertEquals(0, wardrobe.getInternalWardrobe().size());
         } catch (IOException e) {
@@ -43,9 +43,9 @@ public class JsonReaderTest extends JsonTest{
 
     @Test
     void testReaderMultipleItemWardrobe() {
-        JsonReader reader = new JsonReader("./data/testReaderMultipleItemWardrobe.json");
+        JsonReader reader = new JsonReader();
         try {
-            Wardrobe wardrobe = reader.read();
+            Wardrobe wardrobe = reader.read("./data/testReaderMultipleItemWardrobe.json");
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             ArrayList<Outfit> outfitList = wardrobe.getInternalOutfits();
             assertEquals(4, clothesList.size());

@@ -25,9 +25,9 @@ In the introductory scene of the movie Clueless, the protagonist Cher uses a com
 - As a user, I want to be able to filter all of my clothing based on the kind of clothing (Head wear, Footwear, etc.).
 - As a user, I want to be able to save all the clothing items to my wardrobe
 - As a user, I want to be able to load all the clothing items from a previous save file 
-- As a user, I want to be able to make and save “Looks” or Sets of clothing 
-- As a user, I want to be able to remove “Looks” from my wardrobe 
-- As a user, I want to be able to list all “Looks” from my wardrobe
+- As a user, I want to be able to make and save Outfits or Sets of clothing 
+- As a user, I want to be able to remove Outfits from my wardrobe 
+- As a user, I want to be able to list all Outfits from my wardrobe
 
 
 *Other Potential Functionalities to be added*

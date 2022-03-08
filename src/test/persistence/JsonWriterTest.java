@@ -23,8 +23,8 @@ public class JsonWriterTest extends JsonTest {
     void testWriterInvalidFile() {
         try {
             Wardrobe wardrobe = new Wardrobe();
-            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
-            writer.open();
+            JsonWriter writer = new JsonWriter();
+            writer.open("./data/my\0illegal:fileName.json");
             fail("IOException was expected");
         } catch (IOException e) {
             // pass
@@ -35,13 +35,14 @@ public class JsonWriterTest extends JsonTest {
     void testWriterEmptyWardrobe() {
         try {
             Wardrobe wardrobe = new Wardrobe();
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWardrobe.json");
-            writer.open();
+            wardrobe.setName("testWriter");
+            JsonWriter writer = new JsonWriter();
+            writer.open("./data/testWriterEmptyWardrobe.json");
             writer.write(wardrobe);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWardrobe.json");
-            wardrobe = reader.read();
+            JsonReader reader = new JsonReader();
+            wardrobe = reader.read("./data/testWriterEmptyWardrobe.json");
             assertEquals(0, wardrobe.getInternalWardrobe().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -52,6 +53,7 @@ public class JsonWriterTest extends JsonTest {
     void testWriterMultipleItemWardrobe() {
         try {
             Wardrobe wardrobe = new Wardrobe();
+            wardrobe.setName("testWriter");
             Clothing foot = new FootWear(GREEN, "sport", "SHOES", "Nike's");
             Clothing lower = new LowerWear(BLUE, "casual", "JEANS", "Levi's");
             Clothing upper = new UpperWear(RED, "casual", "TEESHIRT", "lululemon");
@@ -67,13 +69,13 @@ public class JsonWriterTest extends JsonTest {
                     "HAT", "amiri"));
             wardrobe.addOutfit(new Outfit(head, upper, lower, foot));
 
-            JsonWriter writer = new JsonWriter("./data/testWriterMultipleItemWardrobe.json");
-            writer.open();
+            JsonWriter writer = new JsonWriter();
+            writer.open("./data/testWriterMultipleItemWardrobe.json");
             writer.write(wardrobe);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterMultipleItemWardrobe.json");
-            wardrobe = reader.read();
+            JsonReader reader = new JsonReader();
+            wardrobe = reader.read("./data/testWriterMultipleItemWardrobe.json");
             ArrayList<Clothing> clothesList = wardrobe.getInternalWardrobe();
             ArrayList<Outfit> outfitList = wardrobe.getInternalOutfits();
             assertEquals(4, clothesList.size());

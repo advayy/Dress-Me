@@ -17,15 +17,15 @@ public class JsonWriter {
     private String destination;
 
     // EFFECTS: constructs writer to write to destination file
-    public JsonWriter(String destination) {
-        this.destination = destination;
+    public JsonWriter() {
     }
 
     // MODIFIES: this
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
-    public void open() throws FileNotFoundException {
-        writer = new PrintWriter(new File(destination));
+    public void open(String destination) throws FileNotFoundException {
+        this.destination = destination;
+        writer = new PrintWriter(new File(this.destination));
     }
 
     // MODIFIES: this

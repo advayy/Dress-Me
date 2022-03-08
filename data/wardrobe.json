@@ -1,14 +1,28 @@
 {
+    "name": "Main Wardrobe",
     "outfits": [],
-    "clothes": [{
-        "colour": {
-            "red": 255,
-            "green": 0,
-            "blue": 0
+    "clothes": [
+        {
+            "colour": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "subtype": "HAT",
+            "genre": "fashion",
+            "name": "Amiri Hat",
+            "index": 1
         },
-        "subtype": "HAT",
-        "genre": "fashion",
-        "name": "Amiri Hat",
-        "index": 1
-    }]
+        {
+            "colour": {
+                "red": 150,
+                "green": 150,
+                "blue": 255
+            },
+            "subtype": "SHOES",
+            "genre": "casual",
+            "name": "pastel nikes",
+            "index": 2
+        }
+    ]
 }

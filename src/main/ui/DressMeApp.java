@@ -15,7 +15,9 @@ import java.util.ArrayList;
 // console application that communicates with the user.
 // dresses up the user
 public class DressMeApp {
-    private static final String JSON_STORE = "./data/wardrobe.json";
+    private static final String JSON_STORE_BASE = "./data/";
+    private static final String JSON_STORE_EXTENSION = ".json";
+    private String jsonStore;
     Wardrobe userWardrobe;
     Scanner inputScan;
     private JsonWriter jsonWriter;
@@ -27,8 +29,8 @@ public class DressMeApp {
     public DressMeApp() throws FileNotFoundException {
         userWardrobe = new Wardrobe();
         inputScan = new Scanner(System.in);
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter();
+        jsonReader = new JsonReader();
         runDressMe();
     }
 
@@ -342,13 +344,22 @@ public class DressMeApp {
     // EFFECTS: saves the wardrobe to file
     private void saveWardrobe() {
         try {
-            jsonWriter.open();
+            if (this.userWardrobe.getName() == null) {
+                System.out.println("What would you like to name the wardrobe");
+                userWardrobe.setName(inputScan.nextLine());
+            }
+            if (jsonStore == null) {
+                System.out.println("Enter the file name (without the .json extension)");
+                String locationName = inputScan.nextLine();
+                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
+            }
+            jsonWriter.open(jsonStore);
             jsonWriter.write(userWardrobe);
             jsonWriter.close();
-            System.out.println("Saved Wardrobe to " + JSON_STORE);
+            System.out.println("Saved Wardrobe to " + jsonStore);
             System.out.println();
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + jsonStore);
             System.out.println();
         }
     }
@@ -357,11 +368,16 @@ public class DressMeApp {
     // EFFECTS: loads wardrobe from file
     private void loadWardrobe() {
         try {
-            userWardrobe = jsonReader.read();
-            System.out.println("Loaded Wardrobe from " + JSON_STORE);
+            if (jsonStore == null) {
+                System.out.println("Enter the file name (without the .json extension)");
+                String locationName = inputScan.nextLine();
+                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
+            }
+            userWardrobe = jsonReader.read(jsonStore);
+            System.out.println("Loaded Wardrobe \"" + this.userWardrobe.getName() + "\" from " + jsonStore);
             System.out.println();
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + jsonStore);
             System.out.println();
         }
     }

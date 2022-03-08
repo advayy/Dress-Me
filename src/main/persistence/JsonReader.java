@@ -19,13 +19,12 @@ public class JsonReader {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReader(String source) {
-        this.source = source;
-    }
+    public JsonReader() {}
 
     // EFFECTS: reads wardrobe from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Wardrobe read() throws IOException {
+    public Wardrobe read(String source) throws IOException {
+        this.source = source;
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseWardrobe(jsonObject);
@@ -34,8 +33,9 @@ public class JsonReader {
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
+        this.source = source;
 
-        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(this.source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -45,6 +45,8 @@ public class JsonReader {
     // EFFECTS: parses wardrobe from JSON object and returns it
     private Wardrobe parseWardrobe(JSONObject jsonObject) {
         Wardrobe wardrobe = new Wardrobe();
+        String name = jsonObject.getString("name");
+        wardrobe.setName(name);
         addClothes(wardrobe, jsonObject);
         return wardrobe;
     }

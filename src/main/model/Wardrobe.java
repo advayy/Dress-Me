@@ -14,12 +14,25 @@ import java.util.ArrayList;
 public class Wardrobe implements Writable {
     private ArrayList<Clothing> internalWardrobe;
     private ArrayList<Outfit> internalOutfits;
+    private String wardrobeName;
 
     public Wardrobe() {
         internalWardrobe = new ArrayList<Clothing>();
         internalOutfits = new ArrayList<Outfit>();
     }
 
+
+    //Requires: name from user when saving
+    //Modifies: this
+    // Effects: sets the wardrobes name
+    public void setName(String name) {
+        this.wardrobeName = name;
+    }
+
+    //Effects: returns name if set
+    public String getName() {
+        return this.wardrobeName;
+    }
 
     /*
      * Effects: Returns the internalWardrobe Arraylist
@@ -186,6 +199,7 @@ public class Wardrobe implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+        json.put("name", this.wardrobeName);
         json.put("clothes", clothesToJson());
         json.put("outfits", outfitsToJson());
         return json;
