@@ -44,6 +44,7 @@ public class JsonWriterTest extends JsonTest {
             JsonReader reader = new JsonReader();
             wardrobe = reader.read("./data/testWriterEmptyWardrobe.json");
             assertEquals(0, wardrobe.getInternalWardrobe().size());
+            assertEquals("testWriter", wardrobe.getName());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
