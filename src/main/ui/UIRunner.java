@@ -1,25 +1,23 @@
 package ui;
 
-import model.Colour;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
-public class PickerWindow extends DressMeApp implements ActionListener {
+public class UIRunner implements ActionListener {
     JButton addItem;
     JButton removeItem;
     JButton openListingWindow;
     JButton addOutfit;
     JButton openOutfitWindow;
+    JFrame frame;
 
-    public PickerWindow() {
+    public UIRunner() {
     }
 
-    @Override
-    public void frameSetup() {
+    public void pickerFrameSetup() {
+        frame = new JFrame(); // creates a outfitFrame
         addItem = new JButton();
         removeItem = new JButton();
         openListingWindow = new JButton();
@@ -34,12 +32,12 @@ public class PickerWindow extends DressMeApp implements ActionListener {
         JButton bottomLeft = new JButton();
         JButton bottomRight = new JButton();
 
-        frame.setSize(850, 500); // sets x and y dimensions of frame
-        frame.setVisible(true);
-        frame.setTitle("Dress.Me!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(new Color(0xdabaff));
-        frame.setLayout(new GridBagLayout());
+        this.frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
+        this.frame.setVisible(true);
+        this.frame.setTitle("Dress.Me!");
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.getContentPane().setBackground(new Color(0xdabaff));
+        this.frame.setLayout(new GridBagLayout());
         GridBagConstraints setup = new GridBagConstraints();
         JPanel leftArrowPanel = new JPanel(new GridBagLayout());
         JPanel centrePanel = new JPanel(new GridBagLayout());
@@ -94,17 +92,35 @@ public class PickerWindow extends DressMeApp implements ActionListener {
         frame.add(optionsPanel, setup);
         // Show up controllers below
         frame.revalidate();
-        //frame.repaint();
-        //frame.getContentPane();
-        //frame.setResizable(false);
+        //outfitFrame.repaint();
+        //outfitFrame.getContentPane();
+        //outfitFrame.setResizable(false);
     }
 
+    void outfitFrameSetup() {
+        frame = new JFrame();
+        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
+        frame.setVisible(true);
+        frame.setTitle("Outfit Window");
+        frame.getContentPane().setBackground(new Color(0xdabaff));
+        frame.setLayout(new GridBagLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel x = new JLabel();
+        x.setText("hi");
+        frame.add(x);
+
+        // Show up controllers below
+        frame.revalidate();
+        frame.repaint();
+        frame.getContentPane();
+        frame.setResizable(false);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openOutfitWindow) {
-            OutfitWindow outfitWindow = new OutfitWindow();
-
+            frame.dispose();
+            outfitFrameSetup();
         }
 
     }
