@@ -13,8 +13,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 
-
-// SuperClass for all windows
 // dresses up the user
 public class DressMeApp extends JFrame {
     private static final String JSON_STORE_BASE = "./data/";
@@ -25,14 +23,13 @@ public class DressMeApp extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private UIRunner render;
-    ImageIcon logo = new ImageIcon("./assets/demoImage1.png");
 
     /*
      * Effects: Runs the Application loop
      * */
     public DressMeApp() {
-        render = new UIRunner();
-        render.pickerFrameSetup();
+        render = new UIRunner(this);
+        //render.pickerFrameSetup();
         userWardrobe = new Wardrobe();
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
