@@ -341,7 +341,7 @@ public class UIRunner implements ActionListener {
                 subtypeCode = 1;
             } else if (b3.isSelected()) {
                 subtypeCode = 2;
-            } else if (b4.isSelected()) {
+            } else { // (b4.isSelected())
                 subtypeCode = 3;
             }
             String name = nameField.getText();
@@ -352,7 +352,8 @@ public class UIRunner implements ActionListener {
             int blue = selectedOutfitColour.getBlue();
             Colour c = new Colour(red, green, blue);
 
-            backUI.
+            backUI.addToWardrobe(superCode, subtypeCode, name, genre, c);
+            addFrame.dispose();
         }
     }
 }

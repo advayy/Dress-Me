@@ -231,6 +231,22 @@ public class DressMeApp extends JFrame {
         System.out.println();
     }
 
+    public void addToWardrobe(int superCode, int subCode, String name, String genre, Colour colour) {
+        String subType = getSubType(superCode, subCode);
+        superCode++;
+        Clothing newItem;
+        if (superCode == 1) {
+            newItem = new HeadWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else if (superCode == 2) {
+            newItem = new UpperWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else if (superCode == 3) {
+            newItem = new LowerWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else {
+            newItem = new FootWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        }
+        userWardrobe.addItem(newItem);
+    }
+
     /* Requires: A string from the user as the output/ instruction method
      * Effects: gets the user input and returns it.
      * */
@@ -264,6 +280,22 @@ public class DressMeApp extends JFrame {
         String index = getInputText("Enter the number beside the subtype");
         int indexing = Integer.parseInt(index) - 1;
         return acceptableItems[indexing];
+    }
+
+    public String getSubType(int code, int subCode) {
+        String[] acceptableItems;
+        if (code == 0) {
+            acceptableItems = HeadWear.getAcceptableItems();
+        } else if (code == 1) {
+            acceptableItems = UpperWear.getAcceptableItems();
+        } else if (code == 2) {
+            acceptableItems = LowerWear.getAcceptableItems();
+        } else if (code == 3) {
+            acceptableItems = FootWear.getAcceptableItems();
+        } else {
+            acceptableItems = new String[0];
+        }
+        return acceptableItems[subCode];
     }
 
     /* Requires: the wardrobe must not be empty
@@ -501,28 +533,5 @@ public class DressMeApp extends JFrame {
     }
 
 
-    public void addToWardrobe(int superCode, int subCodem, String name, String genre, Colour colour) {
-        System.out.println("Enter the following details:");
-        String name = getInputText("Please enter Item Name");
-        String genre = getInputText("Please enter Item Genre/Formality");
-        genre = genre.toLowerCase(Locale.ROOT);
-        //String subType = getInputText("Please enter Item Subtype");
-        String subType = getSubType(code);
-        System.out.println("Please enter Item Color");
-        Colour color = getColourComponentsFromUser();
 
-        Clothing newItem;
-        if (code == 1) {
-            newItem = new HeadWear(color, genre, subType, name);
-        } else if (code == 2) {
-            newItem = new UpperWear(color, genre, subType, name);
-        } else if (code == 3) {
-            newItem = new LowerWear(color, genre, subType, name);
-        } else {
-            newItem = new FootWear(color, genre, subType, name);
-        }
-        userWardrobe.addItem(newItem);
-        System.out.println("Operation Successful");
-        System.out.println();
-    }
 }
