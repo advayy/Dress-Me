@@ -4,6 +4,8 @@ import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
@@ -12,9 +14,9 @@ import java.util.ArrayList;
 
 
 
-// console application that communicates with the user.
+// SuperClass for all windows
 // dresses up the user
-public class DressMeApp {
+public abstract class DressMeApp extends JFrame {
     private static final String JSON_STORE_BASE = "./data/";
     private static final String JSON_STORE_EXTENSION = ".json";
     private String jsonStore;
@@ -22,17 +24,24 @@ public class DressMeApp {
     Scanner inputScan;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    JFrame frame = new JFrame(); // creates a frame
+    ImageIcon logo = new ImageIcon("./assets/demoImage1.png");
 
     /*
      * Effects: Runs the Application loop
      * */
-    public DressMeApp() throws FileNotFoundException {
+    public DressMeApp() {
+        frameSetup();
         userWardrobe = new Wardrobe();
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
         runDressMe();
     }
+
+    // modifies: this
+    // Effects: sets up JFrame setup
+    abstract void frameSetup();
 
     /* Requires: An integer input from the user
      * Effects: Gets user input and either quits or loops depending on what is entered
@@ -372,6 +381,7 @@ public class DressMeApp {
             }
             userWardrobe = jsonReader.read(jsonStore);
             System.out.println("Loaded Wardrobe \"" + this.userWardrobe.getName() + "\" from " + jsonStore);
+            this.frame.setTitle(this.userWardrobe.getName());
             flatLine();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + jsonStore);
