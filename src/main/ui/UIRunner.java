@@ -1,10 +1,7 @@
 package ui;
 
 import jdk.nashorn.internal.scripts.JO;
-import model.FootWear;
-import model.HeadWear;
-import model.LowerWear;
-import model.UpperWear;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -175,19 +172,42 @@ public class UIRunner implements ActionListener {
     JFrame addFrame;
     JTextField nameField;
     JTextField formalityField;
-    GridBagConstraints addConstraints;
+    ButtonGroup subType;
+    JRadioButton b1;
+    JRadioButton b2;
+    JRadioButton b3;
+    JRadioButton b4;
+    JLabel sText;
+    JButton getColour;
+    JButton confirmation;
+    Color selectedOutfitColour;
+
 
     void launchAdditionWindow() {
+        selectedOutfitColour = Color.BLUE;
         addFrame = new JFrame();
         addFrame.setSize(200, 500);
         JLabel wtText = new JLabel("Enter Wear Type");
         JLabel nText = new JLabel("Enter Clothing Name below");
         JLabel fText = new JLabel("Enter Clothing formality");
+        sText = new JLabel("Enter Clothing Sub Type");
+        sText.setVisible(false);
         String[] wearTypes = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
         superTypeSelect = new JComboBox(wearTypes);
         superTypeSelect.addActionListener(this);
         nameField = new JTextField("Name");
         formalityField = new JTextField("Formality");
+
+        b1 = new JRadioButton();
+        b2 = new JRadioButton();
+        b3 = new JRadioButton();
+        b4 = new JRadioButton();
+        subType = new ButtonGroup();
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
 
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
@@ -198,6 +218,7 @@ public class UIRunner implements ActionListener {
         addFrame.add(nameField);
         addFrame.add(fText);
         addFrame.add(formalityField);
+        addFrame.add(sText);
 
         // Kind should be determines beforehand
         // Colour should be a color
@@ -256,14 +277,82 @@ public class UIRunner implements ActionListener {
                 acceptableItems = model.FootWear.getAcceptableItems();
             }
             if (selIndex == 0) {
-
+                b1.setText(acceptableItems[0]);
+                b2.setText(acceptableItems[1]);
+                b3.setText(acceptableItems[2]);
+                subType.add(b1);
+                subType.add(b2);
+                subType.add(b3);
+                b3.setVisible(true);
+                b4.setVisible(false);
             } else if (selIndex == 1) {
-
+                b1.setText(acceptableItems[0]);
+                b2.setText(acceptableItems[1]);
+                b3.setText(acceptableItems[2]);
+                b4.setText(acceptableItems[3]);
+                subType.add(b1);
+                subType.add(b2);
+                subType.add(b3);
+                subType.add(b4);
+                b3.setVisible(true);
+                b4.setVisible(true);
             } else if (selIndex == 2) {
-
+                b1.setText(acceptableItems[0]);
+                b2.setText(acceptableItems[1]);
+                b3.setText(acceptableItems[2]);
+                subType.add(b1);
+                subType.add(b2);
+                subType.add(b3);
+                b3.setVisible(true);
+                b4.setVisible(false);
             } else if (selIndex == 3) {
-
+                b1.setText(acceptableItems[0]);
+                b2.setText(acceptableItems[1]);
+                subType.add(b1);
+                subType.add(b2);
+                b3.setVisible(false);
+                b4.setVisible(false);
             }
+            sText.setVisible(true);
+            addFrame.add(b1);
+            addFrame.add(b2);
+            addFrame.add(b3);
+            addFrame.add(b4);
+            addFrame.revalidate();
+        } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
+            getColour = new JButton("Pick a Colour");
+            getColour.addActionListener(this);
+            confirmation = new JButton("Add Clothing");
+            confirmation.addActionListener(this);
+            addFrame.add(getColour);
+            addFrame.add(confirmation);
+            confirmation.setVisible(false);
+            //System.out.println(b1.isSelected());
+        } else if (e.getSource() == getColour) {
+            JColorChooser colourPicker = new JColorChooser();
+            selectedOutfitColour = JColorChooser.showDialog(null, "Select Outfit Colour", Color.BLUE);
+            getColour.setBackground(selectedOutfitColour);
+            confirmation.setVisible(true);
+        } else if (e.getSource() == confirmation) {
+            int subtypeCode;
+            if (b1.isSelected()) {
+                subtypeCode = 0;
+            } else if (b2.isSelected()) {
+                subtypeCode = 1;
+            } else if (b3.isSelected()) {
+                subtypeCode = 2;
+            } else if (b4.isSelected()) {
+                subtypeCode = 3;
+            }
+            String name = nameField.getText();
+            String genre = formalityField.getText();
+            int superCode = superTypeSelect.getSelectedIndex();
+            int red = selectedOutfitColour.getRed();
+            int green = selectedOutfitColour.getGreen();
+            int blue = selectedOutfitColour.getBlue();
+            Colour c = new Colour(red, green, blue);
+
+            backUI.
         }
     }
 }

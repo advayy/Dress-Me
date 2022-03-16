@@ -499,4 +499,30 @@ public class DressMeApp extends JFrame {
         }
         return c;
     }
+
+
+    public void addToWardrobe(int superCode, int subCodem, String name, String genre, Colour colour) {
+        System.out.println("Enter the following details:");
+        String name = getInputText("Please enter Item Name");
+        String genre = getInputText("Please enter Item Genre/Formality");
+        genre = genre.toLowerCase(Locale.ROOT);
+        //String subType = getInputText("Please enter Item Subtype");
+        String subType = getSubType(code);
+        System.out.println("Please enter Item Color");
+        Colour color = getColourComponentsFromUser();
+
+        Clothing newItem;
+        if (code == 1) {
+            newItem = new HeadWear(color, genre, subType, name);
+        } else if (code == 2) {
+            newItem = new UpperWear(color, genre, subType, name);
+        } else if (code == 3) {
+            newItem = new LowerWear(color, genre, subType, name);
+        } else {
+            newItem = new FootWear(color, genre, subType, name);
+        }
+        userWardrobe.addItem(newItem);
+        System.out.println("Operation Successful");
+        System.out.println();
+    }
 }
