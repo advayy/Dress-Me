@@ -27,10 +27,10 @@ public class LowerWear extends Clothing {
     }
 
     @Override
-    public ImageIcon getImage() {
-        if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
+    public ImageIcon getImage(String subtype) {
+        if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
             return pants;
-        } else if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
+        } else if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
             return shorts;
         } else {
             return jeans;

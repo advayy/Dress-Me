@@ -26,8 +26,8 @@ public class FootWear extends Clothing {
     }
 
     @Override
-    public ImageIcon getImage() {
-        if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
+    public ImageIcon getImage(String subtype) {
+        if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
             return shoeImage;
         } else {
             return slipperImage;

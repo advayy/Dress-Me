@@ -28,12 +28,12 @@ public class UpperWear extends Clothing {
     }
 
     @Override
-    public ImageIcon getImage() {
-        if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
+    public ImageIcon getImage(String subtype) {
+        if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
             return teesImage;
-        } else if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
+        } else if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
             return shirtImage;
-        } else if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[2])) {
+        } else if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[2])) {
             return jacketImage;
         } else {
             return sweaterImage;

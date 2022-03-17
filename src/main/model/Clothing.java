@@ -91,5 +91,5 @@ public abstract class Clothing implements Writable {
         return json;
     }
 
-    public abstract ImageIcon getImage();
+    public abstract ImageIcon getImage(String subtype);
 }

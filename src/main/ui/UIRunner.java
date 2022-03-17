@@ -46,7 +46,7 @@ public class UIRunner implements ActionListener {
     int currH = 0;
     int currU = 0;
     int currL = 0;
-    int currB = 0;
+    int currF = 0;
     DressMeApp backUI;
 
     int userScreenHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
@@ -73,6 +73,10 @@ public class UIRunner implements ActionListener {
     public UIRunner(DressMeApp dressMeApp) {
         this.backUI = dressMeApp;
         pickerFrameSetup();
+        b1 = new JRadioButton();
+        b2 = new JRadioButton();
+        b3 = new JRadioButton();
+        b4 = new JRadioButton();
     }
 
     public void pickerFrameSetup() {
@@ -114,7 +118,6 @@ public class UIRunner implements ActionListener {
         lowerRight = new JButton();
         bottomLeft = new JButton();
         bottomRight = new JButton();
-
         hatLeft.setText("<-");
         upperLeft.setText("<-");
         lowerLeft.setText("<-");
@@ -123,6 +126,14 @@ public class UIRunner implements ActionListener {
         upperRight.setText("->");
         lowerRight.setText("->");
         bottomRight.setText("->");
+        hatLeft.addActionListener(this);
+        upperLeft.addActionListener(this);
+        lowerLeft.addActionListener(this);
+        bottomLeft.addActionListener(this);
+        hatRight.addActionListener(this);
+        upperRight.addActionListener(this);
+        lowerRight.addActionListener(this);
+        bottomRight.addActionListener(this);
     }
 
     void addArrowButtonsIn() {
@@ -182,7 +193,10 @@ public class UIRunner implements ActionListener {
     void setupCentrePanel() {
         centrePanel = new JPanel(new GridBagLayout());
         GridBagConstraints midConstraints = new GridBagConstraints();
-
+        upperWearIcon = new ImageIcon();
+        headWearIcon = new ImageIcon();
+        lowerWearIcon = new ImageIcon();
+        footwearIcon = new ImageIcon();
         setupHeadWearAndText();
         setupUpperWearAndText();
         setupLowerWearAndText();
@@ -219,13 +233,13 @@ public class UIRunner implements ActionListener {
 
 
     void setupUpperWearAndText() {
-        upperWearIcon = new ImageIcon();
-        upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(currU).getImage();
+        String sub = this.backUI.userWardrobe.getAllUpperWear().get(currU).getPieceSubtype();
+        upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(currU).getImage(sub);
         ImageIcon scaleUpper = new ImageIcon(
                 upperWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         int index = backUI.userWardrobe.getAllUpperWear().get(currU).getIndexNo();
         String name = backUI.userWardrobe.getAllUpperWear().get(currU).getPieceName();
-        String title = "Index- " + index + " , Name- " + name;
+        String title = "ID: " + index + ", " + name;
         Color c = getColorFromColour(backUI.userWardrobe.getAllUpperWear().get(currU).getPieceColour());
         upperLabel = new JLabel();
         upperText = new JLabel(title);
@@ -237,13 +251,13 @@ public class UIRunner implements ActionListener {
     }
 
     void setupHeadWearAndText() {
-        headWearIcon = new ImageIcon();
-        headWearIcon = this.backUI.userWardrobe.getAllHeadWear().get(currH).getImage();
+        String sub = this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceSubtype();
+        headWearIcon = this.backUI.userWardrobe.getAllHeadWear().get(currH).getImage(sub);
         ImageIcon scaleHead = new ImageIcon(
                 headWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         int index = this.backUI.userWardrobe.getAllHeadWear().get(currH).getIndexNo();
         String name = this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceName();
-        String title = "Index- " + index + " , Name- " + name;
+        String title = "ID: " + index + ", " + name;
         Color c = getColorFromColour(this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceColour());
         headLabel = new JLabel();
         headText = new JLabel(title);
@@ -256,13 +270,13 @@ public class UIRunner implements ActionListener {
 
 
     void setupLowerWearAndText() {
-        lowerWearIcon = new ImageIcon();
-        lowerWearIcon = this.backUI.userWardrobe.getAllLowerWear().get(currL).getImage();
+        String sub = this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceSubtype();
+        lowerWearIcon = this.backUI.userWardrobe.getAllLowerWear().get(currL).getImage(sub);
         ImageIcon scaleLower = new ImageIcon(
                 lowerWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         int index = this.backUI.userWardrobe.getAllLowerWear().get(currL).getIndexNo();
         String name = this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceName();
-        String title = "Index- " + index + " , Name- " + name;
+        String title = "ID: " + index + ", " + name;
         Color c = getColorFromColour(this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceColour());
         lowerLabel = new JLabel();
         lowerText = new JLabel(title);
@@ -275,14 +289,14 @@ public class UIRunner implements ActionListener {
 
 
     void setupFootwearAndText() {
-        footwearIcon = new ImageIcon();
-        footwearIcon = this.backUI.userWardrobe.getAllFootwear().get(currB).getImage();
+        String sub = this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceSubtype();
+        footwearIcon = this.backUI.userWardrobe.getAllFootwear().get(currF).getImage(sub);
         ImageIcon scaleBottom = new ImageIcon(
                 footwearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-        int index = this.backUI.userWardrobe.getAllFootwear().get(currB).getIndexNo();
-        String name = this.backUI.userWardrobe.getAllFootwear().get(currB).getPieceName();
-        String title = "Index- " + index + " , Name- " + name;
-        Color c = getColorFromColour(this.backUI.userWardrobe.getAllFootwear().get(currB).getPieceColour());
+        int index = this.backUI.userWardrobe.getAllFootwear().get(currF).getIndexNo();
+        String name = this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceName();
+        String title = "ID: " + index + ", " + name;
+        Color c = getColorFromColour(this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceColour());
         bottomLabel = new JLabel();
         bottomText = new JLabel(title);
         bottomLabel.setSize(100, 100);
@@ -290,6 +304,37 @@ public class UIRunner implements ActionListener {
         bottomLabel.setBackground(c);
         bottomLabel.setOpaque(true);
         bottomText.setOpaque(false);
+    }
+
+    void updateWearAndText() {
+        setupHeadWearAndText();
+        setupUpperWearAndText();
+        setupLowerWearAndText();
+        setupFootwearAndText();
+        updateCentrePanel();
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    void updateCentrePanel() {
+        centrePanel.removeAll();
+        GridBagConstraints midConstraints = new GridBagConstraints();
+        midConstraints.gridy = 0;
+        centrePanel.add(headText, midConstraints);
+        midConstraints.gridy = 1;
+        centrePanel.add(headLabel, midConstraints);
+        midConstraints.gridy = 2;
+        centrePanel.add(upperText, midConstraints);
+        midConstraints.gridy = 3;
+        centrePanel.add(upperLabel, midConstraints);
+        midConstraints.gridy = 4;
+        centrePanel.add(lowerText, midConstraints);
+        midConstraints.gridy = 5;
+        centrePanel.add(lowerLabel, midConstraints);
+        midConstraints.gridy = 6;
+        centrePanel.add(bottomText, midConstraints);
+        midConstraints.gridy = 7;
+        centrePanel.add(bottomLabel, midConstraints);
     }
 
 
@@ -344,19 +389,10 @@ public class UIRunner implements ActionListener {
 
     void launchAdditionWindow(Component parent) {
         setupAdditionWindowButtons();
-        b1 = new JRadioButton();
-        b2 = new JRadioButton();
-        b3 = new JRadioButton();
-        b4 = new JRadioButton();
-        subType = new ButtonGroup();
-        b1.addActionListener(this);
-        b2.addActionListener(this);
-        b3.addActionListener(this);
-        b4.addActionListener(this);
         addFrame.setLocationRelativeTo(parent);
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
-        addFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addFrame.add(wtText);
         addFrame.add(superTypeSelect);
         addFrame.add(nameText);
@@ -381,10 +417,15 @@ public class UIRunner implements ActionListener {
         superTypeSelect.addActionListener(this);
         nameField = new JTextField("Name");
         formalityField = new JTextField("Formality");
+        subType = new ButtonGroup();
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
     }
 
     void launchRemoveWindow() {
-        String answer = JOptionPane.showInputDialog("What Index would you like to remove?");
+        String answer = JOptionPane.showInputDialog("What ID number would you like to remove?");
         int index;
         if (answer != null) {
             try {
@@ -470,6 +511,9 @@ public class UIRunner implements ActionListener {
     }
 
     void runCreateColourSequence() {
+        if (getColour != null) {
+            addFrame.remove(getColour);
+        }
         getColour = new JButton("Pick a Colour");
         getColour.addActionListener(this);
         confirmation = new JButton("Add Clothing");
@@ -510,6 +554,74 @@ public class UIRunner implements ActionListener {
         addFrame.dispose();
     }
 
+    void hatGoRight() {
+        int size = backUI.userWardrobe.getAllHeadWear().size();
+        int newIndex = (currH + 1) % size;
+        currH = newIndex;
+        updateWearAndText();
+    }
+
+    void upGoRight() {
+        int size = backUI.userWardrobe.getAllUpperWear().size();
+        int newIndex = (currU + 1) % size;
+        currU = newIndex;
+        updateWearAndText();
+    }
+
+    void lowGoRight() {
+        int size = backUI.userWardrobe.getAllLowerWear().size();
+        int newIndex = (currL + 1) % size;
+        currL = newIndex;
+        updateWearAndText();
+    }
+
+    void footGoRight() {
+        int size = backUI.userWardrobe.getAllFootwear().size();
+        int newIndex = (currF + 1) % size;
+        currF = newIndex;
+        updateWearAndText();
+    }
+
+    void hatGoLeft() {
+        int size = backUI.userWardrobe.getAllHeadWear().size();
+        if (currH == 0) {
+            currH = size - 1;
+        } else {
+            currH--;
+        }
+        updateWearAndText();
+    }
+
+    void upGoLeft() {
+        int size = backUI.userWardrobe.getAllUpperWear().size();
+        if (currU == 0) {
+            currU = size - 1;
+        } else {
+            currU--;
+        }
+        updateWearAndText();
+    }
+
+    void lowGoLeft() {
+        int size = backUI.userWardrobe.getAllLowerWear().size();
+        if (currL == 0) {
+            currL = size - 1;
+        } else {
+            currL--;
+        }
+        updateWearAndText();
+    }
+
+    void footGoLeft() {
+        int size = backUI.userWardrobe.getAllFootwear().size();
+        if (currF == 0) {
+            currF = size - 1;
+        } else {
+            currF--;
+        }
+        updateWearAndText();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openOutfitWindow) {
@@ -533,10 +645,31 @@ public class UIRunner implements ActionListener {
             runSuperTypeSelectSequence();
         } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
             runCreateColourSequence();
+        } else if (e.getSource() == superTypeSelect && b1.isSelected() || b2.isSelected() || b3.isSelected()
+                || b4.isSelected()) {
+            addFrame.dispose();
+            launchAdditionWindow(addItem);
+            runSuperTypeSelectSequence();
         } else if (e.getSource() == getColour) {
             setupConfirmationButton();
         } else if (e.getSource() == confirmation) {
             addClothing();
+        } else if (e.getSource() == hatRight) {
+            hatGoRight();
+        } else if (e.getSource() == upperRight) {
+            upGoRight();
+        } else if (e.getSource() == lowerRight) {
+            lowGoRight();
+        } else if (e.getSource() == bottomRight) {
+            footGoRight();
+        } else if (e.getSource() == hatLeft) {
+            hatGoLeft();
+        } else if (e.getSource() == upperLeft) {
+            upGoLeft();
+        } else if (e.getSource() == lowerLeft) {
+            lowGoLeft();
+        } else if (e.getSource() == bottomLeft) {
+            footGoLeft();
         }
     }
 }
