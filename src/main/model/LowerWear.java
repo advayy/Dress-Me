@@ -1,7 +1,13 @@
 package model;
 
+import javax.swing.*;
+
 // Create instances of lower wear for Clothing
 public class LowerWear extends Clothing {
+
+    ImageIcon pants = new ImageIcon("./assets/L0_pants.png");
+    ImageIcon shorts = new ImageIcon("./assets/L1_shorts.png");
+    ImageIcon jeans = new ImageIcon("./assets/L2_jeans.png");
 
     private static final String[] ACCEPTABLE_ITEMS = {"PANTS", "SHORTS", "JEANS"};
 
@@ -20,4 +26,14 @@ public class LowerWear extends Clothing {
         return ACCEPTABLE_ITEMS;
     }
 
+
+    public ImageIcon getImage() {
+        if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
+            return pants;
+        } else if (this.getPieceGenre().equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
+            return shorts;
+        } else {
+            return jeans;
+        }
+    }
 }

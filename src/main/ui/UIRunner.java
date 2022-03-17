@@ -1,6 +1,5 @@
 package ui;
 
-import jdk.nashorn.internal.scripts.JO;
 import model.*;
 
 import javax.swing.*;
@@ -15,8 +14,10 @@ public class UIRunner implements ActionListener {
     JButton addOutfit;
     JButton openOutfitWindow;
     JFrame frame;
-    ImageIcon logo = new ImageIcon("./assets/demoImage1.png");
-    ImageIcon randClothing = new ImageIcon("./assets/randomImage.png");
+    ImageIcon headWearIcon;
+    ImageIcon upperWearIcon;
+    ImageIcon lowerWearIcon;
+    ImageIcon footwearIcon;
     DressMeApp backUI;
 
     public UIRunner(DressMeApp dressMeApp) {
@@ -82,6 +83,33 @@ public class UIRunner implements ActionListener {
         leftArrowPanel.add(bottomLeft, arrowConstraints);
         rightArrowPanel.add(bottomRight, arrowConstraints);
 
+        /*
+        // Testing the clothing object panel
+        JPanel hatPanel = new JPanel();
+        hatPanel.getSize(new Dimension(75, 75));
+        ImageIcon scaleHat = new ImageIcon(
+                hatIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
+        JLabel hatLabel = new JLabel();
+
+        hatLabel.setSize(75, 75);
+        hatLabel.setIcon(scaleHat);
+        hatLabel.setBackground(Color.PINK);
+        hatLabel.setOpaque(true);
+        hatPanel.add(hatLabel);
+        //hatPanel.setBackground(Color.CYAN);
+        centrePanel.add(hatPanel);
+
+        JLabel clothingObj = new JLabel();
+        clothingObj.setText("Index X Name X");
+        clothingObj.setVerticalTextPosition(SwingConstants.TOP);
+        clothingObj.setHorizontalTextPosition(SwingConstants.CENTER);
+        ImageIcon scaledImage = new ImageIcon(
+                randClothing.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        clothingObj.setIcon(scaledImage);
+        clothingObj.setMaximumSize(new Dimension(10, 10));
+        centrePanel.add(clothingObj);
+        * */
+        //
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
         openListingWindow.setText("See List View");
@@ -103,15 +131,6 @@ public class UIRunner implements ActionListener {
         openOutfitWindow.addActionListener(this);
         optionsPanel.add(openOutfitWindow, optionsConstraints);
 
-        JLabel clothingObj = new JLabel();
-        clothingObj.setText("Index X Name X");
-        clothingObj.setVerticalTextPosition(SwingConstants.TOP);
-        clothingObj.setHorizontalTextPosition(SwingConstants.CENTER);
-        ImageIcon scaledImage = new ImageIcon(
-                randClothing.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-        clothingObj.setIcon(scaledImage);
-        clothingObj.setMaximumSize(new Dimension(10, 10));
-        centrePanel.add(clothingObj);
 
         setup.weightx = 1;
         frame.add(leftArrowPanel, setup);
@@ -177,7 +196,7 @@ public class UIRunner implements ActionListener {
     JRadioButton b2;
     JRadioButton b3;
     JRadioButton b4;
-    JLabel sText;
+    JLabel subtypeText;
     JButton getColour;
     JButton confirmation;
     Color selectedOutfitColour;
@@ -188,10 +207,10 @@ public class UIRunner implements ActionListener {
         addFrame = new JFrame();
         addFrame.setSize(200, 500);
         JLabel wtText = new JLabel("Enter Wear Type");
-        JLabel nText = new JLabel("Enter Clothing Name below");
-        JLabel fText = new JLabel("Enter Clothing formality");
-        sText = new JLabel("Enter Clothing Sub Type");
-        sText.setVisible(false);
+        JLabel nameText = new JLabel("Enter Clothing Name below");
+        JLabel formalityText = new JLabel("Enter Clothing formality");
+        subtypeText = new JLabel("Enter Clothing Sub Type");
+        subtypeText.setVisible(false);
         String[] wearTypes = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
         superTypeSelect = new JComboBox(wearTypes);
         superTypeSelect.addActionListener(this);
@@ -214,11 +233,11 @@ public class UIRunner implements ActionListener {
         addFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addFrame.add(wtText);
         addFrame.add(superTypeSelect);
-        addFrame.add(nText);
+        addFrame.add(nameText);
         addFrame.add(nameField);
-        addFrame.add(fText);
+        addFrame.add(formalityText);
         addFrame.add(formalityField);
-        addFrame.add(sText);
+        addFrame.add(subtypeText);
 
         // Kind should be determines beforehand
         // Colour should be a color
@@ -250,110 +269,135 @@ public class UIRunner implements ActionListener {
 
     void addOutfitFromSelected() {}
 
+    void setupRadioButtonsHeadLowerWear(String[] acceptableItems) {
+        b1.setText(acceptableItems[0]);
+        b2.setText(acceptableItems[1]);
+        b3.setText(acceptableItems[2]);
+        subType.add(b1);
+        subType.add(b2);
+        subType.add(b3);
+        b3.setVisible(true);
+        b4.setVisible(false);
+    }
+
+    void setupRadioButtonsUpperWear(String[] acceptableItems) {
+        b1.setText(acceptableItems[0]);
+        b2.setText(acceptableItems[1]);
+        b3.setText(acceptableItems[2]);
+        b4.setText(acceptableItems[3]);
+        subType.add(b1);
+        subType.add(b2);
+        subType.add(b3);
+        subType.add(b4);
+        b3.setVisible(true);
+        b4.setVisible(true);
+    }
+
+    void runSuperTypeSelectSequence() {
+        int selIndex = superTypeSelect.getSelectedIndex();
+        String[] acceptableItems = getAcceptableItemsFromCode(selIndex);
+        if (selIndex == 0) {
+            setupRadioButtonsHeadLowerWear(acceptableItems);
+        } else if (selIndex == 1) {
+            setupRadioButtonsUpperWear(acceptableItems);
+        } else if (selIndex == 2) {
+            setupRadioButtonsHeadLowerWear(acceptableItems);
+        } else if (selIndex == 3) {
+            b1.setText(acceptableItems[0]);
+            b2.setText(acceptableItems[1]);
+            subType.add(b1);
+            subType.add(b2);
+            b3.setVisible(false);
+            b4.setVisible(false);
+        }
+        subtypeText.setVisible(true);
+        addFrame.add(b1);
+        addFrame.add(b2);
+        addFrame.add(b3);
+        addFrame.add(b4);
+        addFrame.revalidate();
+    }
+    
+    public String[] getAcceptableItemsFromCode(int code) {
+        if (code == 0) {
+            return HeadWear.getAcceptableItems();
+        } else if (code == 1) {
+            return UpperWear.getAcceptableItems();
+        } else if (code == 2) {
+            return LowerWear.getAcceptableItems();
+        } else {
+            return FootWear.getAcceptableItems();
+        }
+    }
+
+    void runCreateColourSequence() {
+        getColour = new JButton("Pick a Colour");
+        getColour.addActionListener(this);
+        confirmation = new JButton("Add Clothing");
+        confirmation.addActionListener(this);
+        addFrame.add(getColour);
+        addFrame.add(confirmation);
+        confirmation.setVisible(false);
+    }
+
+    void setupConfirmationButton() {
+        JColorChooser colourPicker = new JColorChooser();
+        selectedOutfitColour = JColorChooser.showDialog(null, "Select Outfit Colour", Color.BLUE);
+        getColour.setBackground(selectedOutfitColour);
+        getColour.setOpaque(true);
+        confirmation.setVisible(true);
+    }
+
+    void addClothing() {
+        int subtypeCode;
+        if (b1.isSelected()) {
+            subtypeCode = 0;
+        } else if (b2.isSelected()) {
+            subtypeCode = 1;
+        } else if (b3.isSelected()) {
+            subtypeCode = 2;
+        } else { // (b4.isSelected())
+            subtypeCode = 3;
+        }
+        String name = nameField.getText();
+        String genre = formalityField.getText();
+        int superCode = superTypeSelect.getSelectedIndex();
+        int red = selectedOutfitColour.getRed();
+        int green = selectedOutfitColour.getGreen();
+        int blue = selectedOutfitColour.getBlue();
+        Colour c = new Colour(red, green, blue);
+
+        backUI.addToWardrobe(superCode, subtypeCode, name, genre, c);
+        addFrame.dispose();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openOutfitWindow) {
             frame.dispose();
             outfitFrameSetup();
+            backUI.saveWardrobe();
         } else if (e.getSource() == openListingWindow) {
             frame.dispose();
             listingFrameSetup();
+            backUI.saveWardrobe();
         } else if (e.getSource() == addItem) {
             launchAdditionWindow();
+            backUI.saveWardrobe();
         } else if (e.getSource() == removeItem) {
             launchRemoveWindow();
+            backUI.saveWardrobe();
         } else if (e.getSource() == addOutfit) {
             addOutfitFromSelected();
+            backUI.saveWardrobe();
         } else if (e.getSource() == superTypeSelect) {
-            int selIndex = superTypeSelect.getSelectedIndex();
-            String[] acceptableItems;
-            if (selIndex == 0) {
-                acceptableItems = model.HeadWear.getAcceptableItems();
-            } else if (selIndex == 1) {
-                acceptableItems = model.UpperWear.getAcceptableItems();
-            } else if (selIndex == 2) {
-                acceptableItems = model.LowerWear.getAcceptableItems();
-            } else {
-                acceptableItems = model.FootWear.getAcceptableItems();
-            }
-            if (selIndex == 0) {
-                b1.setText(acceptableItems[0]);
-                b2.setText(acceptableItems[1]);
-                b3.setText(acceptableItems[2]);
-                subType.add(b1);
-                subType.add(b2);
-                subType.add(b3);
-                b3.setVisible(true);
-                b4.setVisible(false);
-            } else if (selIndex == 1) {
-                b1.setText(acceptableItems[0]);
-                b2.setText(acceptableItems[1]);
-                b3.setText(acceptableItems[2]);
-                b4.setText(acceptableItems[3]);
-                subType.add(b1);
-                subType.add(b2);
-                subType.add(b3);
-                subType.add(b4);
-                b3.setVisible(true);
-                b4.setVisible(true);
-            } else if (selIndex == 2) {
-                b1.setText(acceptableItems[0]);
-                b2.setText(acceptableItems[1]);
-                b3.setText(acceptableItems[2]);
-                subType.add(b1);
-                subType.add(b2);
-                subType.add(b3);
-                b3.setVisible(true);
-                b4.setVisible(false);
-            } else if (selIndex == 3) {
-                b1.setText(acceptableItems[0]);
-                b2.setText(acceptableItems[1]);
-                subType.add(b1);
-                subType.add(b2);
-                b3.setVisible(false);
-                b4.setVisible(false);
-            }
-            sText.setVisible(true);
-            addFrame.add(b1);
-            addFrame.add(b2);
-            addFrame.add(b3);
-            addFrame.add(b4);
-            addFrame.revalidate();
+            runSuperTypeSelectSequence();
         } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
-            getColour = new JButton("Pick a Colour");
-            getColour.addActionListener(this);
-            confirmation = new JButton("Add Clothing");
-            confirmation.addActionListener(this);
-            addFrame.add(getColour);
-            addFrame.add(confirmation);
-            confirmation.setVisible(false);
-            //System.out.println(b1.isSelected());
+            runCreateColourSequence();
         } else if (e.getSource() == getColour) {
-            JColorChooser colourPicker = new JColorChooser();
-            selectedOutfitColour = JColorChooser.showDialog(null, "Select Outfit Colour", Color.BLUE);
-            getColour.setBackground(selectedOutfitColour);
-            confirmation.setVisible(true);
+            setupConfirmationButton();
         } else if (e.getSource() == confirmation) {
-            int subtypeCode;
-            if (b1.isSelected()) {
-                subtypeCode = 0;
-            } else if (b2.isSelected()) {
-                subtypeCode = 1;
-            } else if (b3.isSelected()) {
-                subtypeCode = 2;
-            } else { // (b4.isSelected())
-                subtypeCode = 3;
-            }
-            String name = nameField.getText();
-            String genre = formalityField.getText();
-            int superCode = superTypeSelect.getSelectedIndex();
-            int red = selectedOutfitColour.getRed();
-            int green = selectedOutfitColour.getGreen();
-            int blue = selectedOutfitColour.getBlue();
-            Colour c = new Colour(red, green, blue);
-
-            backUI.addToWardrobe(superCode, subtypeCode, name, genre, c);
-            addFrame.dispose();
+            addClothing();
         }
     }
 }

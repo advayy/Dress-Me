@@ -16,8 +16,9 @@ import java.util.ArrayList;
 // dresses up the user
 public class DressMeApp extends JFrame {
     private static final String JSON_STORE_BASE = "./data/";
+    //private static final String JSON_STORE = "wardrobe";
     private static final String JSON_STORE_EXTENSION = ".json";
-    private String jsonStore;
+    private String jsonStore = "wardrobe";
     Wardrobe userWardrobe;
     Scanner inputScan;
     private JsonWriter jsonWriter;
@@ -34,6 +35,7 @@ public class DressMeApp extends JFrame {
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
+        loadWardrobe();
         runDressMe();
     }
 
@@ -377,7 +379,7 @@ public class DressMeApp extends JFrame {
     }
 
     // EFFECTS: saves the wardrobe to a new file unless previously loaded by user
-    private void saveWardrobe() {
+    public void saveWardrobe() {
         try {
             if (this.userWardrobe.getName() == null) {
                 userWardrobe.setName(getInputText("What would you like to name the wardrobe"));
@@ -405,6 +407,7 @@ public class DressMeApp extends JFrame {
                 String locationName = getInputText("Enter the file name (without the .json extension)");
                 this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
             }
+            this.jsonStore = JSON_STORE_BASE + jsonStore + JSON_STORE_EXTENSION;
             userWardrobe = jsonReader.read(jsonStore);
             System.out.println("Loaded Wardrobe \"" + this.userWardrobe.getName() + "\" from " + jsonStore);
             //this.frame.setTitle(this.userWardrobe.getName());

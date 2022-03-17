@@ -14,11 +14,42 @@ import java.util.ArrayList;
 public class Wardrobe implements Writable {
     private ArrayList<Clothing> internalWardrobe;
     private ArrayList<Outfit> internalOutfits;
-    private String wardrobeName;
+    private ArrayList<Clothing> allHeadWear;
+    private ArrayList<Clothing> allUpperWear;
+    private ArrayList<Clothing> allLowerWear;
+    private ArrayList<Clothing> allFootwear;
+    private String wardrobeName = "User Wardrobe";
 
     public Wardrobe() {
         internalWardrobe = new ArrayList<Clothing>();
         internalOutfits = new ArrayList<Outfit>();
+        allHeadWear = new ArrayList<>();
+        allUpperWear = new ArrayList<>();
+        allLowerWear = new ArrayList<>();
+        allFootwear = new ArrayList<>();
+    }
+
+    public ArrayList<Clothing> getAllHeadWear() {
+        return allHeadWear;
+    }
+
+    public ArrayList<Clothing> getAllUpperWear() {
+        return allUpperWear;
+    }
+
+    public ArrayList<Clothing> getAllLowerWear() {
+        return allLowerWear;
+    }
+
+    public ArrayList<Clothing> getAllFootwear() {
+        return allFootwear;
+    }
+
+    public void createTypeLists() {
+        this.allHeadWear = getClothesByType(0);
+        this.allUpperWear = getClothesByType(1);
+        this.allLowerWear = getClothesByType(2);
+        this.allFootwear = getClothesByType(3);
     }
 
 
@@ -107,6 +138,7 @@ public class Wardrobe implements Writable {
      * */
     public boolean removeItem(int index) {
         this.internalWardrobe.remove(index);
+        createTypeLists();
         return true;
     }
 
@@ -182,6 +214,15 @@ public class Wardrobe implements Writable {
      * */
     public boolean addItem(Clothing c) {
         this.internalWardrobe.add(c);
+        if (c instanceof HeadWear) {
+            this.allHeadWear.add(c);
+        } else if (c instanceof UpperWear) {
+            this.allUpperWear.add(c);
+        } else if (c instanceof LowerWear) {
+            this.allLowerWear.add(c);
+        } else {
+            this.allFootwear.add(c);
+        }
         return true;
     }
 
