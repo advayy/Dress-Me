@@ -49,6 +49,11 @@ public class UIRunner implements ActionListener {
     int currB = 0;
     DressMeApp backUI;
 
+    int userScreenHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
+    int userScreenWidth = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
+    int locationX = userScreenWidth / 2 - 400;
+    int locationY = userScreenHeight / 2 - 250;
+
 
     // Stuff for add
     JComboBox superTypeSelect;
@@ -72,6 +77,7 @@ public class UIRunner implements ActionListener {
 
     public void pickerFrameSetup() {
         frame = new JFrame(); // creates a outfitFrame
+        frame.setLocation(locationX, locationY);
         frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
         frame.setTitle("Dress.Me!");
@@ -94,8 +100,9 @@ public class UIRunner implements ActionListener {
         // Show up controllers below
         frame.revalidate();
         // outfitFrame.repaint();
-        //outfitFrame.getContentPane();
-        //outfitFrame.setResizable(false);
+        // outfitFrame.getContentPane();
+        // outfitFrame.setResizable(false);
+        // frame.pack();
     }
 
     void setArrowButtons() {
@@ -213,6 +220,7 @@ public class UIRunner implements ActionListener {
 
     void outfitFrameSetup() {
         frame = new JFrame();
+        frame.setLocation(locationX, locationY);
         frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
         frame.setTitle("Outfit Window");
@@ -233,6 +241,7 @@ public class UIRunner implements ActionListener {
 
     void listingFrameSetup() {
         frame = new JFrame();
+        frame.setLocation(locationX, locationY);
         frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
         frame.setTitle("Listing Window");
@@ -250,7 +259,7 @@ public class UIRunner implements ActionListener {
         frame.setResizable(false);
     }
 
-    void launchAdditionWindow() {
+    void launchAdditionWindow(Component parent) {
         setupAdditionWindowButtons();
         b1 = new JRadioButton();
         b2 = new JRadioButton();
@@ -261,6 +270,7 @@ public class UIRunner implements ActionListener {
         b2.addActionListener(this);
         b3.addActionListener(this);
         b4.addActionListener(this);
+        addFrame.setLocationRelativeTo(parent);
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
         addFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -428,7 +438,7 @@ public class UIRunner implements ActionListener {
             listingFrameSetup();
             backUI.saveWardrobe();
         } else if (e.getSource() == addItem) {
-            launchAdditionWindow();
+            launchAdditionWindow(addItem);
             backUI.saveWardrobe();
         } else if (e.getSource() == removeItem) {
             launchRemoveWindow();
