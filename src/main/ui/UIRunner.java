@@ -14,10 +14,39 @@ public class UIRunner implements ActionListener {
     JButton addOutfit;
     JButton openOutfitWindow;
     JFrame frame;
+
+    JLabel wtText;
+    JLabel nameText;
+    JLabel formalityText;
+
+    JPanel leftArrowPanel;
+    JPanel rightArrowPanel;
+    JPanel centrePanel;
+    JPanel optionsPanel;
     ImageIcon headWearIcon;
     ImageIcon upperWearIcon;
     ImageIcon lowerWearIcon;
     ImageIcon footwearIcon;
+    JButton hatLeft;
+    JButton hatRight;
+    JButton upperLeft;
+    JButton upperRight;
+    JButton lowerLeft;
+    JButton lowerRight;
+    JButton bottomLeft;
+    JButton bottomRight;
+    JLabel upperLabel;
+    JLabel upperText;
+    JLabel headLabel;
+    JLabel headText;
+    JLabel lowerLabel;
+    JLabel lowerText;
+    JLabel bottomLabel;
+    JLabel bottomText;
+    int currH = 0;
+    int currU = 0;
+    int currL = 0;
+    int currB = 0;
     DressMeApp backUI;
 
     public UIRunner(DressMeApp dressMeApp) {
@@ -27,19 +56,42 @@ public class UIRunner implements ActionListener {
 
     public void pickerFrameSetup() {
         frame = new JFrame(); // creates a outfitFrame
-        addItem = new JButton();
-        removeItem = new JButton();
-        openListingWindow = new JButton();
-        addOutfit = new JButton();
-        openOutfitWindow = new JButton();
-        JButton hatLeft = new JButton();
-        JButton hatRight = new JButton();
-        JButton upperLeft = new JButton();
-        JButton upperRight = new JButton();
-        JButton lowerLeft = new JButton();
-        JButton lowerRight = new JButton();
-        JButton bottomLeft = new JButton();
-        JButton bottomRight = new JButton();
+        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
+        frame.setVisible(true);
+        frame.setTitle("Dress.Me!");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(new Color(0xdabaff));
+        frame.setLayout(new GridBagLayout());
+        setArrowButtons();
+        addArrowButtonsIn();
+        setupOptionsPanel();
+        setupCentrePanel();
+        GridBagConstraints setup = new GridBagConstraints();
+        setup.weightx = 1;
+        frame.add(leftArrowPanel, setup);
+        setup.weightx = 4;
+        frame.add(centrePanel, setup);
+        setup.weightx = 1;
+        frame.add(rightArrowPanel, setup);
+        setup.weightx = 2;
+        frame.add(optionsPanel, setup);
+        // Show up controllers below
+        frame.revalidate();
+        // outfitFrame.repaint();
+        //outfitFrame.getContentPane();
+        //outfitFrame.setResizable(false);
+    }
+
+    void setArrowButtons() {
+        hatLeft = new JButton();
+        hatRight = new JButton();
+        upperLeft = new JButton();
+        upperRight = new JButton();
+        lowerLeft = new JButton();
+        lowerRight = new JButton();
+        bottomLeft = new JButton();
+        bottomRight = new JButton();
+
         hatLeft.setText("<-");
         upperLeft.setText("<-");
         lowerLeft.setText("<-");
@@ -48,27 +100,12 @@ public class UIRunner implements ActionListener {
         upperRight.setText("->");
         lowerRight.setText("->");
         bottomRight.setText("->");
+    }
 
-
-        this.frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
-        this.frame.setVisible(true);
-        this.frame.setTitle("Dress.Me!");
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.getContentPane().setBackground(new Color(0xdabaff));
-        this.frame.setLayout(new GridBagLayout());
-        GridBagConstraints setup = new GridBagConstraints();
-        JPanel leftArrowPanel = new JPanel(new GridBagLayout());
-        JPanel centrePanel = new JPanel(new GridBagLayout());
-        JPanel rightArrowPanel = new JPanel(new GridBagLayout());
-        JPanel optionsPanel = new JPanel(new GridBagLayout());
-        JLayeredPane midPanelLayers = new JLayeredPane();
-
+    void addArrowButtonsIn() {
+        leftArrowPanel = new JPanel(new GridBagLayout());
+        rightArrowPanel = new JPanel(new GridBagLayout());
         GridBagConstraints arrowConstraints = new GridBagConstraints();
-        GridBagConstraints midConstraints = new GridBagConstraints();
-        GridBagConstraints optionsConstraints = new GridBagConstraints();
-        optionsConstraints.insets = new Insets(10,0,10,0);
-
-        centrePanel.add(midPanelLayers);
         arrowConstraints.insets = new Insets(30,0,30,0);
         arrowConstraints.gridy = 0;
         leftArrowPanel.add(hatLeft, arrowConstraints);
@@ -82,7 +119,48 @@ public class UIRunner implements ActionListener {
         arrowConstraints.gridy = 3;
         leftArrowPanel.add(bottomLeft, arrowConstraints);
         rightArrowPanel.add(bottomRight, arrowConstraints);
+    }
 
+    void setupOptionsPanel() {
+        setupOptionsPanelButtons();
+        GridBagConstraints optionsConstraints = new GridBagConstraints();
+        optionsConstraints.insets = new Insets(10,0,10,0);
+        optionsConstraints.gridy = 0;
+        addItem.addActionListener(this);
+        optionsPanel.add(addItem, optionsConstraints);
+        optionsConstraints.gridy = 1;
+        removeItem.addActionListener(this);
+        optionsPanel.add(removeItem, optionsConstraints);
+        optionsConstraints.gridy = 2;
+        openListingWindow.addActionListener(this);
+        optionsPanel.add(openListingWindow, optionsConstraints);
+        optionsConstraints.gridy = 3;
+        addOutfit.addActionListener(this);
+        optionsPanel.add(addOutfit, optionsConstraints);
+        optionsConstraints.gridy = 4;
+        openOutfitWindow.addActionListener(this);
+        optionsPanel.add(openOutfitWindow, optionsConstraints);
+    }
+
+    void setupOptionsPanelButtons() {
+        optionsPanel = new JPanel(new GridBagLayout());
+        addItem = new JButton();
+        removeItem = new JButton();
+        openListingWindow = new JButton();
+        addOutfit = new JButton();
+        openOutfitWindow = new JButton();
+        addItem.setText("Add Item");
+        removeItem.setText("Remove Item");
+        openListingWindow.setText("See List View");
+        addOutfit.setText("Add Outfit From Selected");
+        openOutfitWindow.setText("See Outfits");
+    }
+
+    void setupCentrePanel() {
+        centrePanel = new JPanel(new GridBagLayout());
+        JLayeredPane midPanelLayers = new JLayeredPane();
+        GridBagConstraints midConstraints = new GridBagConstraints();
+        centrePanel.add(midPanelLayers);
         /*
         // Testing the clothing object panel
         JPanel hatPanel = new JPanel();
@@ -110,41 +188,6 @@ public class UIRunner implements ActionListener {
         centrePanel.add(clothingObj);
         * */
         //
-        addItem.setText("Add Item");
-        removeItem.setText("Remove Item");
-        openListingWindow.setText("See List View");
-        addOutfit.setText("Add Outfit From Selected");
-        openOutfitWindow.setText("See Outfits");
-        optionsConstraints.gridy = 0;
-        addItem.addActionListener(this);
-        optionsPanel.add(addItem, optionsConstraints);
-        optionsConstraints.gridy = 1;
-        removeItem.addActionListener(this);
-        optionsPanel.add(removeItem, optionsConstraints);
-        optionsConstraints.gridy = 2;
-        openListingWindow.addActionListener(this);
-        optionsPanel.add(openListingWindow, optionsConstraints);
-        optionsConstraints.gridy = 3;
-        addOutfit.addActionListener(this);
-        optionsPanel.add(addOutfit, optionsConstraints);
-        optionsConstraints.gridy = 4;
-        openOutfitWindow.addActionListener(this);
-        optionsPanel.add(openOutfitWindow, optionsConstraints);
-
-
-        setup.weightx = 1;
-        frame.add(leftArrowPanel, setup);
-        setup.weightx = 4;
-        frame.add(centrePanel, setup);
-        setup.weightx = 1;
-        frame.add(rightArrowPanel, setup);
-        setup.weightx = 2;
-        frame.add(optionsPanel, setup);
-        // Show up controllers below
-        frame.revalidate();
-        //outfitFrame.repaint();
-        //outfitFrame.getContentPane();
-        //outfitFrame.setResizable(false);
     }
 
     void outfitFrameSetup() {
@@ -203,31 +246,16 @@ public class UIRunner implements ActionListener {
 
 
     void launchAdditionWindow() {
-        selectedOutfitColour = Color.BLUE;
-        addFrame = new JFrame();
-        addFrame.setSize(200, 500);
-        JLabel wtText = new JLabel("Enter Wear Type");
-        JLabel nameText = new JLabel("Enter Clothing Name below");
-        JLabel formalityText = new JLabel("Enter Clothing formality");
-        subtypeText = new JLabel("Enter Clothing Sub Type");
-        subtypeText.setVisible(false);
-        String[] wearTypes = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
-        superTypeSelect = new JComboBox(wearTypes);
-        superTypeSelect.addActionListener(this);
-        nameField = new JTextField("Name");
-        formalityField = new JTextField("Formality");
-
+        setupAdditionWindowButtons();
         b1 = new JRadioButton();
         b2 = new JRadioButton();
         b3 = new JRadioButton();
         b4 = new JRadioButton();
         subType = new ButtonGroup();
-
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
         b4.addActionListener(this);
-
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
         addFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -238,10 +266,23 @@ public class UIRunner implements ActionListener {
         addFrame.add(formalityText);
         addFrame.add(formalityField);
         addFrame.add(subtypeText);
-
-        // Kind should be determines beforehand
-        // Colour should be a color
         addFrame.revalidate();
+    }
+
+    void setupAdditionWindowButtons() {
+        selectedOutfitColour = Color.BLUE;
+        addFrame = new JFrame();
+        addFrame.setSize(200, 500);
+        wtText = new JLabel("Enter Wear Type");
+        nameText = new JLabel("Enter Clothing Name below");
+        formalityText = new JLabel("Enter Clothing formality");
+        subtypeText = new JLabel("Enter Clothing Sub Type");
+        subtypeText.setVisible(false);
+        String[] wearTypes = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
+        superTypeSelect = new JComboBox(wearTypes);
+        superTypeSelect.addActionListener(this);
+        nameField = new JTextField("Name");
+        formalityField = new JTextField("Formality");
     }
 
     void launchRemoveWindow() {
