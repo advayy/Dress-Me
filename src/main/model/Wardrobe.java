@@ -46,10 +46,10 @@ public class Wardrobe implements Writable {
     }
 
     public void createTypeLists() {
-        this.allHeadWear = getClothesByType(0);
-        this.allUpperWear = getClothesByType(1);
-        this.allLowerWear = getClothesByType(2);
-        this.allFootwear = getClothesByType(3);
+        this.allHeadWear = getClothesByType(1);
+        this.allUpperWear = getClothesByType(2);
+        this.allLowerWear = getClothesByType(3);
+        this.allFootwear = getClothesByType(4);
     }
 
 

@@ -182,28 +182,27 @@ public class UIRunner implements ActionListener {
     void setupCentrePanel() {
         centrePanel = new JPanel(new GridBagLayout());
         GridBagConstraints midConstraints = new GridBagConstraints();
-        upperWearIcon = new ImageIcon();
-        upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(0).getImage();
-        ImageIcon scaleUpper = new ImageIcon(
-                upperWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-        int index = backUI.userWardrobe.getAllUpperWear().get(0).getIndexNo();
-        String name = backUI.userWardrobe.getAllUpperWear().get(0).getPieceName();
-        String title = "Index- " + index + " , Name- " + name;
-        int r = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getRed();
-        int g = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getGreen();
-        int b = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getBlue();
-        Color c = new Color(r, g, b);
-        upperLabel = new JLabel();
-        upperText = new JLabel(title);
-        upperLabel.setSize(100, 100);
-        upperLabel.setIcon(scaleUpper);
-        upperLabel.setBackground(c);
-        upperLabel.setOpaque(true);
-        upperText.setOpaque(false);
+
+        setupHeadWearAndText();
+        setupUpperWearAndText();
+        setupLowerWearAndText();
+        setupFootwearAndText();
         midConstraints.gridy = 0;
-        centrePanel.add(upperText, midConstraints);
+        centrePanel.add(headText, midConstraints);
         midConstraints.gridy = 1;
+        centrePanel.add(headLabel, midConstraints);
+        midConstraints.gridy = 2;
+        centrePanel.add(upperText, midConstraints);
+        midConstraints.gridy = 3;
         centrePanel.add(upperLabel, midConstraints);
+        midConstraints.gridy = 4;
+        centrePanel.add(lowerText, midConstraints);
+        midConstraints.gridy = 5;
+        centrePanel.add(lowerLabel, midConstraints);
+        midConstraints.gridy = 6;
+        centrePanel.add(bottomText, midConstraints);
+        midConstraints.gridy = 7;
+        centrePanel.add(bottomLabel, midConstraints);
         /*
         JLabel clothingObj = new JLabel();
         clothingObj.setText("Index X Name X");
@@ -217,6 +216,90 @@ public class UIRunner implements ActionListener {
         * */
         //
     }
+
+
+    void setupUpperWearAndText() {
+        upperWearIcon = new ImageIcon();
+        upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(currU).getImage();
+        ImageIcon scaleUpper = new ImageIcon(
+                upperWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        int index = backUI.userWardrobe.getAllUpperWear().get(currU).getIndexNo();
+        String name = backUI.userWardrobe.getAllUpperWear().get(currU).getPieceName();
+        String title = "Index- " + index + " , Name- " + name;
+        Color c = getColorFromColour(backUI.userWardrobe.getAllUpperWear().get(currU).getPieceColour());
+        upperLabel = new JLabel();
+        upperText = new JLabel(title);
+        upperLabel.setSize(100, 100);
+        upperLabel.setIcon(scaleUpper);
+        upperLabel.setBackground(c);
+        upperLabel.setOpaque(true);
+        upperText.setOpaque(false);
+    }
+
+    void setupHeadWearAndText() {
+        headWearIcon = new ImageIcon();
+        headWearIcon = this.backUI.userWardrobe.getAllHeadWear().get(currH).getImage();
+        ImageIcon scaleHead = new ImageIcon(
+                headWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        int index = this.backUI.userWardrobe.getAllHeadWear().get(currH).getIndexNo();
+        String name = this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceName();
+        String title = "Index- " + index + " , Name- " + name;
+        Color c = getColorFromColour(this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceColour());
+        headLabel = new JLabel();
+        headText = new JLabel(title);
+        headLabel.setSize(100, 100);
+        headLabel.setIcon(scaleHead);
+        headLabel.setBackground(c);
+        headLabel.setOpaque(true);
+        headText.setOpaque(false);
+    }
+
+
+    void setupLowerWearAndText() {
+        lowerWearIcon = new ImageIcon();
+        lowerWearIcon = this.backUI.userWardrobe.getAllLowerWear().get(currL).getImage();
+        ImageIcon scaleLower = new ImageIcon(
+                lowerWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        int index = this.backUI.userWardrobe.getAllLowerWear().get(currL).getIndexNo();
+        String name = this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceName();
+        String title = "Index- " + index + " , Name- " + name;
+        Color c = getColorFromColour(this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceColour());
+        lowerLabel = new JLabel();
+        lowerText = new JLabel(title);
+        lowerLabel.setSize(100, 100);
+        lowerLabel.setIcon(scaleLower);
+        lowerLabel.setBackground(c);
+        lowerLabel.setOpaque(true);
+        lowerText.setOpaque(false);
+    }
+
+
+    void setupFootwearAndText() {
+        footwearIcon = new ImageIcon();
+        footwearIcon = this.backUI.userWardrobe.getAllFootwear().get(currB).getImage();
+        ImageIcon scaleBottom = new ImageIcon(
+                footwearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        int index = this.backUI.userWardrobe.getAllFootwear().get(currB).getIndexNo();
+        String name = this.backUI.userWardrobe.getAllFootwear().get(currB).getPieceName();
+        String title = "Index- " + index + " , Name- " + name;
+        Color c = getColorFromColour(this.backUI.userWardrobe.getAllFootwear().get(currB).getPieceColour());
+        bottomLabel = new JLabel();
+        bottomText = new JLabel(title);
+        bottomLabel.setSize(100, 100);
+        bottomLabel.setIcon(scaleBottom);
+        bottomLabel.setBackground(c);
+        bottomLabel.setOpaque(true);
+        bottomText.setOpaque(false);
+    }
+
+
+    public Color getColorFromColour(Colour c) {
+        int r = c.getRed();
+        int g = c.getGreen();
+        int b = c.getBlue();
+        return new Color(r, g, b);
+    }
+
 
     void outfitFrameSetup() {
         frame = new JFrame();
