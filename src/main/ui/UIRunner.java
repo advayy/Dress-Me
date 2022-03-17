@@ -110,22 +110,14 @@ public class UIRunner implements ActionListener {
     }
 
     void setArrowButtons() {
-        hatLeft = new JButton();
-        hatRight = new JButton();
-        upperLeft = new JButton();
-        upperRight = new JButton();
-        lowerLeft = new JButton();
-        lowerRight = new JButton();
-        bottomLeft = new JButton();
-        bottomRight = new JButton();
-        hatLeft.setText("<-");
-        upperLeft.setText("<-");
-        lowerLeft.setText("<-");
-        bottomLeft.setText("<-");
-        hatRight.setText("->");
-        upperRight.setText("->");
-        lowerRight.setText("->");
-        bottomRight.setText("->");
+        hatLeft = new JButton("<-");
+        hatRight = new JButton("->");
+        upperLeft = new JButton("<-");
+        upperRight = new JButton("->");
+        lowerLeft = new JButton("<-");
+        lowerRight = new JButton("->");
+        bottomLeft = new JButton("<-");
+        bottomRight = new JButton("->");
         hatLeft.addActionListener(this);
         upperLeft.addActionListener(this);
         lowerLeft.addActionListener(this);
@@ -192,7 +184,6 @@ public class UIRunner implements ActionListener {
 
     void setupCentrePanel() {
         centrePanel = new JPanel(new GridBagLayout());
-        GridBagConstraints midConstraints = new GridBagConstraints();
         upperWearIcon = new ImageIcon();
         headWearIcon = new ImageIcon();
         lowerWearIcon = new ImageIcon();
@@ -201,6 +192,11 @@ public class UIRunner implements ActionListener {
         setupUpperWearAndText();
         setupLowerWearAndText();
         setupFootwearAndText();
+        addAllToCentrePanel();
+    }
+
+    void addAllToCentrePanel() {
+        GridBagConstraints midConstraints = new GridBagConstraints();
         midConstraints.gridy = 0;
         centrePanel.add(headText, midConstraints);
         midConstraints.gridy = 1;
@@ -217,18 +213,6 @@ public class UIRunner implements ActionListener {
         centrePanel.add(bottomText, midConstraints);
         midConstraints.gridy = 7;
         centrePanel.add(bottomLabel, midConstraints);
-        /*
-        JLabel clothingObj = new JLabel();
-        clothingObj.setText("Index X Name X");
-        clothingObj.setVerticalTextPosition(SwingConstants.TOP);
-        clothingObj.setHorizontalTextPosition(SwingConstants.CENTER);
-        ImageIcon scaledImage = new ImageIcon(
-                randClothing.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-        clothingObj.setIcon(scaledImage);
-        clothingObj.setMaximumSize(new Dimension(10, 10));
-        centrePanel.add(clothingObj);
-        * */
-        //
     }
 
 
@@ -318,23 +302,7 @@ public class UIRunner implements ActionListener {
 
     void updateCentrePanel() {
         centrePanel.removeAll();
-        GridBagConstraints midConstraints = new GridBagConstraints();
-        midConstraints.gridy = 0;
-        centrePanel.add(headText, midConstraints);
-        midConstraints.gridy = 1;
-        centrePanel.add(headLabel, midConstraints);
-        midConstraints.gridy = 2;
-        centrePanel.add(upperText, midConstraints);
-        midConstraints.gridy = 3;
-        centrePanel.add(upperLabel, midConstraints);
-        midConstraints.gridy = 4;
-        centrePanel.add(lowerText, midConstraints);
-        midConstraints.gridy = 5;
-        centrePanel.add(lowerLabel, midConstraints);
-        midConstraints.gridy = 6;
-        centrePanel.add(bottomText, midConstraints);
-        midConstraints.gridy = 7;
-        centrePanel.add(bottomLabel, midConstraints);
+        addAllToCentrePanel();
     }
 
 
@@ -623,6 +591,7 @@ public class UIRunner implements ActionListener {
     }
 
     @Override
+    @SuppressWarnings("methodlength")
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openOutfitWindow) {
             frame.dispose();
