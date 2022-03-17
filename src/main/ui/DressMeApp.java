@@ -19,23 +19,30 @@ public class DressMeApp extends JFrame {
     //private static final String JSON_STORE = "wardrobe";
     private static final String JSON_STORE_EXTENSION = ".json";
     private String jsonStore = "wardrobe";
+
     Wardrobe userWardrobe;
     Scanner inputScan;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private UIRunner render;
 
+
+    public Wardrobe getUserWardrobe() {
+        return userWardrobe;
+    }
+
+
     /*
      * Effects: Runs the Application loop
      * */
     public DressMeApp() {
-        render = new UIRunner(this);
-        //render.pickerFrameSetup();
         userWardrobe = new Wardrobe();
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
         loadWardrobe();
+        userWardrobe.createTypeLists();
+        render = new UIRunner(this);
         runDressMe();
     }
 

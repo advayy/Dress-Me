@@ -49,9 +49,25 @@ public class UIRunner implements ActionListener {
     int currB = 0;
     DressMeApp backUI;
 
+
+    // Stuff for add
+    JComboBox superTypeSelect;
+    JFrame addFrame;
+    JTextField nameField;
+    JTextField formalityField;
+    ButtonGroup subType;
+    JRadioButton b1;
+    JRadioButton b2;
+    JRadioButton b3;
+    JRadioButton b4;
+    JLabel subtypeText;
+    JButton getColour;
+    JButton confirmation;
+    Color selectedOutfitColour;
+
     public UIRunner(DressMeApp dressMeApp) {
-        pickerFrameSetup();
         this.backUI = dressMeApp;
+        pickerFrameSetup();
     }
 
     public void pickerFrameSetup() {
@@ -158,25 +174,28 @@ public class UIRunner implements ActionListener {
 
     void setupCentrePanel() {
         centrePanel = new JPanel(new GridBagLayout());
-        JLayeredPane midPanelLayers = new JLayeredPane();
         GridBagConstraints midConstraints = new GridBagConstraints();
-        centrePanel.add(midPanelLayers);
+        upperWearIcon = new ImageIcon();
+        upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(0).getImage();
+        ImageIcon scaleUpper = new ImageIcon(
+                upperWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+        int index = backUI.userWardrobe.getAllUpperWear().get(0).getIndexNo();
+        String name = backUI.userWardrobe.getAllUpperWear().get(0).getPieceName();
+        String title = "Index- " + index + " , Name- " + name;
+        int r = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getRed();
+        int g = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getGreen();
+        int b = backUI.userWardrobe.getAllUpperWear().get(0).getPieceColour().getBlue();
+        Color c = new Color(r, g, b);
+        upperLabel = new JLabel();
+        upperText = new JLabel(title);
+        upperLabel.setSize(100, 100);
+        upperLabel.setIcon(scaleUpper);
+        upperLabel.setBackground(c);
+        upperLabel.setOpaque(true);
+        upperText.setOpaque(false);
+        centrePanel.add(upperText);
+        centrePanel.add(upperLabel);
         /*
-        // Testing the clothing object panel
-        JPanel hatPanel = new JPanel();
-        hatPanel.getSize(new Dimension(75, 75));
-        ImageIcon scaleHat = new ImageIcon(
-                hatIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
-        JLabel hatLabel = new JLabel();
-
-        hatLabel.setSize(75, 75);
-        hatLabel.setIcon(scaleHat);
-        hatLabel.setBackground(Color.PINK);
-        hatLabel.setOpaque(true);
-        hatPanel.add(hatLabel);
-        //hatPanel.setBackground(Color.CYAN);
-        centrePanel.add(hatPanel);
-
         JLabel clothingObj = new JLabel();
         clothingObj.setText("Index X Name X");
         clothingObj.setVerticalTextPosition(SwingConstants.TOP);
@@ -228,22 +247,6 @@ public class UIRunner implements ActionListener {
         frame.getContentPane();
         frame.setResizable(false);
     }
-
-    // Stuff for add
-    JComboBox superTypeSelect;
-    JFrame addFrame;
-    JTextField nameField;
-    JTextField formalityField;
-    ButtonGroup subType;
-    JRadioButton b1;
-    JRadioButton b2;
-    JRadioButton b3;
-    JRadioButton b4;
-    JLabel subtypeText;
-    JButton getColour;
-    JButton confirmation;
-    Color selectedOutfitColour;
-
 
     void launchAdditionWindow() {
         setupAdditionWindowButtons();

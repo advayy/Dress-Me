@@ -59,7 +59,6 @@ public class JsonReader {
             JSONObject nextClothing = (JSONObject) json;
             wardrobe.addItem(parseClothing(nextClothing));
         }
-        wardrobe.createTypeLists();
         JSONArray jsonArrayOutfits = jsonObject.getJSONArray("outfits");
         for (Object json : jsonArrayOutfits) {
             JSONObject nextLook = (JSONObject) json;
