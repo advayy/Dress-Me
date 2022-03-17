@@ -193,8 +193,10 @@ public class UIRunner implements ActionListener {
         upperLabel.setBackground(c);
         upperLabel.setOpaque(true);
         upperText.setOpaque(false);
-        centrePanel.add(upperText);
-        centrePanel.add(upperLabel);
+        midConstraints.gridy = 0;
+        centrePanel.add(upperText, midConstraints);
+        midConstraints.gridy = 1;
+        centrePanel.add(upperLabel, midConstraints);
         /*
         JLabel clothingObj = new JLabel();
         clothingObj.setText("Index X Name X");
