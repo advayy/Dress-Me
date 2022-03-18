@@ -240,7 +240,7 @@ public class DressMeApp extends JFrame {
         System.out.println();
     }
 
-    public void addToWardrobe(int superCode, int subCode, String name, String genre, Colour colour) {
+    public int addToWardrobe(int superCode, int subCode, String name, String genre, Colour colour) {
         String subType = getSubType(superCode, subCode);
         superCode++;
         Clothing newItem;
@@ -254,6 +254,7 @@ public class DressMeApp extends JFrame {
             newItem = new FootWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
         }
         userWardrobe.addItem(newItem);
+        return newItem.getIndexNo();
     }
 
     /* Requires: A string from the user as the output/ instruction method

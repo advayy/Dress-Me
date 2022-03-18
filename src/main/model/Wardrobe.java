@@ -132,6 +132,24 @@ public class Wardrobe implements Writable {
         return filteredList;
     }
 
+
+    /*
+     * Requires : an integer between 1-4 from the user (encoding representing type of wear filtered for)
+     * Effects  : creates a list of that type of wear
+     * */
+    public int getCodeByType(Clothing c) {
+        if (c instanceof HeadWear) {
+            return 1;
+        } else if (c instanceof UpperWear) {
+            return 2;
+        } else if (c instanceof LowerWear) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
+
     /* Requires: index of an item
      * Modifies: this
      * Effects: removes the item at that index from wardrobe
@@ -205,6 +223,41 @@ public class Wardrobe implements Writable {
             return this.internalWardrobe.get(listIndex);
         } else {
             return null;
+        }
+    }
+
+
+    public int getSubListIndex(int index) {
+        boolean found = false;
+        int listIndex = 0;
+        for (Clothing item: this.allHeadWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allHeadWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allUpperWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allUpperWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allLowerWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allLowerWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allFootwear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allFootwear.indexOf(item);
+                found = true;
+            }
+        }
+        if (found) {
+            return listIndex;
+        } else {
+            return -1;
         }
     }
 
