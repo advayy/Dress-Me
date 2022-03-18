@@ -60,13 +60,13 @@ public class JsonWriterTest extends JsonTest {
             Clothing upper = new UpperWear(RED, "casual", "TEESHIRT", "lululemon");
             Clothing head = new HeadWear(BLACK, "fancy", "HAT", "amiri");
 
-            wardrobe.addItem(new Clothing(GREEN, "sport",
+            wardrobe.addItem(new FootWear(GREEN, "sport",
                     "SHOES", "Nike's"));
-            wardrobe.addItem(new Clothing(BLUE, "casual",
+            wardrobe.addItem(new LowerWear(BLUE, "casual",
                     "JEANS", "Levi's"));
-            wardrobe.addItem(new Clothing(RED, "casual",
+            wardrobe.addItem(new UpperWear(RED, "casual",
                     "TEESHIRT", "lululemon"));
-            wardrobe.addItem(new Clothing(BLACK, "fancy",
+            wardrobe.addItem(new HeadWear(BLACK, "fancy",
                     "HAT", "amiri"));
             wardrobe.addOutfit(new Outfit(head, upper, lower, foot));
 

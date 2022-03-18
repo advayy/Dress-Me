@@ -4,6 +4,8 @@ import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
@@ -11,26 +13,33 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 
-
-// console application that communicates with the user.
 // dresses up the user
-public class DressMeApp {
+public class DressMeApp extends JFrame {
     private static final String JSON_STORE_BASE = "./data/";
     private static final String JSON_STORE_EXTENSION = ".json";
-    private String jsonStore;
+
     Wardrobe userWardrobe;
     Scanner inputScan;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private UIRunner render;
+
+
+    public Wardrobe getUserWardrobe() {
+        return userWardrobe;
+    }
+
 
     /*
      * Effects: Runs the Application loop
      * */
-    public DressMeApp() throws FileNotFoundException {
+    public DressMeApp() {
         userWardrobe = new Wardrobe();
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
+        userWardrobe.createTypeLists();
+        render = new UIRunner(this);
         runDressMe();
     }
 
@@ -89,9 +98,9 @@ public class DressMeApp {
         } else if (input == 5) {
             runOutfitSequence();
         } else if (input == 6) {
-            saveWardrobe();
+            // saveWardrobe();
         } else if (input == 7) {
-            loadWardrobe();
+            // loadWardrobe();
         } else {
             System.out.println("Please only input one of the given options!!");
             System.out.println();
@@ -228,6 +237,23 @@ public class DressMeApp {
         System.out.println();
     }
 
+    public int addToWardrobe(int superCode, int subCode, String name, String genre, Colour colour) {
+        String subType = getSubType(superCode, subCode);
+        superCode++;
+        Clothing newItem;
+        if (superCode == 1) {
+            newItem = new HeadWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else if (superCode == 2) {
+            newItem = new UpperWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else if (superCode == 3) {
+            newItem = new LowerWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        } else {
+            newItem = new FootWear(colour, genre.toLowerCase(Locale.ROOT), subType, name);
+        }
+        userWardrobe.addItem(newItem);
+        return newItem.getIndexNo();
+    }
+
     /* Requires: A string from the user as the output/ instruction method
      * Effects: gets the user input and returns it.
      * */
@@ -261,6 +287,22 @@ public class DressMeApp {
         String index = getInputText("Enter the number beside the subtype");
         int indexing = Integer.parseInt(index) - 1;
         return acceptableItems[indexing];
+    }
+
+    public String getSubType(int code, int subCode) {
+        String[] acceptableItems;
+        if (code == 0) {
+            acceptableItems = HeadWear.getAcceptableItems();
+        } else if (code == 1) {
+            acceptableItems = UpperWear.getAcceptableItems();
+        } else if (code == 2) {
+            acceptableItems = LowerWear.getAcceptableItems();
+        } else if (code == 3) {
+            acceptableItems = FootWear.getAcceptableItems();
+        } else {
+            acceptableItems = new String[0];
+        }
+        return acceptableItems[subCode];
     }
 
     /* Requires: the wardrobe must not be empty
@@ -301,7 +343,7 @@ public class DressMeApp {
 
     //Requires: An item of clothing as an input
     //Effects: Returns all the data of thw clothing item in the CLI
-    public void printClothingDetails(Clothing item) {
+    public String printClothingDetails(Clothing item) {
         Colour color;
         String genre;
         String subType;
@@ -312,13 +354,14 @@ public class DressMeApp {
         subType = item.getPieceSubtype();
         name = item.getPieceName();
         index = item.getIndexNo();
-        System.out.print("Item Index: " + index);
-        System.out.print(", Item Name: " + name);
-        System.out.print(", Item SubType: " + subType);
-        System.out.print(", Item Genre/Formality: " + genre);
-        System.out.print(", Item Color: [Red: " + color.getRed() + ", Green: " + color.getGreen());
-        System.out.print(", Blue: " + color.getBlue() + "]");
-        System.out.println();
+        String s1 = ("Index: " + index);
+        String s2 = (", Name: " + name);
+        String s3 = (", SubType: " + subType);
+        String s4 = (", Formality: " + genre);
+        String s5 = (", Color: [R: " + color.getRed() + ", G: " + color.getGreen());
+        String s6 = (", B: " + color.getBlue() + "]");
+        String output = s1 + s2 + s3 + s4 + s5 + s6;
+        return output;
     }
 
     /* Requires: input color from the user
@@ -342,40 +385,35 @@ public class DressMeApp {
     }
 
     // EFFECTS: saves the wardrobe to a new file unless previously loaded by user
-    private void saveWardrobe() {
+    public void saveWardrobe(String ans) {
         try {
-            if (this.userWardrobe.getName() == null) {
-                userWardrobe.setName(getInputText("What would you like to name the wardrobe"));
-            }
-            if (jsonStore == null) {
-                String locationName = getInputText("Enter the file name (without the .json extension)");
-                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
-            }
+            String jsonStore = JSON_STORE_BASE + ans + JSON_STORE_EXTENSION;
             jsonWriter.open(jsonStore);
             jsonWriter.write(userWardrobe);
             jsonWriter.close();
-            System.out.println("Saved Wardrobe to " + jsonStore);
-            flatLine();
+            JOptionPane.showMessageDialog(null,
+                    "Saved to file : " + ans,
+                    "Operation Successful", JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + jsonStore);
-            System.out.println();
+            JOptionPane.showMessageDialog(null,
+                    "File " + ans + " not found",
+                    "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: loads wardrobe from file specified by user
-    private void loadWardrobe() {
+    public void loadWardrobe(String ans) {
         try {
-            if (jsonStore == null) {
-                String locationName = getInputText("Enter the file name (without the .json extension)");
-                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
-            }
+            String jsonStore = JSON_STORE_BASE + ans + JSON_STORE_EXTENSION;
             userWardrobe = jsonReader.read(jsonStore);
-            System.out.println("Loaded Wardrobe \"" + this.userWardrobe.getName() + "\" from " + jsonStore);
-            flatLine();
+            JOptionPane.showMessageDialog(null,
+                    "Loaded from File " + ans,
+                    "Operation Successful", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + jsonStore);
-            System.out.println();
+            JOptionPane.showMessageDialog(null,
+                    "File " + ans + " not found",
+                    "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -495,4 +533,7 @@ public class DressMeApp {
         }
         return c;
     }
+
+
+
 }

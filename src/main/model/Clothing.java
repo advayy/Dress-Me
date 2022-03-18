@@ -3,13 +3,15 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import javax.swing.*;
+
 /*
  * Reference Code from: JsonSerialization Demo
  * URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  * */
 
 // Clothing object class
-public class Clothing implements Writable {
+public abstract class Clothing implements Writable {
     private Colour pieceColour; // Colour as RGB
     private String pieceGenre; // Genre or Formality for a type of clothing ie, Casual, Formal, High Fashion
     private String pieceSubtype; // Between set types from subclasses
@@ -88,4 +90,6 @@ public class Clothing implements Writable {
         json.put("blue", this.pieceColour.getBlue());
         return json;
     }
+
+    public abstract ImageIcon getImage(String subtype);
 }

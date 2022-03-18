@@ -180,6 +180,17 @@
         },
         {
             "colour": {
+                "red": 255,
+                "green": 204,
+                "blue": 255
+            },
+            "subtype": "GLASSES",
+            "genre": "sport",
+            "name": "aviators",
+            "index": 17
+        },
+        {
+            "colour": {
                 "red": 153,
                 "green": 153,
                 "blue": 255

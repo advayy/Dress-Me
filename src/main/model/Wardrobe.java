@@ -14,11 +14,42 @@ import java.util.ArrayList;
 public class Wardrobe implements Writable {
     private ArrayList<Clothing> internalWardrobe;
     private ArrayList<Outfit> internalOutfits;
+    private ArrayList<Clothing> allHeadWear;
+    private ArrayList<Clothing> allUpperWear;
+    private ArrayList<Clothing> allLowerWear;
+    private ArrayList<Clothing> allFootwear;
     private String wardrobeName;
 
     public Wardrobe() {
         internalWardrobe = new ArrayList<Clothing>();
         internalOutfits = new ArrayList<Outfit>();
+        allHeadWear = new ArrayList<>();
+        allUpperWear = new ArrayList<>();
+        allLowerWear = new ArrayList<>();
+        allFootwear = new ArrayList<>();
+    }
+
+    public ArrayList<Clothing> getAllHeadWear() {
+        return allHeadWear;
+    }
+
+    public ArrayList<Clothing> getAllUpperWear() {
+        return allUpperWear;
+    }
+
+    public ArrayList<Clothing> getAllLowerWear() {
+        return allLowerWear;
+    }
+
+    public ArrayList<Clothing> getAllFootwear() {
+        return allFootwear;
+    }
+
+    public void createTypeLists() {
+        this.allHeadWear = getClothesByType(1);
+        this.allUpperWear = getClothesByType(2);
+        this.allLowerWear = getClothesByType(3);
+        this.allFootwear = getClothesByType(4);
     }
 
 
@@ -101,12 +132,31 @@ public class Wardrobe implements Writable {
         return filteredList;
     }
 
+
+    /*
+     * Requires : an integer between 1-4 from the user (encoding representing type of wear filtered for)
+     * Effects  : creates a list of that type of wear
+     * */
+    public int getCodeByType(Clothing c) {
+        if (c instanceof HeadWear) {
+            return 1;
+        } else if (c instanceof UpperWear) {
+            return 2;
+        } else if (c instanceof LowerWear) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
+
     /* Requires: index of an item
      * Modifies: this
      * Effects: removes the item at that index from wardrobe
      * */
     public boolean removeItem(int index) {
         this.internalWardrobe.remove(index);
+        createTypeLists();
         return true;
     }
 
@@ -176,12 +226,56 @@ public class Wardrobe implements Writable {
         }
     }
 
+
+    public int getSubListIndex(int index) {
+        boolean found = false;
+        int listIndex = 0;
+        for (Clothing item: this.allHeadWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allHeadWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allUpperWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allUpperWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allLowerWear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allLowerWear.indexOf(item);
+                found = true;
+            }
+        }
+        for (Clothing item: this.allFootwear) {
+            if (item.getIndexNo() == index) {
+                listIndex = this.allFootwear.indexOf(item);
+                found = true;
+            }
+        }
+        if (found) {
+            return listIndex;
+        } else {
+            return -1;
+        }
+    }
+
     /* Requires: a given item of Clothing type
      * Modifies: this
      * Effects: adds the given item to the internalWardrobe
      * */
     public boolean addItem(Clothing c) {
         this.internalWardrobe.add(c);
+        if (c instanceof HeadWear) {
+            this.allHeadWear.add(c);
+        } else if (c instanceof UpperWear) {
+            this.allUpperWear.add(c);
+        } else if (c instanceof LowerWear) {
+            this.allLowerWear.add(c);
+        } else {
+            this.allFootwear.add(c);
+        }
         return true;
     }
 

@@ -1,7 +1,14 @@
 package model;
 
+import javax.swing.*;
+
 // Create instances of Head garments for Clothing
 public class HeadWear extends Clothing {
+
+    ImageIcon glassesImage = new ImageIcon("./assets/H0_glasses.png");
+    ImageIcon hatImage = new ImageIcon("./assets/H1_hat.png");
+    ImageIcon headbandImage = new ImageIcon("./assets/H2_headband.png");
+
 
     private static final String[] ACCEPTABLE_ITEMS = {"GLASSES", "HAT", "HEADBAND"};
 
@@ -20,4 +27,14 @@ public class HeadWear extends Clothing {
         return ACCEPTABLE_ITEMS;
     }
 
+    @Override
+    public ImageIcon getImage(String subtype) {
+        if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
+            return glassesImage;
+        } else if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[1])) {
+            return hatImage;
+        } else {
+            return headbandImage;
+        }
+    }
 }
