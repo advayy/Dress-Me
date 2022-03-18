@@ -33,6 +33,7 @@ public class UIRunner implements ActionListener {
 
     JButton save;
     JButton load;
+    JButton name;
     JButton hatLeft;
     JButton hatRight;
     JButton upperLeft;
@@ -86,26 +87,28 @@ public class UIRunner implements ActionListener {
     }
 
     public void pickerFrameSetup() {
+        Color backGroundColour = new Color(0xdabaff);
         frame = new JFrame(); // creates a outfitFrame
         frame.setLocation(locationX, locationY);
-        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
+        frame.setSize(600, 500); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
-        frame.setTitle("Dress.Me!");
+        frame.setTitle("Dress Me!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(new Color(0xdabaff));
+        frame.getContentPane().setBackground(backGroundColour);
         frame.setLayout(new GridBagLayout());
         setArrowButtons();
         addArrowButtonsIn();
         setupOptionsPanel();
         setupCentrePanel();
+        colorAllPanels(backGroundColour);
         GridBagConstraints setup = new GridBagConstraints();
         setup.weightx = 1;
         frame.add(leftArrowPanel, setup);
-        setup.weightx = 1.75;
+        setup.weightx = 1.5;
         frame.add(centrePanel, setup);
         setup.weightx = 1;
         frame.add(rightArrowPanel, setup);
-        setup.weightx = 1.75;
+        setup.weightx = 1.5;
         frame.add(optionsPanel, setup);
         // Show up controllers below
         frame.revalidate();
@@ -113,6 +116,13 @@ public class UIRunner implements ActionListener {
         // outfitFrame.getContentPane();
         // outfitFrame.setResizable(false);
         // frame.pack();
+    }
+
+    void colorAllPanels(Color c) {
+        leftArrowPanel.setBackground(c);
+        rightArrowPanel.setBackground(c);
+        centrePanel.setBackground(c);
+        optionsPanel.setBackground(c);
     }
 
     void setArrowButtons() {
@@ -165,6 +175,7 @@ public class UIRunner implements ActionListener {
         openOutfitWindow.addActionListener(this);
         save.addActionListener(this);
         load.addActionListener(this);
+        name.addActionListener(this);
 
         optionsConstraints.gridy = 0;
         optionsPanel.add(addItem, optionsConstraints);
@@ -175,10 +186,12 @@ public class UIRunner implements ActionListener {
         optionsConstraints.gridy = 3;
         optionsPanel.add(load, optionsConstraints);
         optionsConstraints.gridy = 4;
-        optionsPanel.add(addOutfit, optionsConstraints);
+        optionsPanel.add(name, optionsConstraints);
         optionsConstraints.gridy = 5;
-        optionsPanel.add(openListingWindow, optionsConstraints);
+        optionsPanel.add(addOutfit, optionsConstraints);
         optionsConstraints.gridy = 6;
+        optionsPanel.add(openListingWindow, optionsConstraints);
+        optionsConstraints.gridy = 7;
         optionsPanel.add(openOutfitWindow, optionsConstraints);
     }
 
@@ -191,6 +204,7 @@ public class UIRunner implements ActionListener {
         openOutfitWindow = new JButton();
         save = new JButton();
         load = new JButton();
+        name = new JButton();
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
         openListingWindow.setText("Go to List View");
@@ -198,6 +212,7 @@ public class UIRunner implements ActionListener {
         openOutfitWindow.setText("Go to Outfits View");
         save.setText("Save To File");
         load.setText("Load From File");
+        name.setText("Name Wardrobe");
     }
 
     void setupCentrePanel() {
@@ -706,13 +721,34 @@ public class UIRunner implements ActionListener {
     }
 
     void runSave() {
-        String answer = JOptionPane.showInputDialog("Enter save file name (without the .json extension)");
+        if (backUI.userWardrobe.getName() == null) {
+            runName();
+        }
+        String answer = JOptionPane.showInputDialog("Enter save file location (without the .json extension)");
         backUI.saveWardrobe(answer);
     }
 
     void runLoad() {
         String answer = JOptionPane.showInputDialog("Enter file name to load from (without the .json extension)");
         backUI.loadWardrobe(answer);
+        frame.setTitle("Dress Me Wardrobe : " + backUI.userWardrobe.getName());
+    }
+
+    void runName() {
+        String answer;
+        if (backUI.userWardrobe.getName() == null) {
+            answer = JOptionPane.showInputDialog("What would you like to name this Wardrobe?");
+            backUI.userWardrobe.setName(answer);
+        } else {
+            int x = JOptionPane.showConfirmDialog(null,
+                    "Would you like to rename this wardrobe?", "Rename Wardrobe?",
+                    JOptionPane.YES_NO_OPTION);
+            if (x == 0) {
+                answer = JOptionPane.showInputDialog("What would you like to rename this Wardrobe? to");
+                backUI.userWardrobe.setName(answer);
+            }
+        }
+        frame.setTitle("Dress Me Wardrobe : " + backUI.userWardrobe.getName());
     }
 
     @Override
@@ -726,6 +762,8 @@ public class UIRunner implements ActionListener {
         }  else if (e.getSource() == load) {
             runLoad();
             updateWearAndText();
+        } else if (e.getSource() == name) {
+            runName();
         } else if (e.getSource() == openListingWindow) {
             frame.dispose();
             listingFrameSetup();

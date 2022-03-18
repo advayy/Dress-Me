@@ -18,7 +18,7 @@ public class Wardrobe implements Writable {
     private ArrayList<Clothing> allUpperWear;
     private ArrayList<Clothing> allLowerWear;
     private ArrayList<Clothing> allFootwear;
-    private String wardrobeName = "User Wardrobe";
+    private String wardrobeName;
 
     public Wardrobe() {
         internalWardrobe = new ArrayList<Clothing>();

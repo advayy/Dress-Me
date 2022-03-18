@@ -38,7 +38,6 @@ public class DressMeApp extends JFrame {
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
-        // loadWardrobe();
         userWardrobe.createTypeLists();
         render = new UIRunner(this);
         runDressMe();
