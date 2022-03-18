@@ -1,117 +1,226 @@
 {
     "name": "Main Wardrobe",
-    "outfits": [{
-        "head": {
-            "colour": {
-                "red": 204,
-                "green": 255,
-                "blue": 51
-            },
-            "subtype": "HEADBAND",
-            "genre": "formality",
-            "name": "Name",
-            "index": 6
-        },
-        "upper": {
-            "colour": {
-                "red": 255,
-                "green": 153,
-                "blue": 0
-            },
-            "subtype": "JACKET",
-            "genre": "formality",
-            "name": "Name",
-            "index": 7
-        },
-        "lower": {
-            "colour": {
-                "red": 255,
-                "green": 51,
-                "blue": 51
-            },
-            "subtype": "SHORTS",
-            "genre": "formality",
-            "name": "Name",
-            "index": 8
-        },
-        "foot": {
-            "colour": {
-                "red": 204,
-                "green": 255,
-                "blue": 102
-            },
-            "subtype": "SLIPPERS",
-            "genre": "formality",
-            "name": "Name",
-            "index": 9
-        }
-    }],
+    "outfits": [],
     "clothes": [
         {
             "colour": {
-                "red": 204,
-                "green": 255,
-                "blue": 102
+                "red": 255,
+                "green": 0,
+                "blue": 0
             },
-            "subtype": "SLIPPERS",
-            "genre": "formality",
-            "name": "Name",
+            "subtype": "HAT",
+            "genre": "fashion",
+            "name": "Amiri Hat",
             "index": 1
         },
         {
             "colour": {
-                "red": 153,
-                "green": 255,
-                "blue": 153
+                "red": 150,
+                "green": 150,
+                "blue": 255
             },
             "subtype": "SHOES",
-            "genre": "formality",
-            "name": "Name",
+            "genre": "casual",
+            "name": "pastel nikes",
             "index": 2
         },
         {
             "colour": {
-                "red": 255,
-                "green": 153,
-                "blue": 0
+                "red": 0,
+                "green": 102,
+                "blue": 102
             },
-            "subtype": "JACKET",
-            "genre": "formality",
-            "name": "Name",
+            "subtype": "JEANS",
+            "genre": "formal",
+            "name": "jeans",
             "index": 3
         },
         {
             "colour": {
-                "red": 204,
-                "green": 255,
-                "blue": 51
+                "red": 184,
+                "green": 182,
+                "blue": 255
             },
-            "subtype": "HEADBAND",
-            "genre": "formality",
-            "name": "Name",
+            "subtype": "SHORTS",
+            "genre": "casual",
+            "name": "short shorts",
             "index": 4
         },
         {
             "colour": {
                 "red": 255,
                 "green": 51,
-                "blue": 51
+                "blue": 204
             },
-            "subtype": "SHORTS",
-            "genre": "formality",
-            "name": "Name",
+            "subtype": "SHOES",
+            "genre": "formal",
+            "name": "armani",
             "index": 5
         },
         {
             "colour": {
-                "red": 0,
-                "green": 153,
+                "red": 255,
+                "green": 204,
                 "blue": 153
             },
+            "subtype": "SLIPPERS",
+            "genre": "casual",
+            "name": "nike slides",
+            "index": 6
+        },
+        {
+            "colour": {
+                "red": 204,
+                "green": 255,
+                "blue": 204
+            },
+            "subtype": "SLIPPERS",
+            "genre": "casual",
+            "name": "crock",
+            "index": 7
+        },
+        {
+            "colour": {
+                "red": 0,
+                "green": 204,
+                "blue": 204
+            },
+            "subtype": "HEADBAND",
+            "genre": "formal",
+            "name": "2chains",
+            "index": 8
+        },
+        {
+            "colour": {
+                "red": 51,
+                "green": 153,
+                "blue": 255
+            },
+            "subtype": "JACKET",
+            "genre": "casual",
+            "name": "doublesided",
+            "index": 9
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 102,
+                "blue": 102
+            },
+            "subtype": "SWEATER",
+            "genre": "formal",
+            "name": "gap",
+            "index": 10
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 204,
+                "blue": 204
+            },
+            "subtype": "PANTS",
+            "genre": "formal",
+            "name": "khakis",
+            "index": 11
+        },
+        {
+            "colour": {
+                "red": 51,
+                "green": 255,
+                "blue": 255
+            },
+            "subtype": "HAT",
+            "genre": "sport",
+            "name": "baseball",
+            "index": 12
+        },
+        {
+            "colour": {
+                "red": 0,
+                "green": 51,
+                "blue": 51
+            },
+            "subtype": "GLASSES",
+            "genre": "casual",
+            "name": "glasses",
+            "index": 13
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 153,
+                "blue": 0
+            },
+            "subtype": "SHIRT",
+            "genre": "formal",
+            "name": "hugo boss",
+            "index": 14
+        },
+        {
+            "colour": {
+                "red": 0,
+                "green": 0,
+                "blue": 153
+            },
+            "subtype": "JEANS",
+            "genre": "casual",
+            "name": "levi's",
+            "index": 15
+        },
+        {
+            "colour": {
+                "red": 204,
+                "green": 255,
+                "blue": 204
+            },
             "subtype": "TEESHIRT",
+            "genre": "casual",
+            "name": "diesel",
+            "index": 16
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 204,
+                "blue": 255
+            },
+            "subtype": "GLASSES",
+            "genre": "sport",
+            "name": "aviators",
+            "index": 17
+        },
+        {
+            "colour": {
+                "red": 153,
+                "green": 153,
+                "blue": 255
+            },
+            "subtype": "TEESHIRT",
+            "genre": "sport",
+            "name": "ubc tee",
+            "index": 18
+        },
+        {
+            "colour": {
+                "red": 154,
+                "green": 128,
+                "blue": 94
+            },
+            "subtype": "PANTS",
             "genre": "formality",
             "name": "Name",
-            "index": 10
+            "index": 19
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "subtype": "SHOES",
+            "genre": "formality",
+            "name": "Name",
+            "index": 20
         }
     ]
 }

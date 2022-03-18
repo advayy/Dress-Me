@@ -392,7 +392,7 @@ public class DressMeApp extends JFrame {
             jsonWriter.write(userWardrobe);
             jsonWriter.close();
             JOptionPane.showMessageDialog(null,
-                    "Saved to Wardrobe " + ans,
+                    "Saved to file : " + ans,
                     "Operation Successful", JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null,

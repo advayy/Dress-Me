@@ -101,11 +101,11 @@ public class UIRunner implements ActionListener {
         GridBagConstraints setup = new GridBagConstraints();
         setup.weightx = 1;
         frame.add(leftArrowPanel, setup);
-        setup.weightx = 4;
+        setup.weightx = 1.75;
         frame.add(centrePanel, setup);
         setup.weightx = 1;
         frame.add(rightArrowPanel, setup);
-        setup.weightx = 2;
+        setup.weightx = 1.75;
         frame.add(optionsPanel, setup);
         // Show up controllers below
         frame.revalidate();
@@ -138,7 +138,7 @@ public class UIRunner implements ActionListener {
         leftArrowPanel = new JPanel(new GridBagLayout());
         rightArrowPanel = new JPanel(new GridBagLayout());
         GridBagConstraints arrowConstraints = new GridBagConstraints();
-        arrowConstraints.insets = new Insets(30,0,30,0);
+        arrowConstraints.insets = new Insets(40,0,40,0);
         arrowConstraints.gridy = 0;
         leftArrowPanel.add(hatLeft, arrowConstraints);
         rightArrowPanel.add(hatRight, arrowConstraints);
@@ -159,25 +159,27 @@ public class UIRunner implements ActionListener {
         optionsConstraints.insets = new Insets(10,0,10,0);
         optionsConstraints.gridy = 0;
         addItem.addActionListener(this);
+        removeItem.addActionListener(this);
+        openListingWindow.addActionListener(this);
+        addOutfit.addActionListener(this);
+        openOutfitWindow.addActionListener(this);
+        save.addActionListener(this);
+        load.addActionListener(this);
+
+        optionsConstraints.gridy = 0;
         optionsPanel.add(addItem, optionsConstraints);
         optionsConstraints.gridy = 1;
-        removeItem.addActionListener(this);
         optionsPanel.add(removeItem, optionsConstraints);
         optionsConstraints.gridy = 2;
-        openListingWindow.addActionListener(this);
-        optionsPanel.add(openListingWindow, optionsConstraints);
-        optionsConstraints.gridy = 3;
-        addOutfit.addActionListener(this);
-        optionsPanel.add(addOutfit, optionsConstraints);
-        optionsConstraints.gridy = 4;
-        openOutfitWindow.addActionListener(this);
-        optionsPanel.add(openOutfitWindow, optionsConstraints);
-        optionsConstraints.gridy = 5;
-        save.addActionListener(this);
         optionsPanel.add(save, optionsConstraints);
-        optionsConstraints.gridy = 6;
-        load.addActionListener(this);
+        optionsConstraints.gridy = 3;
         optionsPanel.add(load, optionsConstraints);
+        optionsConstraints.gridy = 4;
+        optionsPanel.add(addOutfit, optionsConstraints);
+        optionsConstraints.gridy = 5;
+        optionsPanel.add(openListingWindow, optionsConstraints);
+        optionsConstraints.gridy = 6;
+        optionsPanel.add(openOutfitWindow, optionsConstraints);
     }
 
     void setupOptionsPanelButtons() {
@@ -191,11 +193,11 @@ public class UIRunner implements ActionListener {
         load = new JButton();
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
-        openListingWindow.setText("See List View");
-        addOutfit.setText("Add Outfit From Selected");
-        openOutfitWindow.setText("See Outfits");
-        save.setText("Save Changes");
-        load.setText("Load Wardrobe from a file");
+        openListingWindow.setText("Go to List View");
+        addOutfit.setText("Add Outfit");
+        openOutfitWindow.setText("Go to Outfits View");
+        save.setText("Save To File");
+        load.setText("Load From File");
     }
 
     void setupCentrePanel() {
