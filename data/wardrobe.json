@@ -221,6 +221,17 @@
             "genre": "formality",
             "name": "Name",
             "index": 20
+        },
+        {
+            "colour": {
+                "red": 218,
+                "green": 186,
+                "blue": 255
+            },
+            "subtype": "TEESHIRT",
+            "genre": "formal",
+            "name": "dabaff",
+            "index": 21
         }
     ]
 }
