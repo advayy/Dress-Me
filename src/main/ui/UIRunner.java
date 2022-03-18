@@ -89,6 +89,7 @@ public class UIRunner implements ActionListener {
         b4 = new JRadioButton();
     }
 
+    @SuppressWarnings("methodlength")
     public void pickerFrameSetup() {
         frame = new JFrame(); // creates a outfitFrame
         frame.setIconImage(dressmeLogo.getImage());
@@ -642,6 +643,7 @@ public class UIRunner implements ActionListener {
         }
     }
 
+    @SuppressWarnings("methodlength")
     void addOutfitFromSelected() {
         int answer = JOptionPane.showConfirmDialog(null,
                 "Would you like to add the selected items into an outfit?", "Add Outfit?",

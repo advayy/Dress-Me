@@ -227,6 +227,7 @@ public class Wardrobe implements Writable {
     }
 
 
+    @SuppressWarnings("methodlength")
     public int getSubListIndex(int index) {
         boolean found = false;
         int listIndex = 0;
