@@ -16,9 +16,7 @@ import java.util.ArrayList;
 // dresses up the user
 public class DressMeApp extends JFrame {
     private static final String JSON_STORE_BASE = "./data/";
-    //private static final String JSON_STORE = "wardrobe";
     private static final String JSON_STORE_EXTENSION = ".json";
-    private String jsonStore = "wardrobe";
 
     Wardrobe userWardrobe;
     Scanner inputScan;
@@ -40,7 +38,7 @@ public class DressMeApp extends JFrame {
         inputScan = new Scanner(System.in);
         jsonWriter = new JsonWriter();
         jsonReader = new JsonReader();
-        loadWardrobe();
+        // loadWardrobe();
         userWardrobe.createTypeLists();
         render = new UIRunner(this);
         runDressMe();
@@ -101,9 +99,9 @@ public class DressMeApp extends JFrame {
         } else if (input == 5) {
             runOutfitSequence();
         } else if (input == 6) {
-            saveWardrobe();
+            // saveWardrobe();
         } else if (input == 7) {
-            loadWardrobe();
+            // loadWardrobe();
         } else {
             System.out.println("Please only input one of the given options!!");
             System.out.println();
@@ -387,42 +385,35 @@ public class DressMeApp extends JFrame {
     }
 
     // EFFECTS: saves the wardrobe to a new file unless previously loaded by user
-    public void saveWardrobe() {
+    public void saveWardrobe(String ans) {
         try {
-            if (this.userWardrobe.getName() == null) {
-                userWardrobe.setName(getInputText("What would you like to name the wardrobe"));
-            }
-            if (jsonStore == null) {
-                String locationName = getInputText("Enter the file name (without the .json extension)");
-                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
-            }
+            String jsonStore = JSON_STORE_BASE + ans + JSON_STORE_EXTENSION;
             jsonWriter.open(jsonStore);
             jsonWriter.write(userWardrobe);
             jsonWriter.close();
-            System.out.println("Saved Wardrobe to " + jsonStore);
-            flatLine();
+            JOptionPane.showMessageDialog(null,
+                    "Saved to Wardrobe " + ans,
+                    "Operation Successful", JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + jsonStore);
-            System.out.println();
+            JOptionPane.showMessageDialog(null,
+                    "File " + ans + " not found",
+                    "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: loads wardrobe from file specified by user
-    private void loadWardrobe() {
+    public void loadWardrobe(String ans) {
         try {
-            if (jsonStore == null) {
-                String locationName = getInputText("Enter the file name (without the .json extension)");
-                this.jsonStore = JSON_STORE_BASE + locationName + JSON_STORE_EXTENSION;
-            }
-            this.jsonStore = JSON_STORE_BASE + jsonStore + JSON_STORE_EXTENSION;
+            String jsonStore = JSON_STORE_BASE + ans + JSON_STORE_EXTENSION;
             userWardrobe = jsonReader.read(jsonStore);
-            System.out.println("Loaded Wardrobe \"" + this.userWardrobe.getName() + "\" from " + jsonStore);
-            //this.frame.setTitle(this.userWardrobe.getName());
-            flatLine();
+            JOptionPane.showMessageDialog(null,
+                    "Loaded from File " + ans,
+                    "Operation Successful", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + jsonStore);
-            System.out.println();
+            JOptionPane.showMessageDialog(null,
+                    "File " + ans + " not found",
+                    "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE);
         }
     }
 

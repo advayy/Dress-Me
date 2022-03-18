@@ -31,6 +31,8 @@ public class UIRunner implements ActionListener {
     JPanel rightArrowPanel;
     JPanel optionsPanel;
 
+    JButton save;
+    JButton load;
     JButton hatLeft;
     JButton hatRight;
     JButton upperLeft;
@@ -170,6 +172,12 @@ public class UIRunner implements ActionListener {
         optionsConstraints.gridy = 4;
         openOutfitWindow.addActionListener(this);
         optionsPanel.add(openOutfitWindow, optionsConstraints);
+        optionsConstraints.gridy = 5;
+        save.addActionListener(this);
+        optionsPanel.add(save, optionsConstraints);
+        optionsConstraints.gridy = 6;
+        load.addActionListener(this);
+        optionsPanel.add(load, optionsConstraints);
     }
 
     void setupOptionsPanelButtons() {
@@ -179,11 +187,15 @@ public class UIRunner implements ActionListener {
         openListingWindow = new JButton();
         addOutfit = new JButton();
         openOutfitWindow = new JButton();
+        save = new JButton();
+        load = new JButton();
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
         openListingWindow.setText("See List View");
         addOutfit.setText("Add Outfit From Selected");
         openOutfitWindow.setText("See Outfits");
+        save.setText("Save Changes");
+        load.setText("Load Wardrobe from a file");
     }
 
     void setupCentrePanel() {
@@ -691,27 +703,38 @@ public class UIRunner implements ActionListener {
         }
     }
 
+    void runSave() {
+        String answer = JOptionPane.showInputDialog("Enter save file name (without the .json extension)");
+        backUI.saveWardrobe(answer);
+    }
+
+    void runLoad() {
+        String answer = JOptionPane.showInputDialog("Enter file name to load from (without the .json extension)");
+        backUI.loadWardrobe(answer);
+    }
+
     @Override
     @SuppressWarnings("methodlength")
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openOutfitWindow) {
             frame.dispose();
             outfitFrameSetup();
-            backUI.saveWardrobe();
+        } else if (e.getSource() == save) {
+            runSave();
+        }  else if (e.getSource() == load) {
+            runLoad();
+            updateWearAndText();
         } else if (e.getSource() == openListingWindow) {
             frame.dispose();
             listingFrameSetup();
-            backUI.saveWardrobe();
         } else if (e.getSource() == addItem) {
             launchAdditionWindow(addItem);
         } else if (e.getSource() == removeItem) {
             launchRemoveWindow();
-            backUI.saveWardrobe();
             removeUpdate();
             updateWearAndText();
         } else if (e.getSource() == addOutfit) {
             addOutfitFromSelected();
-            backUI.saveWardrobe();
         } else if (e.getSource() == superTypeSelect) {
             runSuperTypeSelectSequence();
         } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
@@ -720,7 +743,6 @@ public class UIRunner implements ActionListener {
             setupConfirmationButton();
         } else if (e.getSource() == confirmation) {
             addClothing();
-            backUI.saveWardrobe();
             removeUpdate();
             updateWearAndText();
         } else if (e.getSource() == hatRight) {
