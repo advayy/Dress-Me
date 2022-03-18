@@ -54,6 +54,14 @@ class WardrobeTest {
         testList.add(pant);
         testList.add(shoe);
         assertEquals(userTest.getInternalWardrobe(), testList);
+        int f = userTest.getAllFootwear().size();
+        int l = userTest.getAllLowerWear().size();
+        int u = userTest.getAllUpperWear().size();
+        int h = userTest.getAllFootwear().size();
+        assertEquals(1, h);
+        assertEquals(1, u);
+        assertEquals(1, l);
+        assertEquals(1, f);
     }
 
     @Test
@@ -183,5 +191,24 @@ class WardrobeTest {
         assertNull(userTest.getClothesByIndex(100));
     }
 
+    @Test
+    void codeByTypeTest() {
+        assertEquals(1 , userTest.getCodeByType(hat));
+        assertEquals(2 , userTest.getCodeByType(shirt));
+        assertEquals(3 , userTest.getCodeByType(pant));
+        assertEquals(4 , userTest.getCodeByType(shoe));
+    }
 
+    @Test
+    void getSubListIndexTest() {
+        userTest.addItem(hat); // 1
+        userTest.addItem(shirt); // 2
+        userTest.addItem(pant); // 3
+        userTest.addItem(shoe); // 4
+        assertEquals(0, userTest.getSubListIndex(hat.getIndexNo()));
+        assertEquals(0, userTest.getSubListIndex(shirt.getIndexNo()));
+        assertEquals(0, userTest.getSubListIndex(pant.getIndexNo()));
+        assertEquals(0, userTest.getSubListIndex(shoe.getIndexNo()));
+        assertEquals(-1, userTest.getSubListIndex(100));
+    }
 }

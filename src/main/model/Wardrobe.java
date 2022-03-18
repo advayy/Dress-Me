@@ -255,11 +255,7 @@ public class Wardrobe implements Writable {
                 found = true;
             }
         }
-        if (found) {
-            return listIndex;
-        } else {
-            return -1;
-        }
+        return found ? listIndex : -1;
     }
 
     /* Requires: a given item of Clothing type
