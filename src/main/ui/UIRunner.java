@@ -10,13 +10,14 @@ import java.awt.event.ActionListener;
 public class UIRunner implements ActionListener {
     JButton addItem;
     JButton removeItem;
-    JButton openListingWindow;
-    JButton addOutfit;
-    JButton openOutfitWindow;
+//    JButton openListingWindow;
+//    JButton addOutfit;
+//    JButton openOutfitWindow;
     JFrame frame;
     ImageIcon nullSquare = new ImageIcon("./assets/null.png");
     ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
             .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    Color backGroundColour = new Color(0xdabaff);
 
     JLabel wtText;
     JLabel nameText;
@@ -87,7 +88,6 @@ public class UIRunner implements ActionListener {
     }
 
     public void pickerFrameSetup() {
-        Color backGroundColour = new Color(0xdabaff);
         frame = new JFrame(); // creates a outfitFrame
         frame.setLocation(locationX, locationY);
         frame.setSize(600, 500); // sets x and y dimensions of outfitFrame
@@ -170,9 +170,9 @@ public class UIRunner implements ActionListener {
         optionsConstraints.gridy = 0;
         addItem.addActionListener(this);
         removeItem.addActionListener(this);
-        openListingWindow.addActionListener(this);
-        addOutfit.addActionListener(this);
-        openOutfitWindow.addActionListener(this);
+//        openListingWindow.addActionListener(this);
+//        addOutfit.addActionListener(this);
+//        openOutfitWindow.addActionListener(this);
         save.addActionListener(this);
         load.addActionListener(this);
         name.addActionListener(this);
@@ -187,29 +187,29 @@ public class UIRunner implements ActionListener {
         optionsPanel.add(load, optionsConstraints);
         optionsConstraints.gridy = 4;
         optionsPanel.add(name, optionsConstraints);
-        optionsConstraints.gridy = 5;
-        optionsPanel.add(addOutfit, optionsConstraints);
-        optionsConstraints.gridy = 6;
-        optionsPanel.add(openListingWindow, optionsConstraints);
-        optionsConstraints.gridy = 7;
-        optionsPanel.add(openOutfitWindow, optionsConstraints);
+//        optionsConstraints.gridy = 5;
+//        optionsPanel.add(addOutfit, optionsConstraints);
+//        optionsConstraints.gridy = 6;
+//        optionsPanel.add(openListingWindow, optionsConstraints);
+//        optionsConstraints.gridy = 7;
+//        optionsPanel.add(openOutfitWindow, optionsConstraints);
     }
 
     void setupOptionsPanelButtons() {
         optionsPanel = new JPanel(new GridBagLayout());
         addItem = new JButton();
         removeItem = new JButton();
-        openListingWindow = new JButton();
-        addOutfit = new JButton();
-        openOutfitWindow = new JButton();
+//        openListingWindow = new JButton();
+//        addOutfit = new JButton();
+//        openOutfitWindow = new JButton();
         save = new JButton();
         load = new JButton();
         name = new JButton();
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
-        openListingWindow.setText("Go to List View");
-        addOutfit.setText("Add Outfit");
-        openOutfitWindow.setText("Go to Outfits View");
+//        openListingWindow.setText("Go to List View");
+//        addOutfit.setText("Add Outfit");
+//        openOutfitWindow.setText("Go to Outfits View");
         save.setText("Save To File");
         load.setText("Load From File");
         name.setText("Name Wardrobe");
@@ -363,48 +363,6 @@ public class UIRunner implements ActionListener {
         int g = c.getGreen();
         int b = c.getBlue();
         return new Color(r, g, b);
-    }
-
-
-    void outfitFrameSetup() {
-        frame = new JFrame();
-        frame.setLocation(locationX, locationY);
-        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
-        frame.setVisible(true);
-        frame.setTitle("Outfit Window");
-        frame.getContentPane().setBackground(new Color(0x9dd4d4));
-        frame.setLayout(new GridBagLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel x = new JLabel();
-        x.setText("Outfit Window");
-        frame.add(x);
-
-        // Show up controllers below
-        frame.revalidate();
-        frame.repaint();
-        frame.getContentPane();
-        frame.setResizable(false);
-    }
-
-
-    void listingFrameSetup() {
-        frame = new JFrame();
-        frame.setLocation(locationX, locationY);
-        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
-        frame.setVisible(true);
-        frame.setTitle("Listing Window");
-        frame.getContentPane().setBackground(new Color(0xCBCBCB));
-        frame.setLayout(new GridBagLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel x = new JLabel();
-        x.setText("Listing Window");
-        frame.add(x);
-
-        // Show up controllers below
-        frame.revalidate();
-        frame.repaint();
-        frame.getContentPane();
-        frame.setResizable(false);
     }
 
     void launchAdditionWindow(Component parent) {
@@ -754,27 +712,19 @@ public class UIRunner implements ActionListener {
     @Override
     @SuppressWarnings("methodlength")
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == openOutfitWindow) {
-            frame.dispose();
-            outfitFrameSetup();
-        } else if (e.getSource() == save) {
+        if (e.getSource() == save) {
             runSave();
         }  else if (e.getSource() == load) {
             runLoad();
             updateWearAndText();
         } else if (e.getSource() == name) {
             runName();
-        } else if (e.getSource() == openListingWindow) {
-            frame.dispose();
-            listingFrameSetup();
         } else if (e.getSource() == addItem) {
             launchAdditionWindow(addItem);
         } else if (e.getSource() == removeItem) {
             launchRemoveWindow();
             removeUpdate();
             updateWearAndText();
-        } else if (e.getSource() == addOutfit) {
-            addOutfitFromSelected();
         } else if (e.getSource() == superTypeSelect) {
             runSuperTypeSelectSequence();
         } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
@@ -803,4 +753,76 @@ public class UIRunner implements ActionListener {
             footGoLeft();
         }
     }
+
+    /*
+    // Listing buttons
+    JLabel listOfItems = new JLabel("Items List: ");
+    DefaultListModel listModel = new DefaultListModel();
+    JList items = new JList();
+    JButton goToPicker;
+    JButton goToOutfit;
+    JButton addItemToList;
+    JButton removeFromList;
+    JButton filter;
+    JPanel listPanel;
+
+    void listingFrameSetup() {
+        listPanel = new JPanel();
+        frame = new JFrame();
+        frame.setLocation(locationX, locationY);
+        frame.setSize(800, 500); // sets x and y dimensions of outfitFrame
+        frame.setVisible(true);
+        frame.setTitle("Listing Window : " + backUI.userWardrobe.getName());
+        frame.getContentPane().setBackground(backGroundColour);
+        frame.setLayout(new GridBagLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setupListingPanels();
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    void setupListingPanels() {
+        setListPanel();
+        //setListOptionsPanel();
+        listPanel.setBackground(backGroundColour);
+        optionsPanel.setBackground(backGroundColour);
+        GridBagConstraints setup = new GridBagConstraints();
+        setup.weightx = 3;
+        frame.add(listPanel, setup);
+        setup.weightx = 1;
+        frame.add(optionsPanel, setup);
+    }
+
+    void setListPanel() {
+        for (Clothing item : backUI.userWardrobe.getInternalWardrobe()) {
+            String s = backUI.printClothingDetails(item);
+            listModel.addElement(s);
+        }
+        items.setModel(listModel);
+        listPanel.setLayout(new GridBagLayout());
+        GridBagConstraints setup = new GridBagConstraints();
+        setup.gridy = 0;
+        setup.gridx = 0;
+        listPanel.add(listOfItems);
+        setup.gridy = 1;
+        listPanel.add(items);
+        listPanel.setVisible(true);
+
+    }
+
+    void outfitFrameSetup() {
+        frame = new JFrame();
+        frame.setLocation(locationX, locationY);
+        frame.setSize(850, 500); // sets x and y dimensions of outfitFrame
+        frame.setVisible(true);
+        frame.setTitle("Outfit Window : " + backUI.userWardrobe.getName());
+        frame.getContentPane().setBackground(backGroundColour);
+        frame.setLayout(new GridBagLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    * */
 }

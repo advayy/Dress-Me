@@ -343,7 +343,7 @@ public class DressMeApp extends JFrame {
 
     //Requires: An item of clothing as an input
     //Effects: Returns all the data of thw clothing item in the CLI
-    public void printClothingDetails(Clothing item) {
+    public String printClothingDetails(Clothing item) {
         Colour color;
         String genre;
         String subType;
@@ -354,13 +354,14 @@ public class DressMeApp extends JFrame {
         subType = item.getPieceSubtype();
         name = item.getPieceName();
         index = item.getIndexNo();
-        System.out.print("Item Index: " + index);
-        System.out.print(", Item Name: " + name);
-        System.out.print(", Item SubType: " + subType);
-        System.out.print(", Item Genre/Formality: " + genre);
-        System.out.print(", Item Color: [Red: " + color.getRed() + ", Green: " + color.getGreen());
-        System.out.print(", Blue: " + color.getBlue() + "]");
-        System.out.println();
+        String s1 = ("Index: " + index);
+        String s2 = (", Name: " + name);
+        String s3 = (", SubType: " + subType);
+        String s4 = (", Formality: " + genre);
+        String s5 = (", Color: [R: " + color.getRed() + ", G: " + color.getGreen());
+        String s6 = (", B: " + color.getBlue() + "]");
+        String output = s1 + s2 + s3 + s4 + s5 + s6;
+        return output;
     }
 
     /* Requires: input color from the user
