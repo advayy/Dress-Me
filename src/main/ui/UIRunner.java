@@ -15,8 +15,10 @@ public class UIRunner implements ActionListener {
 //    JButton openOutfitWindow;
     JFrame frame;
     ImageIcon nullSquare = new ImageIcon("./assets/null.png");
-    ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
-            .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+//    ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
+//            .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    ImageIcon logo = new ImageIcon("./assets/dressmeicon.png");
+    ImageIcon dressmeLogo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
     Color backGroundColour = new Color(0xdabaff);
 
     JLabel wtText;
@@ -89,6 +91,7 @@ public class UIRunner implements ActionListener {
 
     public void pickerFrameSetup() {
         frame = new JFrame(); // creates a outfitFrame
+        frame.setIconImage(dressmeLogo.getImage());
         frame.setLocation(locationX, locationY);
         frame.setSize(600, 500); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
@@ -249,18 +252,16 @@ public class UIRunner implements ActionListener {
         if (this.backUI.userWardrobe.getAllUpperWear().size() == 0) {
             String title = "No Upper Wear";
             upperText = new JLabel(title);
-            upperLabel.setIcon(nullSquareScaled);
+            upperLabel.setIcon(nullSquare);
         } else {
             String sub = this.backUI.userWardrobe.getAllUpperWear().get(currU).getPieceSubtype();
             upperWearIcon = this.backUI.userWardrobe.getAllUpperWear().get(currU).getImage(sub);
-            ImageIcon scaleUpper = new ImageIcon(
-                    upperWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
             int index = backUI.userWardrobe.getAllUpperWear().get(currU).getIndexNo();
             String name = backUI.userWardrobe.getAllUpperWear().get(currU).getPieceName();
             String title = "ID: " + index + ", " + name;
             Color c = getColorFromColour(backUI.userWardrobe.getAllUpperWear().get(currU).getPieceColour());
             upperText = new JLabel(title);
-            upperLabel.setIcon(scaleUpper);
+            upperLabel.setIcon(upperWearIcon);
             upperLabel.setBackground(c);
         }
         upperLabel.setSize(100, 100);
@@ -273,18 +274,16 @@ public class UIRunner implements ActionListener {
         if (this.backUI.userWardrobe.getAllHeadWear().size() == 0) {
             String title = "No Head Wear";
             headText = new JLabel(title);
-            headLabel.setIcon(nullSquareScaled);
+            headLabel.setIcon(nullSquare);
         } else {
             String sub = this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceSubtype();
             headWearIcon = this.backUI.userWardrobe.getAllHeadWear().get(currH).getImage(sub);
-            ImageIcon scaleHead = new ImageIcon(
-                    headWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
             int index = this.backUI.userWardrobe.getAllHeadWear().get(currH).getIndexNo();
             String name = this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceName();
             String title = "ID: " + index + ", " + name;
             Color c = getColorFromColour(this.backUI.userWardrobe.getAllHeadWear().get(currH).getPieceColour());
             headText = new JLabel(title);
-            headLabel.setIcon(scaleHead);
+            headLabel.setIcon(headWearIcon);
             headLabel.setBackground(c);
         }
         headLabel.setSize(100, 100);
@@ -298,18 +297,16 @@ public class UIRunner implements ActionListener {
         if (this.backUI.userWardrobe.getAllLowerWear().size() == 0) {
             String title = "No Lower Wear";
             lowerText = new JLabel(title);
-            lowerLabel.setIcon(nullSquareScaled);
+            lowerLabel.setIcon(nullSquare);
         } else {
             String sub = this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceSubtype();
             lowerWearIcon = this.backUI.userWardrobe.getAllLowerWear().get(currL).getImage(sub);
-            ImageIcon scaleLower = new ImageIcon(
-                    lowerWearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
             int index = this.backUI.userWardrobe.getAllLowerWear().get(currL).getIndexNo();
             String name = this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceName();
             String title = "ID: " + index + ", " + name;
             Color c = getColorFromColour(this.backUI.userWardrobe.getAllLowerWear().get(currL).getPieceColour());
             lowerText = new JLabel(title);
-            lowerLabel.setIcon(scaleLower);
+            lowerLabel.setIcon(lowerWearIcon);
             lowerLabel.setBackground(c);
         }
         lowerLabel.setSize(100, 100);
@@ -323,18 +320,16 @@ public class UIRunner implements ActionListener {
         if (this.backUI.userWardrobe.getAllFootwear().size() == 0) {
             String title = "No Footwear";
             bottomText = new JLabel(title);
-            bottomLabel.setIcon(nullSquareScaled);
+            bottomLabel.setIcon(nullSquare);
         } else {
             String sub = this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceSubtype();
             footwearIcon = this.backUI.userWardrobe.getAllFootwear().get(currF).getImage(sub);
-            ImageIcon scaleBottom = new ImageIcon(
-                    footwearIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
             int index = this.backUI.userWardrobe.getAllFootwear().get(currF).getIndexNo();
             String name = this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceName();
             String title = "ID: " + index + ", " + name;
             Color c = getColorFromColour(this.backUI.userWardrobe.getAllFootwear().get(currF).getPieceColour());
             bottomText = new JLabel(title);
-            bottomLabel.setIcon(scaleBottom);
+            bottomLabel.setIcon(footwearIcon);
             bottomLabel.setBackground(c);
         }
         bottomLabel.setSize(100, 100);
@@ -368,6 +363,7 @@ public class UIRunner implements ActionListener {
     void launchAdditionWindow(Component parent) {
         setupAdditionWindowButtons();
         addFrame.setLocationRelativeTo(parent);
+        addFrame.setIconImage(dressmeLogo.getImage());
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
         addFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -412,15 +408,16 @@ public class UIRunner implements ActionListener {
                 if (flag) {
                     JOptionPane.showMessageDialog(null,
                             "Index " + index + " removed successfully",
-                            "Operation Successful", JOptionPane.PLAIN_MESSAGE);
+                            "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Index " + index + " not found",
-                            "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE);
+                            "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE, dressmeLogo);
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null,
-                        "Please only enter a number", "Invalid input", JOptionPane.ERROR_MESSAGE);
+                        "Please only enter a number", "Invalid input", JOptionPane.ERROR_MESSAGE,
+                        dressmeLogo);
             }
         }
     }
@@ -648,7 +645,7 @@ public class UIRunner implements ActionListener {
     void addOutfitFromSelected() {
         int answer = JOptionPane.showConfirmDialog(null,
                 "Would you like to add the selected items into an outfit?", "Add Outfit?",
-                JOptionPane.YES_NO_OPTION);
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
         if (answer == 0) { // yes
             int hs = backUI.userWardrobe.getAllHeadWear().size();
             int us = backUI.userWardrobe.getAllUpperWear().size();
@@ -665,16 +662,16 @@ public class UIRunner implements ActionListener {
                 backUI.userWardrobe.addOutfit(o);
                 JOptionPane.showMessageDialog(null,
                         msg,
-                        "Operation Successful", JOptionPane.PLAIN_MESSAGE);
+                        "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Not Enough Items To Be An Outfit",
-                        "Operation Failure", JOptionPane.ERROR_MESSAGE);
+                        "Operation Failure", JOptionPane.ERROR_MESSAGE, dressmeLogo);
             }
         } else if (answer == 1) {
             JOptionPane.showMessageDialog(null,
                     "Outfit not created",
-                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE);
+                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
         }
     }
 
@@ -682,12 +679,19 @@ public class UIRunner implements ActionListener {
         if (backUI.userWardrobe.getName() == null) {
             runName();
         }
-        String answer = JOptionPane.showInputDialog("Enter save file location (without the .json extension)");
-        backUI.saveWardrobe(answer);
+        String answer = JOptionPane.showInputDialog("Enter save file location (without the .json extension)",
+                "wardrobe");
+        if (answer != "") {
+            backUI.saveWardrobe(answer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Location", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     void runLoad() {
-        String answer = JOptionPane.showInputDialog("Enter file name to load from (without the .json extension)");
+        String answer = JOptionPane.showInputDialog("Enter file name to load from (without the .json extension)",
+                "wardrobe");
         backUI.loadWardrobe(answer);
         frame.setTitle("Dress Me Wardrobe : " + backUI.userWardrobe.getName());
     }
@@ -695,12 +699,13 @@ public class UIRunner implements ActionListener {
     void runName() {
         String answer;
         if (backUI.userWardrobe.getName() == null) {
-            answer = JOptionPane.showInputDialog("What would you like to name this Wardrobe?");
+            answer = JOptionPane.showInputDialog("What would you like to name this Wardrobe?",
+                    "default");
             backUI.userWardrobe.setName(answer);
         } else {
             int x = JOptionPane.showConfirmDialog(null,
                     "Would you like to rename this wardrobe?", "Rename Wardrobe?",
-                    JOptionPane.YES_NO_OPTION);
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
             if (x == 0) {
                 answer = JOptionPane.showInputDialog("What would you like to rename this Wardrobe? to");
                 backUI.userWardrobe.setName(answer);
