@@ -1,5 +1,5 @@
 {
-    "name": "Demo User Wardrobe",
+    "name": "Demo",
     "outfits": [],
     "clothes": [
         {
@@ -232,6 +232,17 @@
             "genre": "formal",
             "name": "dabaff",
             "index": 21
+        },
+        {
+            "colour": {
+                "red": 183,
+                "green": 183,
+                "blue": 234
+            },
+            "subtype": "HAT",
+            "genre": "sport",
+            "name": "grant",
+            "index": 22
         }
     ]
 }

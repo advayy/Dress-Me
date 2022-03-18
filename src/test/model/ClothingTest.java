@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+import java.awt.image.ImagingOpException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClothingTest {
@@ -62,5 +65,53 @@ class ClothingTest {
        assertEquals("Formal", shoe.getPieceGenre());
        assertEquals("Shoes", shoe.getPieceSubtype());
        assertEquals("Amiri", shoe.getPieceName());
+    }
+
+    @Test
+   public void getImageTests() {
+       Colour c = new Colour(0,0,0);
+       Clothing h0 = new HeadWear(c, "x", "GLASSES", "x");
+       Clothing h1 = new HeadWear(c, "x", "HAT", "x");
+       Clothing h2 = new HeadWear(c, "x", "HEADBAND", "x");
+
+       Clothing u0 = new UpperWear(c, "x", "TEESHIRT", "x");
+       Clothing u1 = new UpperWear(c, "x", "SHIRT", "x");
+       Clothing u2 = new UpperWear(c, "x", "JACKET", "x");
+       Clothing u3 = new UpperWear(c, "x", "SWEATER", "x");
+
+       Clothing l0 = new LowerWear(c, "x", "PANTS", "x");
+       Clothing l1 = new LowerWear(c, "x", "SHORTS", "x");
+       Clothing l2 = new LowerWear(c, "x", "JEANS", "x");
+
+       Clothing f0 = new FootWear(c, "x", "SHOES", "x");
+       Clothing f1 = new FootWear(c, "x", "SLIPPERS", "x");
+
+       assertEquals(h0.getImage("GLASSES").getImage(),
+               new ImageIcon("./assets/H0_glasses.png").getImage());
+       assertEquals(h1.getImage(h1.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/H1_hat.png").getImage());
+       assertEquals(h2.getImage(h2.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/H2_headband.png").getImage());
+
+       assertEquals(u0.getImage(u0.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/U0_teeshirt.png").getImage());
+       assertEquals(u1.getImage(u1.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/U1_shirt.png").getImage());
+       assertEquals(u2.getImage(u2.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/U3_jacket.png").getImage());
+       assertEquals(u3.getImage(u3.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/U4_sweater.png").getImage());
+
+       assertEquals(l0.getImage(l0.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/L0_pants.png").getImage());
+       assertEquals(l1.getImage(l1.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/L1_shorts.png").getImage());
+       assertEquals(l2.getImage(l2.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/L2_jeans.png").getImage());
+
+       assertEquals(f0.getImage(f0.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/F0_shoe.png").getImage());
+       assertEquals(f1.getImage(f1.getPieceSubtype()).getImage(),
+               new ImageIcon("./assets/F1_slippers.png").getImage());
     }
 }

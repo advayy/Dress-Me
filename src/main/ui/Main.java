@@ -23,7 +23,7 @@ public class Main {
         window.repaint();
         window.revalidate();
         try {
-            Thread.sleep(2500);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
