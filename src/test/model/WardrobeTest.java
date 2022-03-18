@@ -57,7 +57,7 @@ class WardrobeTest {
         int f = userTest.getAllFootwear().size();
         int l = userTest.getAllLowerWear().size();
         int u = userTest.getAllUpperWear().size();
-        int h = userTest.getAllFootwear().size();
+        int h = userTest.getAllHeadWear().size();
         assertEquals(1, h);
         assertEquals(1, u);
         assertEquals(1, l);
