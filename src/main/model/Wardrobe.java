@@ -20,31 +20,37 @@ public class Wardrobe implements Writable {
     private ArrayList<Clothing> allFootwear;
     private String wardrobeName;
 
+    // Effects: Constructor
     public Wardrobe() {
-        internalWardrobe = new ArrayList<Clothing>();
-        internalOutfits = new ArrayList<Outfit>();
+        internalWardrobe = new ArrayList<>();
+        internalOutfits = new ArrayList<>();
         allHeadWear = new ArrayList<>();
         allUpperWear = new ArrayList<>();
         allLowerWear = new ArrayList<>();
         allFootwear = new ArrayList<>();
     }
 
+    // Effects: returns internal head wear list
     public ArrayList<Clothing> getAllHeadWear() {
         return allHeadWear;
     }
 
+    // Effects: returns internal upper wear list
     public ArrayList<Clothing> getAllUpperWear() {
         return allUpperWear;
     }
 
+    // Effects: returns internal lower wear list
     public ArrayList<Clothing> getAllLowerWear() {
         return allLowerWear;
     }
 
+    // Effects: returns internal footwear list
     public ArrayList<Clothing> getAllFootwear() {
         return allFootwear;
     }
 
+    // Effects: generates all internal lists
     public void createTypeLists() {
         this.allHeadWear = getClothesByType(1);
         this.allUpperWear = getClothesByType(2);
@@ -77,7 +83,7 @@ public class Wardrobe implements Writable {
      * Effects: filters the internalWardrobe for clothes that match the input color
      * */
     public ArrayList<Clothing> getClothesOfColour(Colour colour) {
-        ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
+        ArrayList<Clothing> filteredList = new ArrayList<>();
 
         for (Clothing c : this.internalWardrobe) {
             if (c.getPieceColour().colourEquals(colour)) {
@@ -93,7 +99,7 @@ public class Wardrobe implements Writable {
      * */
     public ArrayList<Clothing> getClothesOfApparelGenre(String genre) {
 
-        ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
+        ArrayList<Clothing> filteredList = new ArrayList<>();
 
         for (Clothing c : this.internalWardrobe) {
             if (c.getPieceGenre().equals(genre)) {
@@ -108,7 +114,7 @@ public class Wardrobe implements Writable {
     * Effects  : creates a list of that type of wear
     * */
     public ArrayList<Clothing> getClothesByType(int code) {
-        ArrayList<Clothing> filteredList = new ArrayList<Clothing>();
+        ArrayList<Clothing> filteredList = new ArrayList<>();
 
         for (Clothing c : this.internalWardrobe) {
             if (code == 1) {
@@ -226,9 +232,9 @@ public class Wardrobe implements Writable {
         }
     }
 
-
+    // Requires: a clothing ID
+    // Effects: returns internal list index of a given clothing ID
     public int getSubListIndex(int index) {
-        boolean found = false;
         int listIndex = -1;
         if (searchListForIndex(index, this.allHeadWear) != -1) {
             listIndex = searchListForIndex(index, this.allHeadWear);
@@ -243,6 +249,8 @@ public class Wardrobe implements Writable {
     }
 
 
+    // Requires: a clothing ID and a list
+    // Effects: looks for the ID in the list and returns its index if found, -1 if not found
     public int searchListForIndex(int index, ArrayList<Clothing> list) {
         int flag = -1;
         for (Clothing item: list) {

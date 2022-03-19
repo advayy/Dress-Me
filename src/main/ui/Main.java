@@ -4,6 +4,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+// Launches app and displays splash screen
 public class Main {
     public static void main(String[] args) {
         JWindow window = new JWindow();

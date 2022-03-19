@@ -23,12 +23,6 @@ public class DressMeApp extends JFrame {
     private JsonReader jsonReader;
     private UIRunner render;
 
-
-    public Wardrobe getUserWardrobe() {
-        return userWardrobe;
-    }
-
-
     /*
      * Effects: Runs the Application loop
      * */
@@ -41,6 +35,12 @@ public class DressMeApp extends JFrame {
         render = new UIRunner(this);
         //runDressMe();
     }
+
+    // returns internal user wardrobe
+    public Wardrobe getUserWardrobe() {
+        return userWardrobe;
+    }
+
 
     /* Requires: An integer input from the user
      * Effects: Gets user input and either quits or loops depending on what is entered
@@ -362,8 +362,7 @@ public class DressMeApp extends JFrame {
         String s4 = (", Formality: " + genre);
         String s5 = (", Color: [R: " + color.getRed() + ", G: " + color.getGreen());
         String s6 = (", B: " + color.getBlue() + "]");
-        String output = s1 + s2 + s3 + s4 + s5 + s6;
-        return output;
+        return s1 + s2 + s3 + s4 + s5 + s6;
     }
 
     /* Requires: input color from the user
@@ -467,7 +466,7 @@ public class DressMeApp extends JFrame {
         boolean breakOut =  false;
         String[] wearNames = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
         int counter = 0;
-        ArrayList<Clothing> toBeReturned = new ArrayList<Clothing>();
+        ArrayList<Clothing> toBeReturned = new ArrayList<>();
         while (!breakOut && counter < 4) {
             System.out.println("Pick an item of " + wearNames[counter]);
             listItems(userWardrobe.getClothesByType(counter));

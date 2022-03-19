@@ -4,23 +4,24 @@ import model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class UIRunner implements ActionListener {
+// Class that creates all the UI elements and windows during run
+public class UIRunner implements ActionListener, MouseListener {
+    int width = 600;
+    int height = 500;
     JButton addItem;
     JButton removeItem;
-//    JButton openListingWindow;
+    //    JButton openListingWindow;
 //    JButton addOutfit;
 //    JButton openOutfitWindow;
     JFrame frame;
     ImageIcon nullSquare = new ImageIcon("./assets/null.png");
-//    ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
+    //    ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
 //            .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
     ImageIcon logo = new ImageIcon("./assets/dressmeicon.png");
-    ImageIcon dressmeLogo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    ImageIcon dressMeLogo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
     Color backGroundColour = new Color(0xdabaff);
-
     JLabel wtText;
     JLabel nameText;
     JLabel formalityText;
@@ -29,22 +30,32 @@ public class UIRunner implements ActionListener {
     ImageIcon headWearIcon = new ImageIcon();
     ImageIcon lowerWearIcon = new ImageIcon();
     ImageIcon footwearIcon = new ImageIcon();
-
     JPanel leftArrowPanel;
     JPanel rightArrowPanel;
     JPanel optionsPanel;
-
     JButton save;
     JButton load;
     JButton name;
-    JButton hatLeft;
-    JButton hatRight;
-    JButton upperLeft;
-    JButton upperRight;
-    JButton lowerLeft;
-    JButton lowerRight;
-    JButton bottomLeft;
-    JButton bottomRight;
+
+    ImageIcon left = new ImageIcon("./assets/leftArrow.png");
+    ImageIcon right = new ImageIcon("./assets/rightArrow.png");
+    JLabel hatLeft;
+    JLabel hatRight;
+    JLabel upperLeft;
+    JLabel upperRight;
+    JLabel lowerLeft;
+    JLabel lowerRight;
+    JLabel bottomLeft;
+    JLabel bottomRight;
+
+//    JButton hatLeft;
+//    JButton hatRight;
+//    JButton upperLeft;
+//    JButton upperRight;
+//    JButton lowerLeft;
+//    JButton lowerRight;
+//    JButton bottomLeft;
+//    JButton bottomRight;
     JLabel upperLabel;
     JLabel upperText;
     JLabel headLabel;
@@ -58,14 +69,11 @@ public class UIRunner implements ActionListener {
     int currL = 0;
     int currF = 0;
     DressMeApp backUI;
-
     int userScreenHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
     int userScreenWidth = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    int locationX = userScreenWidth / 2 - 400;
-    int locationY = userScreenHeight / 2 - 250;
-
-
-    // Stuff for add
+    int locationX = userScreenWidth / 2 - width / 2;
+    int locationY = userScreenHeight / 2 - height / 2;
+    // Labels and elements  for add
     JComboBox superTypeSelect;
     JFrame addFrame;
     JTextField nameField;
@@ -80,6 +88,7 @@ public class UIRunner implements ActionListener {
     JButton confirmation;
     Color selectedOutfitColour;
 
+    // Effects: Initiates the layout for the Ui
     public UIRunner(DressMeApp dressMeApp) {
         this.backUI = dressMeApp;
         frame = new JFrame(); // creates a outfitFrame
@@ -90,10 +99,12 @@ public class UIRunner implements ActionListener {
         b4 = new JRadioButton();
     }
 
+
+    // Effects: Sets up the picker frame
     public void pickerFrameSetup() {
-        frame.setIconImage(dressmeLogo.getImage());
+        frame.setIconImage(dressMeLogo.getImage());
         frame.setLocation(locationX, locationY);
-        frame.setSize(600, 500); // sets x and y dimensions of outfitFrame
+        frame.setSize(width, height); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
         frame.setTitle("Dress Me!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,32 +127,57 @@ public class UIRunner implements ActionListener {
         frame.revalidate();
     }
 
+    // Effects: Colours all the panels
     void colorAllPanels(Color c) {
         leftArrowPanel.setBackground(c);
         rightArrowPanel.setBackground(c);
         centrePanel.setBackground(c);
-        optionsPanel.setBackground(c);
+        // optionsPanel.setBackground(c);
+        optionsPanel.setBackground(new Color(0x7a7a7a));
     }
 
+    // Effects: Sets up the arrow button information
     void setArrowButtons() {
-        hatLeft = new JButton("<-");
-        hatRight = new JButton("->");
-        upperLeft = new JButton("<-");
-        upperRight = new JButton("->");
-        lowerLeft = new JButton("<-");
-        lowerRight = new JButton("->");
-        bottomLeft = new JButton("<-");
-        bottomRight = new JButton("->");
-        hatLeft.addActionListener(this);
-        upperLeft.addActionListener(this);
-        lowerLeft.addActionListener(this);
-        bottomLeft.addActionListener(this);
-        hatRight.addActionListener(this);
-        upperRight.addActionListener(this);
-        lowerRight.addActionListener(this);
-        bottomRight.addActionListener(this);
+        hatLeft = new JLabel();
+        hatRight = new JLabel();
+        upperLeft = new JLabel();
+        upperRight = new JLabel();
+        lowerLeft = new JLabel();
+        lowerRight = new JLabel();
+        bottomLeft = new JLabel();
+        bottomRight = new JLabel();
+        hatLeft.addMouseListener(this);
+        upperLeft.addMouseListener(this);
+        lowerLeft.addMouseListener(this);
+        bottomLeft.addMouseListener(this);
+        hatRight.addMouseListener(this);
+        upperRight.addMouseListener(this);
+        lowerRight.addMouseListener(this);
+        bottomRight.addMouseListener(this);
+        setArrowImages();
     }
 
+    // Effects: Sets the arrow images
+    void setArrowImages() {
+        hatLeft.setSize(58, 42);
+        upperLeft.setSize(58, 42);
+        lowerLeft.setSize(58, 42);
+        bottomLeft.setSize(58, 42);
+        hatRight.setSize(58, 42);
+        upperRight.setSize(58, 42);
+        lowerRight.setSize(58, 42);
+        bottomRight.setSize(58, 42);
+        hatLeft.setIcon(left);
+        upperLeft.setIcon(left);
+        lowerLeft.setIcon(left);
+        bottomLeft.setIcon(left);
+        hatRight.setIcon(right);
+        upperRight.setIcon(right);
+        lowerRight.setIcon(right);
+        bottomRight.setIcon(right);
+    }
+
+    // Effects: adds all arrow buttons into the JPanels
     void addArrowButtonsIn() {
         leftArrowPanel = new JPanel(new GridBagLayout());
         rightArrowPanel = new JPanel(new GridBagLayout());
@@ -161,6 +197,8 @@ public class UIRunner implements ActionListener {
         rightArrowPanel.add(bottomRight, arrowConstraints);
     }
 
+
+    // Effects: sets up the options panel buttons
     void setupOptionsPanel() {
         setupOptionsPanelButtons();
         GridBagConstraints optionsConstraints = new GridBagConstraints();
@@ -168,13 +206,12 @@ public class UIRunner implements ActionListener {
         optionsConstraints.gridy = 0;
         addItem.addActionListener(this);
         removeItem.addActionListener(this);
-//        openListingWindow.addActionListener(this);
-//        addOutfit.addActionListener(this);
-//        openOutfitWindow.addActionListener(this);
+        //        openListingWindow.addActionListener(this);
+        //        addOutfit.addActionListener(this);
+        //        openOutfitWindow.addActionListener(this);
         save.addActionListener(this);
         load.addActionListener(this);
         name.addActionListener(this);
-
         optionsConstraints.gridy = 0;
         optionsPanel.add(addItem, optionsConstraints);
         optionsConstraints.gridy = 1;
@@ -193,6 +230,7 @@ public class UIRunner implements ActionListener {
 //        optionsPanel.add(openOutfitWindow, optionsConstraints);
     }
 
+    // Effects: Sets up the buttons for the options panel
     void setupOptionsPanelButtons() {
         optionsPanel = new JPanel(new GridBagLayout());
         addItem = new JButton();
@@ -213,6 +251,7 @@ public class UIRunner implements ActionListener {
         name.setText("Name Wardrobe");
     }
 
+    // Effects: sets up all the panels with the demo texts and labels
     void setupCentrePanel() {
         setupHeadWearAndText();
         setupUpperWearAndText();
@@ -221,6 +260,7 @@ public class UIRunner implements ActionListener {
         addAllToCentrePanel();
     }
 
+    // Effects: Adds all the labels to the center panel
     void addAllToCentrePanel() {
         GridBagConstraints midConstraints = new GridBagConstraints();
         midConstraints.gridy = 0;
@@ -241,7 +281,7 @@ public class UIRunner implements ActionListener {
         centrePanel.add(bottomLabel, midConstraints);
     }
 
-
+    // Effects: sets up the upper wear fields for the center panel
     void setupUpperWearAndText() {
         upperLabel = new JLabel();
         if (this.backUI.userWardrobe.getAllUpperWear().size() == 0) {
@@ -264,6 +304,7 @@ public class UIRunner implements ActionListener {
         upperText.setOpaque(false);
     }
 
+    // Effects: sets up the head wear fields for the center panel
     void setupHeadWearAndText() {
         headLabel = new JLabel();
         if (this.backUI.userWardrobe.getAllHeadWear().size() == 0) {
@@ -286,7 +327,7 @@ public class UIRunner implements ActionListener {
         headText.setOpaque(false);
     }
 
-
+    // Effects: sets up the lower wear fields for the center panel
     void setupLowerWearAndText() {
         lowerLabel = new JLabel();
         if (this.backUI.userWardrobe.getAllLowerWear().size() == 0) {
@@ -309,7 +350,7 @@ public class UIRunner implements ActionListener {
         lowerText.setOpaque(false);
     }
 
-
+    // Effects: sets up the foot wear fields for the center panel
     void setupFootwearAndText() {
         bottomLabel = new JLabel();
         if (this.backUI.userWardrobe.getAllFootwear().size() == 0) {
@@ -332,6 +373,7 @@ public class UIRunner implements ActionListener {
         bottomText.setOpaque(false);
     }
 
+    // Effects: Updates all the panels with central panels
     void updateWearAndText() {
         setupHeadWearAndText();
         setupUpperWearAndText();
@@ -342,12 +384,14 @@ public class UIRunner implements ActionListener {
         frame.repaint();
     }
 
+    // Effects: removes all from the central panel and adds them back
     void updateCentrePanel() {
         centrePanel.removeAll();
         addAllToCentrePanel();
     }
 
 
+    // Effects: gets a Java Colour from color
     public Color getColorFromColour(Colour c) {
         int r = c.getRed();
         int g = c.getGreen();
@@ -355,10 +399,11 @@ public class UIRunner implements ActionListener {
         return new Color(r, g, b);
     }
 
+    // Effects: Launches the addition window
     void launchAdditionWindow(Component parent) {
         setupAdditionWindowButtons();
         addFrame.setLocationRelativeTo(parent);
-        addFrame.setIconImage(dressmeLogo.getImage());
+        addFrame.setIconImage(dressMeLogo.getImage());
         addFrame.setVisible(true);
         addFrame.setLayout(new FlowLayout());
         addFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -372,6 +417,7 @@ public class UIRunner implements ActionListener {
         addFrame.revalidate();
     }
 
+    // Effects: sets up the buttons for the addition window
     void setupAdditionWindowButtons() {
         selectedOutfitColour = Color.BLUE;
         addFrame = new JFrame();
@@ -393,6 +439,7 @@ public class UIRunner implements ActionListener {
         b4.addActionListener(this);
     }
 
+    // Effects: prompts the user to remove an item
     void launchRemoveWindow() {
         String answer = JOptionPane.showInputDialog("What ID number would you like to remove?");
         int index;
@@ -403,20 +450,22 @@ public class UIRunner implements ActionListener {
                 if (flag) {
                     JOptionPane.showMessageDialog(null,
                             "Index " + index + " removed successfully",
-                            "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+                            "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressMeLogo);
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Index " + index + " not found",
-                            "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE, dressmeLogo);
+                            "Operation Unsuccessful", JOptionPane.ERROR_MESSAGE, dressMeLogo);
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null,
                         "Please only enter a number", "Invalid input", JOptionPane.ERROR_MESSAGE,
-                        dressmeLogo);
+                        dressMeLogo);
             }
         }
     }
 
+
+    // Effects: updates the Current index positions after removing
     void removeUpdate() {
         if (backUI.userWardrobe.getAllHeadWear().size() > 0) {
             currH = currH % backUI.userWardrobe.getAllHeadWear().size();
@@ -433,6 +482,7 @@ public class UIRunner implements ActionListener {
         updateWearAndText();
     }
 
+    // Effects: sets up radio buttons for head/lower wear
     void setupRadioButtonsHeadLowerWear(String[] acceptableItems) {
         b1.setText(acceptableItems[0]);
         b2.setText(acceptableItems[1]);
@@ -444,6 +494,7 @@ public class UIRunner implements ActionListener {
         b4.setVisible(false);
     }
 
+    // Effects: sets up radio buttons for upper wear
     void setupRadioButtonsUpperWear(String[] acceptableItems) {
         b1.setText(acceptableItems[0]);
         b2.setText(acceptableItems[1]);
@@ -457,6 +508,8 @@ public class UIRunner implements ActionListener {
         b4.setVisible(true);
     }
 
+
+    // Effects: adds in the radio buttons
     void runSuperTypeSelectSequence() {
         int selIndex = superTypeSelect.getSelectedIndex();
         String[] acceptableItems = getAcceptableItemsFromCode(selIndex);
@@ -481,7 +534,8 @@ public class UIRunner implements ActionListener {
         addFrame.add(b4);
         addFrame.revalidate();
     }
-    
+
+    // Effects: returns the acceptable items list depending on the type code
     public String[] getAcceptableItemsFromCode(int code) {
         if (code == 0) {
             return HeadWear.getAcceptableItems();
@@ -494,27 +548,38 @@ public class UIRunner implements ActionListener {
         }
     }
 
+
+    // Effects: runs the colour picker sequence
     void runCreateColourSequence() {
         if (getColour != null) {
             addFrame.remove(getColour);
+            selectedOutfitColour = null;
         }
         getColour = new JButton("Pick a Colour");
         getColour.addActionListener(this);
         confirmation = new JButton("Add Clothing");
         confirmation.addActionListener(this);
         addFrame.add(getColour);
+        try {
+            addFrame.remove(confirmation);
+        } catch (NullPointerException e) {
+            //
+        }
         addFrame.add(confirmation);
         confirmation.setVisible(false);
     }
 
+    // Effects: sets up the confirmation button
     void setupConfirmationButton() {
-        JColorChooser colourPicker = new JColorChooser();
         selectedOutfitColour = JColorChooser.showDialog(null, "Select Outfit Colour", Color.BLUE);
         getColour.setBackground(selectedOutfitColour);
         getColour.setOpaque(true);
-        confirmation.setVisible(true);
+        if (selectedOutfitColour != null) {
+            confirmation.setVisible(true);
+        }
     }
 
+    // Effects: adds clothing into data
     void addClothing() {
         int subtypeCode;
         if (b1.isSelected()) {
@@ -538,6 +603,7 @@ public class UIRunner implements ActionListener {
         addFrame.dispose();
     }
 
+    // Effects: Sets up current indexes of the added item
     void setCurrLocation(int superCode, int indexOfAdded) {
         if (superCode == 0) {
             currH = backUI.userWardrobe.getSubListIndex(indexOfAdded);
@@ -550,42 +616,43 @@ public class UIRunner implements ActionListener {
         }
     }
 
+    // effects : moves clothing row to the right
     void hatGoRight() {
         int size = backUI.userWardrobe.getAllHeadWear().size();
         if (size > 0) {
-            int newIndex = (currH + 1) % size;
-            currH = newIndex;
+            currH = (currH + 1) % size;
             updateWearAndText();
         }
     }
 
+    // effects : moves clothing row to the right
     void upGoRight() {
         int size = backUI.userWardrobe.getAllUpperWear().size();
         if (size > 0) {
-            int newIndex = (currU + 1) % size;
-            currU = newIndex;
+            currU = (currU + 1) % size;
             updateWearAndText();
         }
     }
 
+    // effects : moves clothing row to the right
     void lowGoRight() {
         int size = backUI.userWardrobe.getAllLowerWear().size();
         if (size > 0) {
-            int newIndex = (currL + 1) % size;
-            currL = newIndex;
+            currL = (currL + 1) % size;
             updateWearAndText();
         }
     }
 
+    // effects : moves clothing row to the right
     void footGoRight() {
         int size = backUI.userWardrobe.getAllFootwear().size();
         if (size > 0) {
-            int newIndex = (currF + 1) % size;
-            currF = newIndex;
+            currF = (currF + 1) % size;
             updateWearAndText();
         }
     }
 
+    // effects : moves clothing row to the left
     void hatGoLeft() {
         int size = backUI.userWardrobe.getAllHeadWear().size();
         if (size > 0) {
@@ -599,6 +666,7 @@ public class UIRunner implements ActionListener {
 
     }
 
+    // effects : moves clothing row to the left
     void upGoLeft() {
         int size = backUI.userWardrobe.getAllUpperWear().size();
         if (size > 0) {
@@ -612,6 +680,7 @@ public class UIRunner implements ActionListener {
 
     }
 
+    // effects : moves clothing row to the left
     void lowGoLeft() {
         int size = backUI.userWardrobe.getAllLowerWear().size();
         if (size > 0) {
@@ -625,6 +694,7 @@ public class UIRunner implements ActionListener {
 
     }
 
+    // effects : moves clothing row to the left
     void footGoLeft() {
         int size = backUI.userWardrobe.getAllFootwear().size();
         if (size > 0) {
@@ -637,14 +707,14 @@ public class UIRunner implements ActionListener {
         }
     }
 
-
+    //effects : runs the save sequence
     void runSave() {
         if (backUI.userWardrobe.getName() == null) {
             runName();
         }
         String answer = JOptionPane.showInputDialog("Enter save file location (without the .json extension)",
                 "wardrobe");
-        if (answer != "") {
+        if (!answer.equals("")) {
             backUI.saveWardrobe(answer);
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Location", "Error",
@@ -652,6 +722,7 @@ public class UIRunner implements ActionListener {
         }
     }
 
+    // effects: runs the load sequence
     void runLoad() {
         String answer = JOptionPane.showInputDialog("Enter file name to load from (without the .json extension)",
                 "wardrobe");
@@ -659,6 +730,7 @@ public class UIRunner implements ActionListener {
         frame.setTitle("Dress Me Wardrobe : " + backUI.userWardrobe.getName());
     }
 
+    // EFFECTS: NAMES THE WARDROBE FROM THE USER
     void runName() {
         String answer;
         if (backUI.userWardrobe.getName() == null) {
@@ -668,7 +740,7 @@ public class UIRunner implements ActionListener {
         } else {
             int x = JOptionPane.showConfirmDialog(null,
                     "Would you like to rename this wardrobe?", "Rename Wardrobe?",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressMeLogo);
             if (x == 0) {
                 answer = JOptionPane.showInputDialog("What would you like to rename this Wardrobe? to");
                 backUI.userWardrobe.setName(answer);
@@ -677,6 +749,7 @@ public class UIRunner implements ActionListener {
         frame.setTitle("Dress Me Wardrobe : " + backUI.userWardrobe.getName());
     }
 
+    // EFFECTS: HANDLES ALL ACTIONS FROM UI
     @Override
     @SuppressWarnings("methodlength")
     public void actionPerformed(ActionEvent e) {
@@ -694,16 +767,49 @@ public class UIRunner implements ActionListener {
             removeUpdate();
             updateWearAndText();
         } else if (e.getSource() == superTypeSelect) {
+            try {
+                getColour.setVisible(false);
+                addFrame.remove(getColour);
+                selectedOutfitColour = null;
+            } catch (NullPointerException x) {
+                //
+            }
+            try {
+                confirmation.setVisible(false);
+                addFrame.remove(confirmation);
+            } catch (NullPointerException x) {
+                //
+            }
             runSuperTypeSelectSequence();
         } else if (e.getSource() == b1 || e.getSource() ==  b2 || e.getSource() ==  b3  || e.getSource() ==  b4) {
+            try {
+                getColour.setVisible(false);
+                addFrame.remove(getColour);
+                selectedOutfitColour = null;
+            } catch (NullPointerException x) {
+                //
+            }
+            try {
+                confirmation.setVisible(false);
+                addFrame.remove(confirmation);
+            } catch (NullPointerException x) {
+                //
+            }
             runCreateColourSequence();
         } else if (e.getSource() == getColour) {
             setupConfirmationButton();
         } else if (e.getSource() == confirmation) {
-            addClothing();
-            removeUpdate();
-            updateWearAndText();
-        } else if (e.getSource() == hatRight) {
+            if (selectedOutfitColour != null) {
+                addClothing();
+                removeUpdate();
+                updateWearAndText();
+            }
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == hatRight) {
             hatGoRight();
         } else if (e.getSource() == upperRight) {
             upGoRight();
@@ -720,6 +826,26 @@ public class UIRunner implements ActionListener {
         } else if (e.getSource() == bottomLeft) {
             footGoLeft();
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //
     }
 
     /*
@@ -795,7 +921,7 @@ public class UIRunner implements ActionListener {
 void addOutfitFromSelected() {
         int answer = JOptionPane.showConfirmDialog(null,
                 "Would you like to add the selected items into an outfit?", "Add Outfit?",
-                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressMeLogo);
         if (answer == 0) { // yes
             int hs = backUI.userWardrobe.getAllHeadWear().size();
             int us = backUI.userWardrobe.getAllUpperWear().size();
@@ -812,16 +938,16 @@ void addOutfitFromSelected() {
                 backUI.userWardrobe.addOutfit(o);
                 JOptionPane.showMessageDialog(null,
                         msg,
-                        "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+                        "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressMeLogo);
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Not Enough Items To Be An Outfit",
-                        "Operation Failure", JOptionPane.ERROR_MESSAGE, dressmeLogo);
+                        "Operation Failure", JOptionPane.ERROR_MESSAGE, dressMeLogo);
             }
         } else if (answer == 1) {
             JOptionPane.showMessageDialog(null,
                     "Outfit not created",
-                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE, dressMeLogo);
         }
     }
     * */

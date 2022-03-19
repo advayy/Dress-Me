@@ -27,6 +27,7 @@ public class HeadWear extends Clothing {
         return ACCEPTABLE_ITEMS;
     }
 
+    // Effects: returns the subtype image to the UI
     @Override
     public ImageIcon getImage(String subtype) {
         if (subtype.equalsIgnoreCase(ACCEPTABLE_ITEMS[0])) {
