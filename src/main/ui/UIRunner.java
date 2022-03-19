@@ -12,13 +12,11 @@ public class UIRunner implements ActionListener, MouseListener {
     int height = 500;
     JButton addItem;
     JButton removeItem;
-    //    JButton openListingWindow;
+//    JButton openListingWindow;
 //    JButton addOutfit;
 //    JButton openOutfitWindow;
     JFrame frame;
     ImageIcon nullSquare = new ImageIcon("./assets/null.png");
-    //    ImageIcon nullSquareScaled = new ImageIcon(nullSquare.getImage()
-//            .getScaledInstance(100, 100, Image.SCALE_SMOOTH));
     ImageIcon logo = new ImageIcon("./assets/dressmeicon.png");
     ImageIcon dressMeLogo = new ImageIcon(logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
     Color backGroundColour = new Color(0xdabaff);
@@ -50,14 +48,6 @@ public class UIRunner implements ActionListener, MouseListener {
     JLabel bottomLeft;
     JLabel bottomRight;
 
-//    JButton hatLeft;
-//    JButton hatRight;
-//    JButton upperLeft;
-//    JButton upperRight;
-//    JButton lowerLeft;
-//    JButton lowerRight;
-//    JButton bottomLeft;
-//    JButton bottomRight;
     JLabel upperLabel;
     JLabel upperText;
     JLabel headLabel;
@@ -75,6 +65,7 @@ public class UIRunner implements ActionListener, MouseListener {
     int userScreenWidth = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
     int locationX = userScreenWidth / 2 - width / 2;
     int locationY = userScreenHeight / 2 - height / 2;
+
     // Labels and elements  for add
     JComboBox superTypeSelect;
     JFrame addFrame;
@@ -100,7 +91,6 @@ public class UIRunner implements ActionListener, MouseListener {
         b3 = new JRadioButton();
         b4 = new JRadioButton();
     }
-
 
     // Effects: Sets up the picker frame
     public void pickerFrameSetup() {
@@ -248,17 +238,17 @@ public class UIRunner implements ActionListener, MouseListener {
         optionsPanel = new JPanel(new GridBagLayout());
         addItem = new JButton();
         removeItem = new JButton();
-//        openListingWindow = new JButton();
-//        addOutfit = new JButton();
-//        openOutfitWindow = new JButton();
+//      openListingWindow = new JButton();
+//      addOutfit = new JButton();
+//      openOutfitWindow = new JButton();
         save = new JButton();
         load = new JButton();
         name = new JButton();
         addItem.setText("Add Item");
         removeItem.setText("Remove Item");
-//        openListingWindow.setText("Go to List View");
-//        addOutfit.setText("Add Outfit");
-//        openOutfitWindow.setText("Go to Outfits View");
+//      openListingWindow.setText("Go to List View");
+//      addOutfit.setText("Add Outfit");
+//      openOutfitWindow.setText("Go to Outfits View");
         save.setText("Save To File");
         load.setText("Load From File");
         name.setText("Name Wardrobe");
