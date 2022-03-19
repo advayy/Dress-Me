@@ -118,7 +118,7 @@ public class UIRunner implements ActionListener, MouseListener {
         GridBagConstraints setup = new GridBagConstraints();
         setup.weightx = 1;
         frame.add(leftArrowPanel, setup);
-        setup.weightx = 1.5;
+        setup.weightx = 2;
         frame.add(centrePanel, setup);
         setup.weightx = 1;
         frame.add(rightArrowPanel, setup);
