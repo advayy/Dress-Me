@@ -52,7 +52,8 @@ colour.
 - Be able to list and filter items in a list view
 - Saving a set of clothes as an "Outfit" and add, remove and list them
 
-###A Note on the Visual Inspiration
+### A Note on the Visual Inspiration
+
 I wanted my project to be reminiscent of the 90's and early 2000s with a pixel art style layout, and even including
 pixelated rectangular buttons like in the movie Clueless. To add to the complete feel of the application, I also
  added a pixel art style splash screen based on the original project! *(See Below)*
