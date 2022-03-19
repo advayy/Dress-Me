@@ -227,35 +227,30 @@ public class Wardrobe implements Writable {
     }
 
 
-    @SuppressWarnings("methodlength")
     public int getSubListIndex(int index) {
         boolean found = false;
-        int listIndex = 0;
-        for (Clothing item: this.allHeadWear) {
+        int listIndex = -1;
+        if (searchListForIndex(index, this.allHeadWear) != -1) {
+            listIndex = searchListForIndex(index, this.allHeadWear);
+        } else if (searchListForIndex(index, this.allUpperWear) != -1) {
+            listIndex = searchListForIndex(index, this.allUpperWear);
+        } else if (searchListForIndex(index, this.allLowerWear) != -1) {
+            listIndex = searchListForIndex(index, this.allLowerWear);
+        } else if (searchListForIndex(index, this.allFootwear) != -1) {
+            listIndex = searchListForIndex(index, this.allFootwear);
+        }
+        return listIndex;
+    }
+
+
+    public int searchListForIndex(int index, ArrayList<Clothing> list) {
+        int flag = -1;
+        for (Clothing item: list) {
             if (item.getIndexNo() == index) {
-                listIndex = this.allHeadWear.indexOf(item);
-                found = true;
+                flag = list.indexOf(item);
             }
         }
-        for (Clothing item: this.allUpperWear) {
-            if (item.getIndexNo() == index) {
-                listIndex = this.allUpperWear.indexOf(item);
-                found = true;
-            }
-        }
-        for (Clothing item: this.allLowerWear) {
-            if (item.getIndexNo() == index) {
-                listIndex = this.allLowerWear.indexOf(item);
-                found = true;
-            }
-        }
-        for (Clothing item: this.allFootwear) {
-            if (item.getIndexNo() == index) {
-                listIndex = this.allFootwear.indexOf(item);
-                found = true;
-            }
-        }
-        return found ? listIndex : -1;
+        return flag;
     }
 
     /* Requires: a given item of Clothing type

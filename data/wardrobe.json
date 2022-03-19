@@ -243,6 +243,17 @@
             "genre": "sport",
             "name": "grant",
             "index": 22
+        },
+        {
+            "colour": {
+                "red": 255,
+                "green": 51,
+                "blue": 153
+            },
+            "subtype": "HAT",
+            "genre": "formality",
+            "name": "Name",
+            "index": 23
         }
     ]
 }

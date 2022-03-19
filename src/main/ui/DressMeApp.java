@@ -5,7 +5,6 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
@@ -40,7 +39,7 @@ public class DressMeApp extends JFrame {
         jsonReader = new JsonReader();
         userWardrobe.createTypeLists();
         render = new UIRunner(this);
-        runDressMe();
+        //runDressMe();
     }
 
     /* Requires: An integer input from the user
@@ -67,7 +66,6 @@ public class DressMeApp extends JFrame {
         }
 
     }
-
 
     //Effects: Prints a list of options for the user
     public void displayMainMenu() {
@@ -237,6 +235,9 @@ public class DressMeApp extends JFrame {
         System.out.println();
     }
 
+    // Requires : valid encoding from the UI class
+    // Modifies : this
+    // Effects : Adds an item into the wardrobe
     public int addToWardrobe(int superCode, int subCode, String name, String genre, Colour colour) {
         String subType = getSubType(superCode, subCode);
         superCode++;
@@ -289,6 +290,7 @@ public class DressMeApp extends JFrame {
         return acceptableItems[indexing];
     }
 
+    // Effects: returns the subtype of an item given its supertype and subtype index
     public String getSubType(int code, int subCode) {
         String[] acceptableItems;
         if (code == 0) {

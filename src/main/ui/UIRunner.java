@@ -82,6 +82,7 @@ public class UIRunner implements ActionListener {
 
     public UIRunner(DressMeApp dressMeApp) {
         this.backUI = dressMeApp;
+        frame = new JFrame(); // creates a outfitFrame
         pickerFrameSetup();
         b1 = new JRadioButton();
         b2 = new JRadioButton();
@@ -89,9 +90,7 @@ public class UIRunner implements ActionListener {
         b4 = new JRadioButton();
     }
 
-    @SuppressWarnings("methodlength")
     public void pickerFrameSetup() {
-        frame = new JFrame(); // creates a outfitFrame
         frame.setIconImage(dressmeLogo.getImage());
         frame.setLocation(locationX, locationY);
         frame.setSize(600, 500); // sets x and y dimensions of outfitFrame
@@ -114,12 +113,7 @@ public class UIRunner implements ActionListener {
         frame.add(rightArrowPanel, setup);
         setup.weightx = 1.5;
         frame.add(optionsPanel, setup);
-        // Show up controllers below
         frame.revalidate();
-        // outfitFrame.repaint();
-        // outfitFrame.getContentPane();
-        // outfitFrame.setResizable(false);
-        // frame.pack();
     }
 
     void colorAllPanels(Color c) {
@@ -643,39 +637,6 @@ public class UIRunner implements ActionListener {
         }
     }
 
-    @SuppressWarnings("methodlength")
-    void addOutfitFromSelected() {
-        int answer = JOptionPane.showConfirmDialog(null,
-                "Would you like to add the selected items into an outfit?", "Add Outfit?",
-                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
-        if (answer == 0) { // yes
-            int hs = backUI.userWardrobe.getAllHeadWear().size();
-            int us = backUI.userWardrobe.getAllUpperWear().size();
-            int ls = backUI.userWardrobe.getAllLowerWear().size();
-            int fs = backUI.userWardrobe.getAllFootwear().size();
-            if (hs > 0 && us  > 0 && ls  > 0 && fs  > 0) {
-                Clothing h = backUI.userWardrobe.getAllHeadWear().get(currH);
-                Clothing u = backUI.userWardrobe.getAllUpperWear().get(currU);
-                Clothing l = backUI.userWardrobe.getAllLowerWear().get(currL);
-                Clothing f = backUI.userWardrobe.getAllFootwear().get(currF);
-                Outfit o = new Outfit(h, u, l, f);
-                String msg = "Outfit ID -" + o.getIndexNo() + ", of pieces [" + h.getIndexNo() + ", " + u.getIndexNo()
-                        + ", " + l.getIndexNo() + ", " + f.getIndexNo() + "] was added";
-                backUI.userWardrobe.addOutfit(o);
-                JOptionPane.showMessageDialog(null,
-                        msg,
-                        "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Not Enough Items To Be An Outfit",
-                        "Operation Failure", JOptionPane.ERROR_MESSAGE, dressmeLogo);
-            }
-        } else if (answer == 1) {
-            JOptionPane.showMessageDialog(null,
-                    "Outfit not created",
-                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
-        }
-    }
 
     void runSave() {
         if (backUI.userWardrobe.getName() == null) {
@@ -831,5 +792,37 @@ public class UIRunner implements ActionListener {
         frame.repaint();
     }
 
+void addOutfitFromSelected() {
+        int answer = JOptionPane.showConfirmDialog(null,
+                "Would you like to add the selected items into an outfit?", "Add Outfit?",
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+        if (answer == 0) { // yes
+            int hs = backUI.userWardrobe.getAllHeadWear().size();
+            int us = backUI.userWardrobe.getAllUpperWear().size();
+            int ls = backUI.userWardrobe.getAllLowerWear().size();
+            int fs = backUI.userWardrobe.getAllFootwear().size();
+            if (hs > 0 && us  > 0 && ls  > 0 && fs  > 0) {
+                Clothing h = backUI.userWardrobe.getAllHeadWear().get(currH);
+                Clothing u = backUI.userWardrobe.getAllUpperWear().get(currU);
+                Clothing l = backUI.userWardrobe.getAllLowerWear().get(currL);
+                Clothing f = backUI.userWardrobe.getAllFootwear().get(currF);
+                Outfit o = new Outfit(h, u, l, f);
+                String msg = "Outfit ID -" + o.getIndexNo() + ", of pieces [" + h.getIndexNo() + ", " + u.getIndexNo()
+                        + ", " + l.getIndexNo() + ", " + f.getIndexNo() + "] was added";
+                backUI.userWardrobe.addOutfit(o);
+                JOptionPane.showMessageDialog(null,
+                        msg,
+                        "Operation Successful", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Not Enough Items To Be An Outfit",
+                        "Operation Failure", JOptionPane.ERROR_MESSAGE, dressmeLogo);
+            }
+        } else if (answer == 1) {
+            JOptionPane.showMessageDialog(null,
+                    "Outfit not created",
+                    "Operation Cancelled", JOptionPane.PLAIN_MESSAGE, dressmeLogo);
+        }
+    }
     * */
 }
