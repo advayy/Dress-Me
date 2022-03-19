@@ -214,6 +214,7 @@ public class UIRunner implements ActionListener, MouseListener {
         save.addActionListener(this);
         load.addActionListener(this);
         name.addActionListener(this);
+        deFocusButtons();
         optionsConstraints.gridy = 0;
         optionsPanel.add(addItem, optionsConstraints);
         optionsConstraints.gridy = 1;
@@ -230,6 +231,16 @@ public class UIRunner implements ActionListener, MouseListener {
 //        optionsPanel.add(openListingWindow, optionsConstraints);
 //        optionsConstraints.gridy = 7;
 //        optionsPanel.add(openOutfitWindow, optionsConstraints);
+    }
+
+    // Effects: modifies the visual elements of the buttons
+    void deFocusButtons() {
+        addItem.setFocusable(false);
+        removeItem.setFocusable(false);
+        save.setFocusable(false);
+        load.setFocusable(false);
+        name.setFocusable(false);
+        //addItem.set
     }
 
     // Effects: Sets up the buttons for the options panel
