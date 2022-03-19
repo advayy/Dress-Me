@@ -39,6 +39,8 @@ public class UIRunner implements ActionListener, MouseListener {
 
     ImageIcon left = new ImageIcon("./assets/leftArrow.png");
     ImageIcon right = new ImageIcon("./assets/rightArrow.png");
+    ImageIcon leftPressed = new ImageIcon("./assets/leftArrowPressed.png");
+    ImageIcon rightPressed = new ImageIcon("./assets/rightArrowPressed.png");
     JLabel hatLeft;
     JLabel hatRight;
     JLabel upperLeft;
@@ -828,14 +830,48 @@ public class UIRunner implements ActionListener, MouseListener {
         }
     }
 
+    // Gives the arrow buttons the darker animation when pressed
     @Override
     public void mousePressed(MouseEvent e) {
-        //
+        if (e.getSource() == hatLeft) {
+            hatLeft.setIcon(leftPressed);
+        } else if (e.getSource() == hatRight) {
+            hatRight.setIcon(rightPressed);
+        } else if (e.getSource() == upperLeft) {
+            upperLeft.setIcon(leftPressed);
+        } else if (e.getSource() == upperRight) {
+            upperRight.setIcon(rightPressed);
+        } else if (e.getSource() == lowerLeft) {
+            lowerLeft.setIcon(leftPressed);
+        } else if (e.getSource() == lowerRight) {
+            lowerRight.setIcon(rightPressed);
+        } else if (e.getSource() == bottomLeft) {
+            bottomLeft.setIcon(leftPressed);
+        } else if (e.getSource() == bottomRight) {
+            bottomRight.setIcon(rightPressed);
+        }
     }
 
+    // Gives the arrow buttons the original animation when unpressed
     @Override
     public void mouseReleased(MouseEvent e) {
-        //
+        if (e.getSource() == hatLeft) {
+            hatLeft.setIcon(left);
+        } else if (e.getSource() == hatRight) {
+            hatRight.setIcon(right);
+        } else if (e.getSource() == upperLeft) {
+            upperLeft.setIcon(left);
+        } else if (e.getSource() == upperRight) {
+            upperRight.setIcon(right);
+        } else if (e.getSource() == lowerLeft) {
+            lowerLeft.setIcon(left);
+        } else if (e.getSource() == lowerRight) {
+            lowerRight.setIcon(right);
+        } else if (e.getSource() == bottomLeft) {
+            bottomLeft.setIcon(left);
+        } else if (e.getSource() == bottomRight) {
+            bottomRight.setIcon(right);
+        }
     }
 
     @Override
