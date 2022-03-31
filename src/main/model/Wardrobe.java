@@ -19,6 +19,7 @@ public class Wardrobe implements Writable {
     private ArrayList<Clothing> allLowerWear;
     private ArrayList<Clothing> allFootwear;
     private String wardrobeName;
+    private EventLog log;
 
     // Effects: Constructor
     public Wardrobe() {
@@ -28,6 +29,12 @@ public class Wardrobe implements Writable {
         allUpperWear = new ArrayList<>();
         allLowerWear = new ArrayList<>();
         allFootwear = new ArrayList<>();
+        log = EventLog.getInstance();
+    }
+
+    // effects: RETURNS EVENT LOG
+    public EventLog getLog() {
+        return log;
     }
 
     // Effects: returns internal head wear list
@@ -163,6 +170,7 @@ public class Wardrobe implements Writable {
     public boolean removeItem(int index) {
         this.internalWardrobe.remove(index);
         createTypeLists();
+        log.logEvent(new Event("Item Removed"));
         return true;
     }
 
@@ -276,6 +284,7 @@ public class Wardrobe implements Writable {
         } else {
             this.allFootwear.add(c);
         }
+        log.logEvent(new Event("Item Added"));
         return true;
     }
 

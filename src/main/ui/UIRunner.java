@@ -84,7 +84,7 @@ public class UIRunner implements ActionListener, MouseListener {
     // Effects: Initiates the layout for the Ui
     public UIRunner(DressMeApp dressMeApp) {
         this.backUI = dressMeApp;
-        frame = new JFrame(); // creates a outfitFrame
+        frame = new MainJFrame(this.backUI); // creates a outfitFrame
         pickerFrameSetup();
         b1 = new JRadioButton();
         b2 = new JRadioButton();
@@ -99,7 +99,7 @@ public class UIRunner implements ActionListener, MouseListener {
         frame.setSize(width, height); // sets x and y dimensions of outfitFrame
         frame.setVisible(true);
         frame.setTitle("Dress Me!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setBackground(backGroundColour);
         frame.setLayout(new GridBagLayout());
         setArrowButtons();
