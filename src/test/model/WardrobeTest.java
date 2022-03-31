@@ -65,32 +65,6 @@ class WardrobeTest {
     }
 
     @Test
-    void removeOutfitTest() {
-        userTest.addOutfit(new Outfit(hat, shirt, pant, shoe));
-        assertTrue(userTest.removeOutfit(0));
-    }
-
-    @Test
-    void removeOutfitByIndexNoTest() {
-        // clothes code
-        Outfit look1 = new Outfit(hat, shirt, pant, shoe);
-        Outfit look2 = new Outfit(hat, shirt, pant, shoe);
-
-        userTest.addOutfit(look1);
-        userTest.addOutfit(look2);
-
-        assertTrue(userTest.removeOutfitByIndexNo(look2.getIndexNo()));
-        assertTrue(userTest.removeOutfitByIndexNo(look1.getIndexNo()));
-        assertFalse(userTest.removeItemByIndex(100));
-
-        Wardrobe otherWardrobe = new Wardrobe();
-        assertFalse(otherWardrobe.removeOutfitByIndexNo(look1.getIndexNo()));
-        otherWardrobe.addOutfit(look1);
-        assertTrue(otherWardrobe.removeOutfitByIndexNo(look1.getIndexNo()));
-        assertFalse(otherWardrobe.removeItemByIndex(100));
-    }
-
-    @Test
     void getClothesOfGenreTest() {
         userTest.addItem(hat);
         userTest.addItem(shirt);

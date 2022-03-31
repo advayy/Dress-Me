@@ -13,7 +13,7 @@ import java.util.ArrayList;
 // represents the user's wardrobe that holds Clothing items
 public class Wardrobe implements Writable {
     private ArrayList<Clothing> internalWardrobe;
-    private ArrayList<Outfit> internalOutfits;
+    // private ArrayList<Outfit> internalOutfits;
     private ArrayList<Clothing> allHeadWear;
     private ArrayList<Clothing> allUpperWear;
     private ArrayList<Clothing> allLowerWear;
@@ -24,7 +24,6 @@ public class Wardrobe implements Writable {
     // Effects: Constructor
     public Wardrobe() {
         internalWardrobe = new ArrayList<>();
-        internalOutfits = new ArrayList<>();
         allHeadWear = new ArrayList<>();
         allUpperWear = new ArrayList<>();
         allLowerWear = new ArrayList<>();
@@ -71,6 +70,7 @@ public class Wardrobe implements Writable {
     // Effects: sets the wardrobes name
     public void setName(String name) {
         this.wardrobeName = name;
+        log.logEvent(new Event("Wardrobe named: " + name));
     }
 
     //Effects: returns name if set
@@ -170,7 +170,7 @@ public class Wardrobe implements Writable {
     public boolean removeItem(int index) {
         this.internalWardrobe.remove(index);
         createTypeLists();
-        log.logEvent(new Event("Item Removed"));
+        log.logEvent(new Event("Item " + index + " Removed"));
         return true;
     }
 
@@ -194,33 +194,7 @@ public class Wardrobe implements Writable {
         }
     }
 
-    /* Requires: index of an item
-     * Modifies: this
-     * Effects: removes the Outfit item at that index from wardrobe
-     * */
-    public boolean removeOutfit(int index) {
-        this.internalOutfits.remove(index);
-        return true;
-    }
 
-    /* Requires: the index number of the Outfit
-     * Modifies: this
-     * Effects: returns the wardrobe Outfits list index of the item
-     * */
-    public boolean removeOutfitByIndexNo(int index) {
-        boolean found = false;
-        int listIndex = 0;
-        for (Outfit item: this.internalOutfits) {
-            if (item.getIndexNo() == index) {
-                listIndex = this.internalOutfits.indexOf(item);
-                found = true;
-            }
-        }
-        if (found) {
-            removeOutfit(listIndex);
-        }
-        return found;
-    }
 
     //requires: an integer index of the clothing
     //effects: returns the clothing item with the corresponding index or null
@@ -277,24 +251,20 @@ public class Wardrobe implements Writable {
         this.internalWardrobe.add(c);
         if (c instanceof HeadWear) {
             this.allHeadWear.add(c);
+            log.logEvent(new Event("Head Wear Added: Index- " + c.getIndexNo()));
         } else if (c instanceof UpperWear) {
             this.allUpperWear.add(c);
+            log.logEvent(new Event("Upper Wear Added: Index- " + c.getIndexNo()));
         } else if (c instanceof LowerWear) {
             this.allLowerWear.add(c);
+            log.logEvent(new Event("Lower Wear Added: Index- " + c.getIndexNo()));
         } else {
             this.allFootwear.add(c);
+            log.logEvent(new Event("Footwear Added: Index- " + c.getIndexNo()));
         }
-        log.logEvent(new Event("Item Added"));
         return true;
     }
 
-    /* Requires : an Outfit object
-    *  Modifies : this
-    *  Effects  : adds Outfit to internalOutfits
-    * */
-    public void addOutfit(Outfit l) {
-        this.internalOutfits.add(l);
-    }
 
     /*
      *  Effects : returns wardrobe as JSON data
@@ -304,7 +274,6 @@ public class Wardrobe implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", this.wardrobeName);
         json.put("clothes", clothesToJson());
-        json.put("outfits", outfitsToJson());
         return json;
     }
 
@@ -317,21 +286,5 @@ public class Wardrobe implements Writable {
         }
 
         return jsonArray;
-    }
-
-    // EFFECTS: returns arraylist of Outfits in this wardrobe as a JSON array
-    private JSONArray outfitsToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (Outfit l : internalOutfits) {
-            jsonArray.put(l.toJson());
-        }
-
-        return jsonArray;
-    }
-
-    //Effects: Returns the internalOutfits object
-    public ArrayList<Outfit> getInternalOutfits() {
-        return this.internalOutfits;
     }
 }

@@ -66,3 +66,29 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 **Clueless (1995): User Interface**
 
 [User Interface](./assets/CluelessUI.png)
+
+### Phase 4: Task 2
+Demonstration of Functionality
+
+Wed Mar 30 23:02:25 PDT 2022
+
+Lower Wear Added: Index- 1
+
+Wed Mar 30 23:02:31 PDT 2022
+
+Wardrobe named: default wardrobe
+
+Wed Mar 30 23:02:46 PDT 2022
+
+Upper Wear Added: Index- 2
+
+Wed Mar 30 23:02:56 PDT 2022
+
+Item 1 Removed
+
+Wed Mar 30 23:02:59 PDT 2022
+
+Item 0 Removed
+
+### Phase 4: Task 3
+Reflect on the design presented in your UML class diagram.  If you had more time to work on the project, is there any refactoring that you would do to improve your design?  If so, describe the changes you would make in point form in this section of your README.md file.  Note that we do not want you to actually perform the refactoring - just identify the changes you would make if you had more time.  Keep in mind that refactoring does not mean adding more features to your application.    

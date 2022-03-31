@@ -2,7 +2,6 @@ package persistence;
 
 import model.Clothing;
 import model.Colour;
-import model.Outfit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,12 +22,5 @@ public class JsonTest {
         assertEquals(d.getPieceGenre(), c.getPieceGenre());
         assertEquals(d.getPieceSubtype(), c.getPieceSubtype());
         assertTrue(d.getPieceColour().colourEquals(c.getPieceColour()));
-    }
-
-    protected void checkOutfit(Outfit l, Clothing head, Clothing upper, Clothing lower, Clothing foot) {
-        checkTwoClothes(head, l.getHeadWear());
-        checkTwoClothes(upper, l.getUpperWear());
-        checkTwoClothes(lower, l.getLowerWear());
-        checkTwoClothes(foot, l.getFootWear());
     }
 }

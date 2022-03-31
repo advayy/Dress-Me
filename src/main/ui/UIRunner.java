@@ -12,9 +12,6 @@ public class UIRunner implements ActionListener, MouseListener {
     int height = 500;
     JButton addItem;
     JButton removeItem;
-//    JButton openListingWindow;
-//    JButton addOutfit;
-//    JButton openOutfitWindow;
     JFrame frame;
     ImageIcon nullSquare = new ImageIcon("./assets/null.png");
     ImageIcon logo = new ImageIcon("./assets/dressmeicon.png");

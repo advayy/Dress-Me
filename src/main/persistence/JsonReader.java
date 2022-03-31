@@ -59,11 +59,6 @@ public class JsonReader {
             JSONObject nextClothing = (JSONObject) json;
             wardrobe.addItem(parseClothing(nextClothing));
         }
-        JSONArray jsonArrayOutfits = jsonObject.getJSONArray("outfits");
-        for (Object json : jsonArrayOutfits) {
-            JSONObject nextLook = (JSONObject) json;
-            wardrobe.addOutfit(parseOutfit(nextLook));
-        }
     }
 
     // MODIFIES: wardrobe
@@ -92,20 +87,6 @@ public class JsonReader {
         return newItem;
     }
 
-    // MODIFIES: wardrobe
-    // EFFECTS: parses Look from JSON object and adds it to wardrobe
-    private Outfit parseOutfit(JSONObject jsonObject) {
-        JSONObject head = jsonObject.getJSONObject("head");
-        JSONObject upper = jsonObject.getJSONObject("upper");
-        JSONObject lower = jsonObject.getJSONObject("lower");
-        JSONObject foot = jsonObject.getJSONObject("foot");
-
-        Outfit outfitToReturn = new Outfit(parseClothing(head),
-                parseClothing(upper),
-                parseClothing(lower),
-                parseClothing(foot));
-        return outfitToReturn;
-    }
 
     //Requires: A Sub Type string from the calling code
     //Effects: Returns an integer code depending on the kind of wear the subtype is part of

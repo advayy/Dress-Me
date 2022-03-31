@@ -94,7 +94,7 @@ public class DressMeApp extends JFrame {
         } else if (input == 4) {
             runFilterSequence();
         } else if (input == 5) {
-            runOutfitSequence();
+            // runOutfitSequence();
         } else if (input == 6) {
             // saveWardrobe();
         } else if (input == 7) {
@@ -126,31 +126,6 @@ public class DressMeApp extends JFrame {
         System.out.println("x - Go back to main menu");
     }
 
-    //Effects: Runs the outfit sequence while providing options and selecting
-    public void runOutfitSequence() {
-        boolean keepGoing = true;
-        while (keepGoing) {
-            displayOutfitMenu();
-            String stringInput = inputScan.nextLine();
-            if (stringInput.equalsIgnoreCase("X")) {
-                keepGoing = false;
-                System.out.println("Returning to Main Menu");
-            } else {
-                int inp = Integer.parseInt(stringInput); // turns string input into
-                if (inp == 1) {
-                    listAllOutfits();
-                } else if (inp == 2) {
-                    runAddOutfitSequence();
-                } else if (inp == 3) {
-                    runRemoveOutfitSequence();
-                } else {
-                    System.out.println("Please only input one of the given options!!");
-                    System.out.println();
-                }
-            }
-            flatLine();
-        }
-    }
 
     //Effects: Runs the filter sequence while providing options and selecting
     public void runFilterSequence() {
@@ -439,70 +414,6 @@ public class DressMeApp extends JFrame {
         String input = inputScan.nextLine();
         int inp = Integer.parseInt(input);
         listItems(userWardrobe.getClothesByType(inp));
-    }
-
-    //Effects: Lists all "Outfit" to the CLI
-    private void listAllOutfits() {
-        flatLine();
-        System.out.println("Here Are Your Outfits: ");
-        for (Outfit l : userWardrobe.getInternalOutfits()) {
-            flatLine();
-            System.out.println("Outfit index " + l.getIndexNo());
-            printClothingDetails(l.getHeadWear());
-            printClothingDetails(l.getUpperWear());
-            printClothingDetails(l.getLowerWear());
-            printClothingDetails(l.getFootWear());
-            flatLine();
-            System.out.println();
-        }
-    }
-
-
-    //Requires: Valid user input
-    //Modifies: this
-    //Effects : Creates a new Outfit from items of clothing by type from user and saves it to the wardrobe
-    @SuppressWarnings("methodlength")
-    public void runAddOutfitSequence() {
-        boolean breakOut =  false;
-        String[] wearNames = {"Head Wear", "Upper Wear", "Lower Wear", "Footwear"};
-        int counter = 0;
-        ArrayList<Clothing> toBeReturned = new ArrayList<>();
-        while (!breakOut && counter < 4) {
-            System.out.println("Pick an item of " + wearNames[counter]);
-            listItems(userWardrobe.getClothesByType(counter));
-            System.out.println("Enter x to Stop operation");
-            System.out.print("Enter its index number here: ");
-            String stringInput = inputScan.nextLine();
-            if (stringInput.equalsIgnoreCase("x")) {
-                breakOut = true;
-                break;
-            } else {
-                int n = Integer.parseInt(stringInput);
-                toBeReturned.add(userWardrobe.getClothesByIndex(n));
-                counter++;
-            }
-        }
-        if (breakOut) {
-            System.out.println("Outfit Not Added - Returning to Main menu");
-        } else {
-            userWardrobe.addOutfit(new Outfit(toBeReturned.get(0), toBeReturned.get(1), toBeReturned.get(2),
-                    toBeReturned.get(3)));
-            System.out.println("Outfit Added");
-        }
-        flatLine();
-    }
-
-    // Requires: Inout from user
-    // Modifies: this
-    // Effects : removes an Outfit from the wardrobe
-    public void runRemoveOutfitSequence() {
-        listAllOutfits();
-        System.out.println("Which Outfit index would you like to remove");
-        System.out.print("Enter index here: ");
-        int input = Integer.parseInt(inputScan.nextLine());
-        userWardrobe.removeOutfitByIndexNo(input);
-        System.out.println("Outfit Removed");
-        flatLine();
     }
 
     // Modifies : this
