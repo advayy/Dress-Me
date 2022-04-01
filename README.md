@@ -68,7 +68,7 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 [User Interface](./assets/CluelessUI.png)
 
 ### Phase 4: Task 2
-Demonstration of Functionality
+Demonstration of Functionality (Space lines added for readability)
 
 Wed Mar 30 23:02:25 PDT 2022
 

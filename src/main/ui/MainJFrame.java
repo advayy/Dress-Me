@@ -14,7 +14,7 @@ public class MainJFrame extends JFrame {
     }
 
     @Override
-    //
+    //Overriding dispose to ensure the log gets printed
     public void dispose() {
         for (Event next: this.backUI.getUserWardrobe().getLog()) {
             System.out.println(next.toString());

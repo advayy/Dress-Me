@@ -808,6 +808,7 @@ public class UIRunner implements ActionListener, MouseListener {
     }
 
     @Override
+    // overrides mouseClicked for special buttons
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == hatRight) {
             hatGoRight();
@@ -872,16 +873,18 @@ public class UIRunner implements ActionListener, MouseListener {
         }
     }
 
+
+    // Necessary as we implement some Mouse methods
     @Override
     public void mouseEntered(MouseEvent e) {
         //
     }
 
+    // Necessary as we implement some Mouse methods
     @Override
     public void mouseExited(MouseEvent e) {
         //
     }
-
     /*
     // Listing buttons
     JLabel listOfItems = new JLabel("Items List: ");
