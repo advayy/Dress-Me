@@ -91,4 +91,8 @@ Wed Mar 30 23:02:59 PDT 2022
 Item 0 Removed
 
 ### Phase 4: Task 3
-Reflect on the design presented in your UML class diagram.  If you had more time to work on the project, is there any refactoring that you would do to improve your design?  If so, describe the changes you would make in point form in this section of your README.md file.  Note that we do not want you to actually perform the refactoring - just identify the changes you would make if you had more time.  Keep in mind that refactoring does not mean adding more features to your application.    
+If given more time, the changes to my application structure I would add would probably be modifying the relationships
+between all the UI elements. Given that my UI was a lot more complex, I could have broken up the special objects into
+classes that extend some JFrame or JWindow types and modified them to my specifications. Moreover, DressMeApp became a
+bit redundant when the CLI was removed and Outfits were removed from the functionality - so I could potentially
+modify those as well.
