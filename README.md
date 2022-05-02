@@ -19,7 +19,7 @@ track of, with assignments and social events, It would be useful and **efficient
 help plan what to wear. Researchers have found that when you wear outfits that make you feel good, you perform better on
 analytical tasks. And so, this project could be used as an aid to productivity/efficiency for anyone who needs it.
 
-### Why is this project of interest to you?
+### Why is this project of interest to me?
 
 In the introductory scene of the movie Clueless, the protagonist Cher uses a computer to browse through all the clothes 
 in her wardrobe and tries to match pick an outfit. The program can inform her when an outfit isn't *fashionable* and 
@@ -60,11 +60,11 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 
 **Clueless (1995): Splash Screen**
 
-<img src="assets/CluelessSplash.png" alt="Splash Screen" title="Clueless Splash Screen" width="500"/>
+<img src="assets/CluelessSplash.png" alt="Splash Screen" title="Clueless Splash Screen" width="1000"/>
 
 **Clueless (1995): User Interface**
 
-<img src="assets/CluelessUI.png" alt="UI" title="Clueless User Interface" width="500"/>
+<img src="assets/CluelessUI.png" alt="UI" title="Clueless User Interface" width="1000"/>
 
 
 ### Phase 4: Task 2
