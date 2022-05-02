@@ -60,12 +60,12 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 
 **Clueless (1995): Splash Screen**
 
-[Splash Screen](./assets/CluelessSplash.png)
-
+<img src="assets/CluelessSplash.png" alt="Splash Screen" title="Clueless Splash Screen" width="500"/>
 
 **Clueless (1995): User Interface**
 
-[User Interface](./assets/CluelessUI.png)
+<img src="assets/CluelessUI.png" alt="UI" title="Clueless User Interface" width="500"/>
+
 
 ### Phase 4: Task 2
 Demonstration of Functionality (Space lines added for readability)
