@@ -68,7 +68,7 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 
 
 ### Phase 4: Task 2
-Demonstration of Functionality (Space lines added for readability)
+Demonstration of Functionality
 
 Wed Mar 30 23:02:25 PDT 2022
 
