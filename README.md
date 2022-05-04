@@ -1,9 +1,9 @@
 
 # Dress Me!
 ## A Pixel-Art Wardrobe Manager
-[Overview](#A Quick Overview) | [Interest](#Why is this project of interest to me?w) | 
+[Overview](#A Quick Overview) | [Interest](#Why is this project of interest to me?) | 
 [Functionality](#Current Functionalities) | [Inspiration](#A Note on the Visual Inspiration) |
-[Pixel-art](#Pixel-Art Application Segments)
+[Pixel-art](#Pixel Art Application Segments)
 
 <hr>
 <img src="assets/Load.gif" alt="Load In gif" title="Load In Functionality" width="1000"/>
@@ -58,7 +58,7 @@ pixelated rectangular buttons like in the movie Clueless. To add to the complete
 <img src="assets/CluelessUI.png" alt="UI" title="Clueless User Interface" width="1000"/>
 <hr>
 
-### Pixel-Art Application Segments
+### Pixel Art Application Segments
 **Replicated Splash Screen**
 
 <img src="assets/Clueless_Splash_Screen.gif" alt="Dress Me Splash Screen"  width=1000/>
