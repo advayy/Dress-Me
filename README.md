@@ -1,9 +1,9 @@
 
 # Dress Me!
 ## A Pixel-Art Wardrobe Manager
-[Overview](#a-quick-overview) | [Interest](#Why is this project of interest to me?) | 
-[Functionality](#Current Functionalities) | [Inspiration](#A Note on the Visual Inspiration) |
-[Pixel-art](#Pixel Art Application Segments)
+[Overview](#a-quick-overview) | [Interest](#why-is-this-project-of-interest-to-me?) | 
+[Functionality](#current-functionalities) | [Inspiration](#a-note-on-the-visual-inspiration) |
+[Pixel-art](#pixel-art-application-segments)
 
 <hr>
 <img src="assets/Load.gif" alt="Load In gif" title="Load In Functionality" width="1000"/>
