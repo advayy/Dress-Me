@@ -1,7 +1,7 @@
 
 # Dress Me!
 ## A Pixel-Art Wardrobe Manager
-[Overview](#A Quick Overview) | [Interest](#Why is this project of interest to me?) | 
+[Overview](#a-quick-overview) | [Interest](#Why is this project of interest to me?) | 
 [Functionality](#Current Functionalities) | [Inspiration](#A Note on the Visual Inspiration) |
 [Pixel-art](#Pixel Art Application Segments)
 
